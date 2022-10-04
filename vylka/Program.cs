@@ -16,6 +16,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+app.UseMvc();
 app.UseRouting();
 
 app.UseAuthorization();
@@ -25,3 +26,4 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+

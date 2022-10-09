@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using vylka.DB;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -13,6 +16,9 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<Context>(x => x.UseSqlServer(connectionString));
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
@@ -25,4 +31,4 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
-//comment
+

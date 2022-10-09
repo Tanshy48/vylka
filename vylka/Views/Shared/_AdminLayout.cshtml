@@ -4,159 +4,79 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    <!-- Bootstrap core CSS-->
-    <!-- <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />-->
-    <link href="~/AdminStyles/vendor/bootstrap/css/bootstrap.css" rel="stylesheet" />
-    <!-- Custom fonts for this template-->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link href="~/AdminStyles/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <!-- Page level plugin CSS-->
-    <link href="~/AdminStyles/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-    <!-- Custom styles for this template-->
     <link rel="stylesheet" href="~/AdminStyles/css/sb-admin.css">
 </head>
 <body id="page-top">
-    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
-        <a class="navbar-brand mr-1" href="../Admin/Dashboard">My Shop</a>
+
+    <nav class="navbar navbar-dark bg-dark static-top">
+        
+        <div class="mx-2">
         <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
             <i class="fas fa-bars"></i>
         </button>
-        <!-- Navbar Search -->
-        <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                    <button class="btn btn-primary" type="button">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>
-            </div>
-        </form>
-        <!-- Navbar -->
-        <ul class="navbar-nav ml-auto ml-md-0">
-            <li class="nav-item dropdown no-arrow mx-1">
-                <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-bell fa-fw"></i>
-                    <span class="badge badge-danger">9+</span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
-            <li class="nav-item dropdown no-arrow mx-1">
-                <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-envelope fa-fw"></i>
-                    <span class="badge badge-danger">7</span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
-            <li class="nav-item dropdown no-arrow">
-                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-user-circle fa-fw"></i>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                    <a class="dropdown-item" href="#">Settings</a>
-                    <a class="dropdown-item" href="#">Activity Log</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
-                </div>
-            </li>
-        </ul>
+        <span class="text-white">Сторінка адміна</span>
+        </div>
+        <div class="mx-5 float-right">
+        <button type="button" class="btn btn-outline-light">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-door-open" viewBox="0 0 16 16">
+                <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
+                <path d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117zM11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5zM4 1.934V15h6V1.077l-6 .857z"/>
+            </svg>
+            Вийти
+        </button>
+        </div>
     </nav>
+
     <div id="wrapper">
-        <!-- Sidebar -->
         <ul class="sidebar navbar-nav">
             <li class="nav-item active">
                 <a class="nav-link" href="../Admin/Dashboard">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span>
+                    <span>Головна</span>
                 </a>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link" href="../Admin/Categories">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Categories</span>
+                    <span>Категорії</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="~/Admin/Product">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Products</span>
+                    <span>Продукти</span>
                 </a>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Orders</span>
+                    <span>Замовлення</span>
                 </a>
             </li>
-          
-          
-           
         </ul>
+
         <div id="content-wrapper">
-                @RenderBody()
-           
-            <!-- /.container-fluid -->
-            <!-- Sticky Footer -->
+
+            @RenderBody()
+
             <footer class="sticky-footer">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright © My Online Shopping Store 2018</span>
+                        <span>Всі права захищені "Вилка" Copyright © 2022</span>
                     </div>
                 </div>
             </footer>
         </div>
-        <!-- /.content-wrapper -->
     </div>
-    <!-- /#wrapper -->
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
-   
-  
+
 </body>
 
 </html>
- <!-- Bootstrap core JavaScript-->
 <script src="~/AdminStyles/vendor/jquery/jquery.min.js"></script>
-<script src="~/AdminStyles/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- Core plugin JavaScript-->
+<script src="~/lib/bootstrap/dist/css/bootstrap.min.js"></script>
 <script src="~/AdminStyles/vendor/jquery-easing/jquery.easing.min.js"></script>
-<!-- Page level plugin JavaScript-->
-<script src="~/AdminStyles/vendor/chart.js/Chart.min.js"></script>
-<script src="~/AdminStyles/vendor/datatables/jquery.dataTables.js"></script>
-<script src="~/AdminStyles/vendor/datatables/dataTables.bootstrap4.js"></script>
-<!-- Custom scripts for all pages-->
 <script src="~/AdminStyles/js/sb-admin.min.js"></script>
-<!-- Demo scripts for this page-->
-<script src="~/AdminStyles/js/demo/datatables-demo.js"></script>
-<script src="~/AdminStyles/js/demo/chart-area-demo.js"></script>

@@ -10,11 +10,11 @@ namespace Fork_Site.Controllers
         {
             return View();
         }
-
-        /*public IActionResult Categories()
+        public ActionResult Categories()
         {
-            List<Tbl_Category> allCategories = _unitOfWork.GetRepositoryInstance<Tbl_Category>().GetAllRecordsIQueryable().Where(i => i.IsDelete == false).toList();
-            return View(allCategories);
-        }*/
+            /*List<Tbl_Category> allcategories = _unitOfWork.GetRepositoryInstance<Tbl_Category>().GetAllRecordsIQueryable().Where(i => i.IsDelete == false).ToList();
+            return View(allcategories);*/
+            return View();
+        }
     }
 }

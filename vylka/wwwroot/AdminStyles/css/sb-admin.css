@@ -1,10 +1,11 @@
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
+    
 }
 
 body {
-  height: 100%;
+    height: 100%;
 }
 
 #wrapper {
@@ -298,7 +299,6 @@ body.fixed-nav.sidebar-toggled #content-wrapper {
   display: block;
   width: 100%;
   margin-bottom: 0;
-  /* Override default `<label>` margin */
   line-height: 1.5;
   color: #495057;
   border: 1px solid transparent;
@@ -312,10 +312,6 @@ body.fixed-nav.sidebar-toggled #content-wrapper {
 }
 
 .form-label-group input:-ms-input-placeholder {
-  color: transparent;
-}
-
-.form-label-group input::-ms-input-placeholder {
   color: transparent;
 }
 

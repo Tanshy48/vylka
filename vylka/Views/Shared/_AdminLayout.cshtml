@@ -7,11 +7,13 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link href="~/AdminStyles/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="~/AdminStyles/css/sb-admin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
 </head>
 <body id="page-top">
 
     <nav class="navbar navbar-dark bg-dark static-top">
-        
         <div class="mx-2">
         <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
             <i class="fas fa-bars"></i>
@@ -44,17 +46,25 @@
                     <span>Категорії</span>
                 </a>
             </li>
+
             <li class="nav-item">
-                <a class="nav-link" href="~/Admin/Product">
+                <a class="nav-link" href="../Admin/Product">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Продукти</span>
                 </a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="../Admin/Orders">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Замовлення</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="../Admin/Users">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Користувачі</span>
                 </a>
             </li>
         </ul>
@@ -77,6 +87,6 @@
 
 </html>
 <script src="~/AdminStyles/vendor/jquery/jquery.min.js"></script>
-<script src="~/lib/bootstrap/dist/css/bootstrap.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="~/AdminStyles/vendor/jquery-easing/jquery.easing.min.js"></script>
 <script src="~/AdminStyles/js/sb-admin.min.js"></script>

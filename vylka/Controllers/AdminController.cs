@@ -11,15 +11,7 @@ namespace Fork_Site.Controllers
         SqlDataReader dataReader;
         SqlConnection connection = new SqlConnection("Server=localhost;Database=vylka;Trusted_Connection=True;MultipleActiveResultSets=true");
         List<UserModel> UsersList = new List<UserModel>();
-        public IActionResult Dashboard()
-        {
-            return View();
-        }
-        public ActionResult Categories()
-        {
-           
-            return View();
-        }
+       
 
         public ActionResult Users()
         {

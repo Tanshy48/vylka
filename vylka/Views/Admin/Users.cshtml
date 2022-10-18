@@ -1,7 +1,50 @@
 ﻿@{
     ViewData["Title"] = "Users";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@section CSS {
+    <link href="@Url.Content("~/AdminStyles/vendor/fontawesome-free/css/all.min.css")" rel="stylesheet"/>
+    <link href="@Url.Content("~/AdminStyles/css/sb-admin.css")" rel="stylesheet"/>
+}
+<div class="wrapper">
+        <ul class="sidebar navbar-nav">
+            <li class="side-nav-title d-flex">
+                <button class="btn text-white" id="sidebarToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="text-white">Навігація</h1>
+            </li>
+
+            <li class="nav-item border-bottom">
+                <a class="nav-link" href="/Admin/Users">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Користувачі</span>
+                    <span class="arrow fw-semibold float-end">></span>
+                </a>
+            </li>
+            <li class="nav-item border-bottom">
+                <a class="nav-link" href="/Admin/Products">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Продукти</span>
+                    <span class="arrow fw-semibold float-end">></span>
+                </a>
+            </li>
+            <li class="nav-item border-bottom">
+                <a class="nav-link" href="/Admin/Orders">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Замовлення</span>
+                    <span class="arrow fw-semibold float-end">></span>
+                </a>
+            </li>
+            <li class="nav-item border-bottom">
+                <a class="nav-link" href="/Admin/Categories">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Категорії товарів</span>
+                    <span class="arrow fw-semibold float-end">></span>
+                </a>
+            </li>
+        </ul>
+</div>
 <div class="mx-auto m-2 text-center" style="width: 700px; height: 60px; font-family: 'Montserrat', sans-serif;">
     <h1>Список користувачів</h1>
 </div>
@@ -26,3 +69,6 @@
         }
     </tbody>
 </table>
+@section Scripts {
+    <script src="@Url.Content("~/AdminStyles/js/sb-admin.js")"></script>
+}

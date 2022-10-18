@@ -5,14 +5,17 @@
   font-family: 'Montserrat', sans-serif;
 }
 
+body{
+  background-color: #000;
+}
+
 .wrapper {
-  position:fixed;
+  display: flex;
 }
 
 /* Sidebar */
 .sidebar {
-  margin-bottom: -5000px;
-  padding-bottom: 5000px; 
+  min-height: 100vh;
   background-color: #fff;
   transition: all 0.5s ease-in-out;
 }
@@ -57,8 +60,9 @@
   transition: all 0.5s ease-in;
 }
 .sidebar.toggled .side-nav-title h1{
-  font-size: 0rem;
+  
   visibility: hidden;
+  font-size: 0rem;
 }
 .sidebar.toggled .nav-item {
   padding: 0;
@@ -71,4 +75,27 @@
 .sidebar.toggled .nav-item .nav-link span {
   font-size: 0rem;
   visibility: hidden;
+}
+
+.content-wrapper {
+  overflow-x: hidden;
+  padding: 9rem 7rem 2rem 5rem;
+  width: 100%;
+}
+
+.content-wrapper .bg-table-title {
+  background-color: #ebeced;
+}
+
+@media screen and (max-width: 1200px){
+  .content-wrapper {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  .content-wrapper .bg-table-title {
+    background-color: #ebeced;
+  }
+  .content-wrapper h1 {
+    padding: 1rem;
+  }
 }

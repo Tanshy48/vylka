@@ -1,11 +1,11 @@
-﻿@{ 
-    ViewData["Title"] = "Користувачі"; 
-    Layout = "~/Views/Shared/_Layout.cshtml"; 
-} 
+@{
+    ViewData["Title"] = "Товари";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 @section CSS {
-    <link href="@Url.Content(" ~/lib/fontawesome-free/css/all.min.css")" rel="stylesheet" asp-append-version="true" />
-    <link href="@Url.Content(" ~/css/admin.css")" rel="stylesheet" asp-append-version="true" /> 
-} 
+    <link href="@Url.Content("~/lib/fontawesome-free/css/all.min.css")" rel="stylesheet" asp-append-version="true"/>
+    <link href="@Url.Content("~/css/admin.css")" rel="stylesheet" asp-append-version="true"/>
+}
 <div class="render-content">
 	<div class="wrapper">
 		<ul class="sidebar navbar-nav">
@@ -25,7 +25,7 @@
 			<li class="nav-item border-bottom">
 				<a class="nav-link" asp-area="" asp-controller="Admin" asp-action="Products">
 					<i class="fas fa-fw fa-table"></i>
-					<span>Продукти</span>
+					<span>Товари</span>
 					<span class="arrow fw-semibold float-end">></span>
 				</a>
 			</li>
@@ -47,28 +47,29 @@
 		<div class="content-wrapper">
 			<div class="border-top border-primary border-4 bg-light table-responsive">
 				<div class="bg-table-title text-dark">
-					<h1 class=" fw-bolder fs-5 p-lg-3 ">Список користувачів</h1>
+					<h1 class=" fw-bolder fs-5 p-lg-3 ">Товари</h1>
 				</div>
 				<table class="text-center table table-striped">
 					<thead class="fs-6">
 						<tr>
 							<th scope="col">ID</th>
-							<th scope="col">Електронна скринька</th>
-							<th scope="col">Захешований пароль</th>
-							<th scope="col">Номер телефону</th>
+							<th scope="col">Назва</th>
+							<th scope="col">Опис</th>
+							<th scope="col">Наявність</th>
+							<th scope="col">Зображення</th>
 						</tr>
 					</thead>
-					<tbody> @foreach(var item in Model) { <tr>
+					<tbody> @* @foreach(var item in Model) { <tr>
 							<th scope="row">@item.Id</th>
 							<td>@item.Email</td>
 							<td>@item.PasswordHash</td>
 							<td>@item.PhoneNumber</td>
-						</tr> } </tbody>
+						</tr> } *@ </tbody>
 				</table>
 			</div>
 		</div>
 	</div>
-</div> 
-@section Scripts { 
-    <script src="@Url.Content(" ~/js/admin.js")" asp-append-version="true"></script> 
+</div>
+@section Scripts {
+    <script src="@Url.Content("~/js/admin.js")" asp-append-version="true"></script>
 }

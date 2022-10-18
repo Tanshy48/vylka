@@ -1,11 +1,11 @@
-﻿@{ 
-    ViewData["Title"] = "Користувачі"; 
-    Layout = "~/Views/Shared/_Layout.cshtml"; 
-} 
+@{
+    ViewData["Title"] = "Категорії";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 @section CSS {
-    <link href="@Url.Content(" ~/lib/fontawesome-free/css/all.min.css")" rel="stylesheet" asp-append-version="true" />
-    <link href="@Url.Content(" ~/css/admin.css")" rel="stylesheet" asp-append-version="true" /> 
-} 
+    <link href="@Url.Content("~/lib/fontawesome-free/css/all.min.css")" rel="stylesheet" asp-append-version="true"/>
+    <link href="@Url.Content("~/css/admin.css")" rel="stylesheet" asp-append-version="true"/>
+}
 <div class="render-content">
 	<div class="wrapper">
 		<ul class="sidebar navbar-nav">
@@ -44,31 +44,9 @@
 				</a>
 			</li>
 		</ul>
-		<div class="content-wrapper">
-			<div class="border-top border-primary border-4 bg-light table-responsive">
-				<div class="bg-table-title text-dark">
-					<h1 class=" fw-bolder fs-5 p-lg-3 ">Список користувачів</h1>
-				</div>
-				<table class="text-center table table-striped">
-					<thead class="fs-6">
-						<tr>
-							<th scope="col">ID</th>
-							<th scope="col">Електронна скринька</th>
-							<th scope="col">Захешований пароль</th>
-							<th scope="col">Номер телефону</th>
-						</tr>
-					</thead>
-					<tbody> @foreach(var item in Model) { <tr>
-							<th scope="row">@item.Id</th>
-							<td>@item.Email</td>
-							<td>@item.PasswordHash</td>
-							<td>@item.PhoneNumber</td>
-						</tr> } </tbody>
-				</table>
-			</div>
-		</div>
+
 	</div>
-</div> 
-@section Scripts { 
-    <script src="@Url.Content(" ~/js/admin.js")" asp-append-version="true"></script> 
+</div>
+@section Scripts {
+    <script src="@Url.Content("~/js/admin.js")" asp-append-version="true"></script>
 }

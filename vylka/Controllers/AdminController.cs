@@ -18,6 +18,18 @@ namespace Fork_Site.Controllers
             FetchData();
             return View(UsersList);
         }
+        public ActionResult Products()
+        {
+            return View();
+        }
+        public ActionResult Categories()
+        {
+            return View();
+        }
+        public ActionResult Orders()
+        {
+            return View();
+        }
 
         private void FetchData()
         {

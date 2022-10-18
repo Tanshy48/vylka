@@ -27,6 +27,10 @@ a {
 	padding: 0;
 }
 
+.logo{
+	width: 130px;
+}
+
 .custom-navbar {
 	background-image: url("../images/background/navbar.png");
 	background-repeat: no-repeat;

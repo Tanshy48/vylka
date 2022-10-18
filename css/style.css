@@ -40,6 +40,7 @@ a {
 
 .navbar-dark .navbar-nav .nav-link {
     color: #75a8d6;
+	opacity: .9;
 }
 
 @media (min-width: 992px) {
@@ -52,7 +53,6 @@ a {
 .custom-navbar .custom-navbar-nav li a {
 	color: #75a8d6;
 	font-weight: 500;
-	opacity: 0.9;
 	transition: .3s all ease;
 	position: relative;
 }

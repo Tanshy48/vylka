@@ -20,7 +20,6 @@ a {
 	-webkit-transition: .3s all ease;
 	-o-transition: .3s all ease;
 	transition: .3s all ease;
-	color: #75a8d6;
 	text-decoration: underline;
 }
 
@@ -39,6 +38,11 @@ a {
 	font-weight: 600;
 }
 
+.navbar-dark .navbar-nav .nav-link {
+    color: #75a8d6;
+	opacity: .9;
+}
+
 @media (min-width: 992px) {
 	.custom-navbar .custom-navbar-nav li {
 		margin-left: 15px;
@@ -47,19 +51,14 @@ a {
 }
 
 .custom-navbar .custom-navbar-nav li a {
-	font-weight: 500;
 	color: #75a8d6;
-	opacity: 0.9;
+	font-weight: 500;
 	transition: .3s all ease;
 	position: relative;
 }
 
 .custom-navbar .custom-navbar-nav li a:hover {
 	opacity: 1;
-}
-
-.custom-navbar .custom-navbar-nav li a:hover:before {
-	width: calc(100% - 16px);
 }
 
 .custom-navbar .custom-navbar-cta {

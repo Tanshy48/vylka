@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using vylka.Areas.DB;
+using vylka.Models;
 
 namespace vylka.Data;
 
@@ -24,4 +25,5 @@ public class vylkaContext : IdentityDbContext<IdentityUser>
     public DbSet<Product> Products { get; set; }
     public DbSet<Category> Categories { get; set; }
     public DbSet<Cart> Carts { get; set; }
+    public DbSet<vylka.Models.UserModel> UserModel { get; set; }
 }

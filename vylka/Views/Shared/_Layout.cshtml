@@ -1,51 +1,98 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - vylka</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/vylka.styles.css" asp-append-version="true" />
-</head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">vylka</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>@ViewData["Title"] - VYLKA</title>
+		<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+        @RenderSection("CSS", required: false)
+	</head>
+	<body> 
+        <!-- Navbar -->
+        <nav class="custom-navbar navbar navbar-expand-md navbar-dark">
+			<div class="container">
+				<img class="logo" src="~/images/logo/logo.png" alt="logo">
+				<div class="collapse navbar-collapse" id="navbarsFurni">
+					<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
+						<li class="nav-item">
+							<a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Про нас</a>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Товари </a>
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<li>
+									<a class="dropdown-item" asp-area="" asp-controller="Products" asp-action="Refrigerators">Холодильники</a>
+								</li>
+								<li>
+									<a class="dropdown-item" asp-area="" asp-controller="Products" asp-action="TVs">Телевізори</a>
+								</li>
+								<li>
+									<a class="dropdown-item" asp-area="" asp-controller="Products" asp-action="Vacuums">Пилососи</a>
+								</li>
+								<li>
+									<a class="dropdown-item" asp-area="" asp-controller="Products" asp-action="Conditioners">Кондиціонери</a>
+								</li>
+							</ul>
+						</li>
+						<li class="nav-link">+38 (068) 202 60 66</li>
+					</ul>
+					<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
+						<li>
+							<a class="nav-link" asp-area="" asp-controller="ShoppingCart" asp-action="Index">
+								<img src="~/images/icons/cart.png" alt="shopping cart">
+							</a>
+						</li>
+						<partial name="_LoginPartial" />
+					</ul>
+				</div>
+			</div>
+		</nav>
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                    <partial name="_LoginPartial"/>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+		<main role="main"> @RenderBody() </main>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - vylka - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
-</body>
+		<!-- Footer -->
+		<footer class="text-center text-muted">
+			<section>
+				<div class="text-white container text-center text-md-start pb-5">
+					<div class="row">
+						<h6 class="text-uppercase fw-bold mt-5 mb-4">VYLKA</h6>
+						<div class="col-md-3 col-lg-4 col-xl-3 mx-auto">
+							<h7>Тобі потрібна допомога?</h7>
+							<p>
+								<a>Обмін та повернення товару</a>
+							</p>
+							<p>Зв'яжіться з нами</p>
+							<p>Доставка</p>
+						</div>
+						<div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+							<h7> Контакти</h7>
+							<p>
+								<a> +380 (068) 202 60 66</a>
+							</p>
+							<p>
+								<a> VYLKASTORE@GMAIL.COM</a>
+							</p>
+						</div>
+						<div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+							<h7>
+								<a>Домашня сторінка</a>
+							</h7>
+							<p>
+								<a>Товари</a>
+							</p>
+						</div>
+						<div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+							<p>
+								<a> Слідкуй за нами </a>
+							</p>
+						</div>
+					</div>
+			</section>
+		</footer>
+	</body>
 </html>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script> 
+@RenderSection("Scripts", required: false)

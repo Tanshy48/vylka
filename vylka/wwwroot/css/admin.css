@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+
+* {
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+body{
+  background-color: #000;
+}
+
+.wrapper {
+  display: flex;
+}
+
+/* Sidebar */
+.sidebar {
+  min-height: 100vh;
+  background-color: #fff;
+  transition: all 0.5s ease-in-out;
+}
+.side-nav-title{
+  padding: 2rem 5rem 2rem 9rem;
+  background: rgb(24,84,150);
+  background: linear-gradient(0deg, rgba(24,84,150,1) 0%, rgba(32,92,159,1) 55%, rgba(24,84,150,1) 100%);
+  transition: all 0.5s ease-out;
+}
+.side-nav-title h1{
+  font-size: 2.5rem;
+}
+.side-nav-title i{
+  font-size: 1.5rem;
+}
+.sidebar .nav-item{
+  padding: 1rem 2.5rem 1rem 10rem;
+  transition: all 0.5s ease-out;
+}
+.sidebar .nav-item:last-child {
+  margin-bottom: 1rem;
+}
+.sidebar .nav-item .nav-link {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #3977bb;
+  display: block;
+  text-align: left;
+}
+.sidebar .nav-item .nav-link span {
+  font-size: 1.2rem;
+  display: inline;
+}
+
+/* Toggled sidebar styles */
+.sidebar.toggled{
+  min-width: auto;
+  overflow: visible;
+}
+.sidebar.toggled .side-nav-title{
+  padding: 0.5rem;
+  transition: all 0.5s ease-in;
+}
+.sidebar.toggled .side-nav-title h1{
+  
+  visibility: hidden;
+  font-size: 0rem;
+}
+.sidebar.toggled .nav-item {
+  padding: 0;
+  transition: all 0.5s ease-in;
+}
+.sidebar.toggled .nav-item .nav-link {
+  padding: 1rem;
+  font-size: 1.5rem;
+}
+.sidebar.toggled .nav-item .nav-link span {
+  font-size: 0rem;
+  visibility: hidden;
+}
+
+.content-wrapper {
+  overflow-x: hidden;
+  padding: 9rem 7rem 2rem 5rem;
+  width: 100%;
+}
+
+.content-wrapper .bg-table-title {
+  background-color: #ebeced;
+}
+
+@media screen and (max-width: 1200px){
+  .content-wrapper {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  .content-wrapper .bg-table-title {
+    background-color: #ebeced;
+  }
+  .content-wrapper h1 {
+    padding: 1rem;
+  }
+}

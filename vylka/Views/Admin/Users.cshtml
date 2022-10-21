@@ -9,41 +9,51 @@
 <div class="render-content">
 	<div class="wrapper">
 		<ul class="sidebar navbar-nav">
-			<li class="side-nav-title d-flex">
-				<button class="btn text-white" id="sidebarToggle">
-					<i class="fas fa-bars"></i>
-				</button>
-				<h1 class="text-white">Навігація</h1>
-			</li>
-			<li class="nav-item border-bottom">
-				<a class="nav-link" asp-area="" asp-controller="Admin" asp-action="Users">
-					<i class="fas fa-fw fa-table"></i>
-					<span>Користувачі</span>
-					<span class="arrow fw-semibold float-end">></span>
-				</a>
-			</li>
-			<li class="nav-item border-bottom">
-				<a class="nav-link" asp-area="" asp-controller="Admin" asp-action="Products">
-					<i class="fas fa-fw fa-table"></i>
-					<span>Продукти</span>
-					<span class="arrow fw-semibold float-end">></span>
-				</a>
-			</li>
-			<li class="nav-item border-bottom">
-				<a class="nav-link" asp-area="" asp-controller="Admin" asp-action="Orders">
-					<i class="fas fa-fw fa-table"></i>
-					<span>Замовлення</span>
-					<span class="arrow fw-semibold float-end">></span>
-				</a>
-			</li>
-			<li class="nav-item border-bottom">
-				<a class="nav-link" asp-area="" asp-controller="Admin" asp-action="Categories">
-					<i class="fas fa-fw fa-table"></i>
-					<span>Категорії товарів</span>
-					<span class="arrow fw-semibold float-end">></span>
-				</a>
-			</li>
-		</ul>
+				<li class="side-nav-title d-flex">
+					<div class="d-flex align-items-center">
+						<button class="btn text-white" id="sidebarToggle">
+							<img src="~/images/admin/sidebarToggle.png" alt="Card image cap">
+						</button>
+						<h1 class="text-white">Навігація</h1>
+					</div>
+				</li>
+				<li class="nav-item border-bottom">
+					<a class="nav-link d-flex justify-content-between" asp-area="" asp-controller="Admin" asp-action="Users">
+						<div class="d-flex align-items-center">
+							<img src="~/images/admin/users.png" alt="Card image cap">
+							<span>Користувачі</span>
+						</div>
+						<span class="arrow fw-semibold float-end">></span>
+					</a>
+				</li>
+				<li class="nav-item border-bottom">
+					<a class="nav-link d-flex justify-content-between" asp-area="" asp-controller="Admin" asp-action="Products">
+						<div class="d-flex align-items-center">
+							<img src="~/images/admin/products.png" alt="Card image cap">
+							<span>Товари</span>
+						</div>
+						<span class="arrow fw-semibold float-end">></span>
+					</a>
+				</li>
+				<li class="nav-item border-bottom">
+					<a class="nav-link d-flex justify-content-between" asp-area="" asp-controller="Admin" asp-action="Orders">
+						<div class="d-flex align-items-center">
+							<img src="~/images/admin/orders.png" alt="Card image cap">
+							<span>Замовлення</span>
+						</div>
+						<span class="arrow fw-semibold float-end">></span>
+					</a>
+				</li>
+				<li class="nav-item border-bottom">
+					<a class="nav-link d-flex justify-content-between" asp-area="" asp-controller="Admin" asp-action="Categories">
+						<div class="d-flex align-items-center">
+							<img src="~/images/admin/categories.png" alt="Card image cap">
+							<span>Категорії товарів</span>
+						</div>
+						<span class="arrow fw-semibold float-end">></span>
+					</a>
+				</li>
+			</ul>
 		<div class="content-wrapper">
 			<div class="border-top border-primary border-4 bg-light table-responsive">
 				<div class="bg-table-title text-dark">

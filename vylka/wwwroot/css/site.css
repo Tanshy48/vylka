@@ -28,13 +28,14 @@ a {
 }
 
 .logo{
-	width: 130px;
+	width: 126px;
 }
 
 .custom-navbar {
 	background-image: url("../images/background/navbar.png");
 	background-repeat: no-repeat;
 	background-position: top;
+	margin-bottom: 0;
 }
 
 .custom-navbar .navbar-brand {

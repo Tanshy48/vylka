@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Sidebar</title>
+		<link href="/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="/lib/animate.css/animate.min.css" rel="stylesheet">
+		<link href="css/admin.css" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+	</head>
+	<body>
+		<div class="wrapper">
+			<ul class="sidebar navbar-nav">
+				<li class="side-nav-title d-flex">
+					<div class="d-flex align-items-center">
+						<button class="btn text-white" id="sidebarToggle">
+							<img src="images/admin/sidebarToggle.png" alt="Card image cap">
+						</button>
+						<h1 class="text-white">Навігація</h1>
+					</div>
+				</li>
+				<li class="nav-item border-bottom">
+					<a class="nav-link d-flex justify-content-between" href="#">
+						<div class="d-flex align-items-center">
+							<img src="images/admin/users.png" alt="Card image cap">
+							<span>Користувачі</span>
+						</div>
+						<span class="arrow fw-semibold float-end">></span>
+					</a>
+				</li>
+				<li class="nav-item border-bottom">
+					<a class="nav-link d-flex justify-content-between" href="products.html">
+						<div class="d-flex align-items-center">
+							<img src="images/admin/products.png" alt="Card image cap">
+							<span>Товари</span>
+						</div>
+						<span class="arrow fw-semibold float-end">></span>
+					</a>
+				</li>
+				<li class="nav-item border-bottom">
+					<a class="nav-link d-flex justify-content-between" href="products.html">
+						<div class="d-flex align-items-center">
+							<img src="images/admin/orders.png" alt="Card image cap">
+							<span>Замовлення</span>
+						</div>
+						<span class="arrow fw-semibold float-end">></span>
+					</a>
+				</li>
+				<li class="nav-item border-bottom">
+					<a class="nav-link d-flex justify-content-between" href="products.html">
+						<div class="d-flex align-items-center">
+							<img src="images/admin/categories.png" alt="Card image cap">
+							<span>Категорії товарів</span>
+						</div>
+						<span class="arrow fw-semibold float-end">></span>
+					</a>
+				</li>
+			</ul>
+			<div class="content-wrapper">
+				<div class="border-top border-primary border-4 bg-light table-responsive">
+					<div class="bg-table-title d-flex justify-content-between align-items-center">
+						<h1 class=" fw-bolder fs-5 p-lg-3 ">Список користувачів</h1>
+                        <button class="btn btn-success">
+                            <i class="fa-sharp fa-solid fa-file-circle-plus"></i>
+                            <span>Додати товар</span>
+                        </button>
+					</div>
+					<table class="text-center table table-striped">
+						<thead class="fs-6">
+							<tr>
+								<th scope="col">ID</th>
+								<th scope="col">Електронна скринька</th>
+								<th scope="col">Захешований пароль</th>
+								<th scope="col">Номер телефону</th>
+								<th scope="col">Змінити</th>
+								<th scope="col">Видалити</th>
+							</tr>
+						</thead>
+						<tbody>
+							<!-- @foreach(var item in Model)
+                    {
+                        <tr><th scope="row">@item.Id</th><td>@item.Email</td><td>@item.PasswordHash</td><td>@item.PhoneNumber</td></tr>
+                    } -->
+							<tr>
+								<th scope="row">@item.Id</th>
+								<td>@item.Email</td>
+								<td>@item.PasswordHash</td>
+								<td>@item.PhoneNumber</td>
+								<td>
+									<button class="btn btn-primary">
+										<i class="fa fa-pen"></i>
+									</button>
+								</td>
+								<td>
+									<button class="btn btn-danger">
+										<i class="fa fa-trash"></i>
+									</button>
+								</td>
+							</tr>
+							<!-- <tr><th scope="row">@item.Id</th><td>@item.Email</td><td>@item.PasswordHash</td><td>@item.PhoneNumber</td><td><button class="btn"><i class="fa fa-pen"></i></button></td><td><button class="btn"><i class="fa fa-trash"></i></button></td></tr><tr><th scope="row">@item.Id</th><td>@item.Email</td><td>@item.PasswordHash</td><td>@item.PhoneNumber</td><td><button class="btn"><i class="fa fa-pen"></i></button></td><td><button class="btn"><i class="fa fa-trash"></i></button></td></tr> -->
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+		<script src="/lib/jquery/dist/jquery.min.js"></script>
+		<script src="js/admin.js"></script>
+	</body>
+</html>

@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using System.Data.SqlClient;
 using vylka.Models;
 
 
 namespace Fork_Site.Controllers
 {
-    public class AdminController : Controller
+    public class UserAdminController : Controller
     {
         SqlCommand command = new SqlCommand();
         SqlDataReader dataReader;
@@ -18,18 +18,7 @@ namespace Fork_Site.Controllers
             FetchData();
             return View(UsersList);
         }
-        public ActionResult Products()
-        {
-            return View();
-        }
-        public ActionResult Categories()
-        {
-            return View();
-        }
-        public ActionResult Orders()
-        {
-            return View();
-        }
+       
 
         private void FetchData()
         {

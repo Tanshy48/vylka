@@ -1,4 +1,4 @@
-﻿@{ 
+@{ 
     ViewData["Title"] = "Користувачі"; 
     Layout = "~/Views/Shared/_AdminLayout.cshtml"; 
 } 
@@ -17,15 +17,23 @@
 						<tr>
 							<th scope="col">ID</th>
 							<th scope="col">Електронна скринька</th>
-							<th scope="col">Захешований пароль</th>
 							<th scope="col">Номер телефону</th>
+							<th scope="col">Роль</th>
+							<th scope="col">Змінити роль</th>
 						</tr>
 					</thead>
 					<tbody> @foreach(var item in Model) { <tr>
 							<th scope="row">@item.Id</th>
 							<td>@item.Email</td>
-							<td>@item.PasswordHash</td>
 							<td>@item.PhoneNumber</td>
+							<td>...</td>
+							<td>
+								<a asp-area="Admin" asp-controller="UserAdmin" asp-action="EditUserRole">
+									<button class="btn btn-primary">
+										<i class="fa fa-users-cog"></i>
+									</button>
+								</a>
+							</td>
 						</tr> } </tbody>
 				</table>
 			</div>

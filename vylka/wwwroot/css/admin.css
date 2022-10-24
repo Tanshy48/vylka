@@ -97,7 +97,7 @@ body{
 
 .content-wrapper {
   overflow-x: hidden;
-  padding: 9rem 7rem 2rem 5rem;
+  padding: 5rem 7rem 2rem 5rem;
   width: 100%;
 }
 
@@ -137,11 +137,24 @@ table td button{
   padding: 0;
 }
 
-table td button i{
+.render-content table td button i{
   margin: 0;
   font-size: .8rem;
 }
 
-table tr td{
+.render-content table tr td{
   vertical-align: middle;
+}
+
+.render-content a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.render-content a:hover {
+  color: #fff;
+}
+
+.render-content form {
+  margin: 0 2rem 2rem 2rem;
 }

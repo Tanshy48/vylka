@@ -16,5 +16,9 @@ namespace Fork_Site.Controllers
         {
             return View();
         }
+        public ActionResult DeleteProduct()
+        {
+            return View();
+        }
     }
 }

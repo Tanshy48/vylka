@@ -18,7 +18,11 @@ namespace Fork_Site.Controllers
             FetchData();
             return View(UsersList);
         }
-       
+        public ActionResult EditUserRole()
+        {
+            FetchData();
+            return View(UsersList);
+        }
 
         private void FetchData()
         {

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Data.SqlClient;
+using vylka.Constants;
 using vylka.Models;
 
 
@@ -7,24 +8,26 @@ namespace Fork_Site.Controllers
 {
     public class UserAdminController : Controller
     {
-        SqlCommand command = new SqlCommand();
-        SqlDataReader dataReader;
-        SqlConnection connection = new SqlConnection("Server=localhost;Database=vylka;Trusted_Connection=True;MultipleActiveResultSets=true");
-        List<UserModel> UsersList = new List<UserModel>();
+        readonly SqlCommand command = new();
+        readonly SqlDataReader? dataReader;
+        readonly SqlConnection connection = new(Constants.Connection);
+        readonly List<UserModel> UsersList = new();
        
 
         public ActionResult Users()
         {
-            FetchData();
+            FetchData(GetDataReader());
             return View(UsersList);
         }
         public ActionResult EditUserRole()
         {
-            FetchData();
+            FetchData(GetDataReader());
             return View(UsersList);
         }
 
-        private void FetchData()
+        private SqlDataReader GetDataReader() => dataReader;
+
+        private void FetchData(SqlDataReader dataReader)
         {
             if (UsersList.Count > 0)
             {
@@ -48,9 +51,9 @@ namespace Fork_Site.Controllers
                 }
                 connection.Close();
             }
-            catch (Exception ex)
+            catch(Exception)
             {
-                throw ex;
+                throw;
             }
         }
     }

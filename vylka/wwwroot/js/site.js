@@ -1,4 +1,9 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
-
-// Write your JavaScript code.
+﻿(function($) {
+    "use strict";
+  
+    //To get footer to the end of page
+    $(".render-content")
+        .css('min-height', $(window).height()-$("footer").height()-$("nav").height())
+        .css('width','100%');
+    
+})(jQuery);

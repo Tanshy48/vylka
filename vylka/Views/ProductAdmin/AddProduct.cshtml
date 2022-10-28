@@ -1,0 +1,58 @@
+@{
+    ViewData["Title"] = "Додати товар";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@section CSS {
+    <link href="@Url.Content("~/lib/fontawesome-free/css/all.min.css")" rel="stylesheet" asp-append-version="true"/>
+    <link href="@Url.Content("~/css/admin.css")" rel="stylesheet" asp-append-version="true"/>
+}
+<div class="render-content">
+		<div class="content-wrapper">
+			<div class="border-top border-primary border-4 bg-light table-responsive">
+				<div class="bg-table-title text-dark d-flex justify-content-between align-items-center">
+					<h1 class=" fw-bolder fs-5 p-lg-3 ">Додавання товару</h1>
+				</div>
+				<form class="text-dark" novalidate>
+                    <div class="mb-3">
+                        <label class="form-label">Назва</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Опис</label>
+                        <textarea class="form-control"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Кількість</label>
+                        <input type="number" class="form-control" value="1">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Ціна</label>
+                        <input type="number" class="form-control" value="100">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Категорія</label>
+                        <select class="form-select">
+                        <option selected disabled value="">Вибрати...</option>
+                        <option>Холодильники</option>
+                        <option>Телевізори</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Фотографія</label>
+                        <input class="form-control" type="file" id="formFile">
+                    </div>
+                    <div>
+                        <button class="btn btn-success" type="submit" asp-area="Admin" asp-controller="ProductAdmin" asp-action="Products">
+                            Створити
+                        </button>
+                        <a class="btn text-dark" asp-area="Admin" asp-controller="ProductAdmin" asp-action="Products">
+                            Назад
+                        </a>
+                    </div>
+                </form>
+			</div>
+		</div>
+</div>
+@section Scripts {
+    <script src="@Url.Content("~/js/admin.js")" asp-append-version="true"></script>
+}

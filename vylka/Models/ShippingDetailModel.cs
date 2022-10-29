@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace vylka.Areas.DB
+namespace vylka.Models
 {
-    public class ShippingDetail
+    public class ShippingDetailModel
     {
         [Key]
         public int Id { get; set; }

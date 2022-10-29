@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using vylka.Models;
+using System.Net.Mail;
 
 namespace vylka.Areas.Identity.Pages.Account
 {
@@ -22,11 +23,13 @@ namespace vylka.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<UserModel> _signInManager;
         private readonly ILogger<LoginModel> _logger;
+        private readonly UserManager<UserModel> _userManager;
 
-        public LoginModel(SignInManager<UserModel> signInManager, ILogger<LoginModel> logger)
+        public LoginModel(SignInManager<UserModel> signInManager, ILogger<LoginModel> logger, UserManager<UserModel> userManager)
         {
             _signInManager = signInManager;
             _logger = logger;
+            _userManager = userManager;
         }
 
         /// <summary>
@@ -66,7 +69,7 @@ namespace vylka.Areas.Identity.Pages.Account
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [Required]
-            [EmailAddress]
+            [Display(Name = "Email / Username")]
             public string Email { get; set; }
 
             /// <summary>
@@ -110,9 +113,19 @@ namespace vylka.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
+                var userName = Input.Email;
+                if (IsValidEmail(Input.Email))
+                {
+                    var user = await _userManager.FindByEmailAsync(Input.Email);
+                    if (user != null)
+                    {
+                        userName = user.UserName;
+                    }
+                }
+
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
+                var result = await _signInManager.PasswordSignInAsync(userName, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
@@ -136,6 +149,18 @@ namespace vylka.Areas.Identity.Pages.Account
 
             // If we got this far, something failed, redisplay form
             return Page();
+        }
+        public bool IsValidEmail(string emailaddress)
+        {
+            try
+            {
+                MailAddress mail = new MailAddress(emailaddress);
+                return true;
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
         }
     }
 }

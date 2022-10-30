@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>@ViewData["Title"] - VYLKA</title>
+		<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/admin.css" asp-append-version="true" />
+        @RenderSection("CSS", required: false)
+	</head>
+	<body> 
+        <!-- Navbar -->
+        <nav class="custom-navbar navbar navbar-expand-md navbar-dark">
+			<div class="container">
+				<img class="logo" src="~/images/logo/logo.png" alt="logo">
+				<div class="collapse navbar-collapse" id="navbarsFurni">
+					<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
+						<li class="nav-item">
+							<a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Про нас</a>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Товари </a>
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<li>
+									<a class="dropdown-item" asp-area="" asp-controller="Products" asp-action="Refrigerators">Холодильники</a>
+								</li>
+								<li>
+									<a class="dropdown-item" asp-area="" asp-controller="Products" asp-action="TVs">Телевізори</a>
+								</li>
+								<li>
+									<a class="dropdown-item" asp-area="" asp-controller="Products" asp-action="Vacuums">Пилососи</a>
+								</li>
+								<li>
+									<a class="dropdown-item" asp-area="" asp-controller="Products" asp-action="Conditioners">Кондиціонери</a>
+								</li>
+							</ul>
+						</li>
+						<li class="nav-link">+38 (068) 202 60 66</li>
+					</ul>
+					<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
+						<li>
+							<a class="nav-link" asp-area="" asp-controller="ShoppingCart" asp-action="Index">
+								<img src="~/images/icons/cart.png" alt="shopping cart">
+							</a>
+						</li>
+						<partial name="_LoginPartial" />
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+		<main role="main">
+            <div class="wrapper">
+				<ul class="sidebar navbar-nav">
+					<li class="side-nav-title d-flex">
+						<div class="d-flex align-items-center">
+							<button class="btn text-white" id="sidebarToggle">
+								<img src="~/images/admin/sidebarToggle.png" alt="Card image cap">
+							</button>
+							<h1 class="text-white">Навігація</h1>
+						</div>
+					</li>
+					<li class="nav-item border-bottom">
+						<a class="nav-link d-flex justify-content-between" asp-area="Admin" asp-controller="UserAdmin" asp-action="Users">
+							<div class="d-flex align-items-center">
+								<img src="~/images/admin/users.png" alt="Card image cap">
+								<span>Користувачі</span>
+							</div>
+							<span class="arrow fw-semibold float-end">></span>
+						</a>
+					</li>
+					<li class="nav-item border-bottom">
+						<a class="nav-link d-flex justify-content-between" asp-area="Admin" asp-controller="ProductAdmin" asp-action="Products">
+							<div class="d-flex align-items-center">
+								<img src="~/images/admin/products.png" alt="Card image cap">
+								<span>Товари</span>
+							</div>
+							<span class="arrow fw-semibold float-end">></span>
+						</a>
+					</li>
+					<li class="nav-item border-bottom">
+						<a class="nav-link d-flex justify-content-between" asp-area="Admin" asp-controller="OrderAdmin" asp-action="Orders">
+							<div class="d-flex align-items-center">
+								<img src="~/images/admin/orders.png" alt="Card image cap">
+								<span>Замовлення</span>
+							</div>
+							<span class="arrow fw-semibold float-end">></span>
+						</a>
+					</li>
+					<li class="nav-item border-bottom">
+						<a class="nav-link d-flex justify-content-between" asp-area="Admin" asp-controller="CategoryAdmin" asp-action="Categories">
+							<div class="d-flex align-items-center">
+								<img src="~/images/admin/categories.png" alt="Card image cap">
+								<span>Категорії товарів</span>
+							</div>
+							<span class="arrow fw-semibold float-end">></span>
+						</a>
+					</li>
+				</ul>
+				@RenderBody()
+            </div>
+        </main>
+	</body>
+</html>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script> 
+@RenderSection("Scripts", required: false)

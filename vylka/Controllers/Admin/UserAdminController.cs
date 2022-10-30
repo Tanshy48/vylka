@@ -1,3 +1,5 @@
+#nullable disable
+
 using Microsoft.AspNetCore.Mvc;
 using System.Data.SqlClient;
 using vylka.Constants;
@@ -9,7 +11,7 @@ namespace Fork_Site.Controllers
     public class UserAdminController : Controller
     {
         readonly SqlCommand command = new();
-        readonly SqlDataReader? dataReader;
+        readonly SqlDataReader dataReader;
         readonly SqlConnection connection = new(Constants.Connection);
         readonly List<UserModel> UsersList = new();
        

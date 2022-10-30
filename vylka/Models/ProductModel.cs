@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace vylka.Areas.DB
+namespace vylka.Models
 {
-    public class Product
+    public class ProductModel
     {
         [Key]
         public int Id { get; set; }
@@ -10,6 +10,6 @@ namespace vylka.Areas.DB
         public string Description { get; set; }
         public int Quantity { get; set; }
         public double Price { get; set; }
-        public Category Category { get; set; }
+        public CategoryModel Category { get; set; }
     }
 }

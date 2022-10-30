@@ -52,95 +52,55 @@
 
 		<main role="main">
             <div class="wrapper">
-            <ul class="sidebar navbar-nav">
-				<li class="side-nav-title d-flex">
-					<div class="d-flex align-items-center">
-						<button class="btn text-white" id="sidebarToggle">
-							<img src="~/images/admin/sidebarToggle.png" alt="Card image cap">
-						</button>
-						<h1 class="text-white">Навігація</h1>
-					</div>
-				</li>
-				<li class="nav-item border-bottom">
-					<a class="nav-link d-flex justify-content-between" asp-area="Admin" asp-controller="UserAdmin" asp-action="Users">
+				<ul class="sidebar navbar-nav">
+					<li class="side-nav-title d-flex">
 						<div class="d-flex align-items-center">
-							<img src="~/images/admin/users.png" alt="Card image cap">
-							<span>Користувачі</span>
+							<button class="btn text-white" id="sidebarToggle">
+								<img src="~/images/admin/sidebarToggle.png" alt="Card image cap">
+							</button>
+							<h1 class="text-white">Навігація</h1>
 						</div>
-						<span class="arrow fw-semibold float-end">></span>
-					</a>
-				</li>
-				<li class="nav-item border-bottom">
-					<a class="nav-link d-flex justify-content-between" asp-area="Admin" asp-controller="ProductAdmin" asp-action="Products">
-						<div class="d-flex align-items-center">
-							<img src="~/images/admin/products.png" alt="Card image cap">
-							<span>Товари</span>
-						</div>
-						<span class="arrow fw-semibold float-end">></span>
-					</a>
-				</li>
-				<li class="nav-item border-bottom">
-					<a class="nav-link d-flex justify-content-between" asp-area="Admin" asp-controller="OrderAdmin" asp-action="Orders">
-						<div class="d-flex align-items-center">
-							<img src="~/images/admin/orders.png" alt="Card image cap">
-							<span>Замовлення</span>
-						</div>
-						<span class="arrow fw-semibold float-end">></span>
-					</a>
-				</li>
-				<li class="nav-item border-bottom">
-					<a class="nav-link d-flex justify-content-between" asp-area="Admin" asp-controller="CategoryAdmin" asp-action="Categories">
-						<div class="d-flex align-items-center">
-							<img src="~/images/admin/categories.png" alt="Card image cap">
-							<span>Категорії товарів</span>
-						</div>
-						<span class="arrow fw-semibold float-end">></span>
-					</a>
-				</li>
-			</ul>
-            @RenderBody()
+					</li>
+					<li class="nav-item border-bottom">
+						<a class="nav-link d-flex justify-content-between" asp-area="Admin" asp-controller="UserAdmin" asp-action="Users">
+							<div class="d-flex align-items-center">
+								<img src="~/images/admin/users.png" alt="Card image cap">
+								<span>Користувачі</span>
+							</div>
+							<span class="arrow fw-semibold float-end">></span>
+						</a>
+					</li>
+					<li class="nav-item border-bottom">
+						<a class="nav-link d-flex justify-content-between" asp-area="Admin" asp-controller="ProductAdmin" asp-action="Products">
+							<div class="d-flex align-items-center">
+								<img src="~/images/admin/products.png" alt="Card image cap">
+								<span>Товари</span>
+							</div>
+							<span class="arrow fw-semibold float-end">></span>
+						</a>
+					</li>
+					<li class="nav-item border-bottom">
+						<a class="nav-link d-flex justify-content-between" asp-area="Admin" asp-controller="OrderAdmin" asp-action="Orders">
+							<div class="d-flex align-items-center">
+								<img src="~/images/admin/orders.png" alt="Card image cap">
+								<span>Замовлення</span>
+							</div>
+							<span class="arrow fw-semibold float-end">></span>
+						</a>
+					</li>
+					<li class="nav-item border-bottom">
+						<a class="nav-link d-flex justify-content-between" asp-area="Admin" asp-controller="CategoryAdmin" asp-action="Categories">
+							<div class="d-flex align-items-center">
+								<img src="~/images/admin/categories.png" alt="Card image cap">
+								<span>Категорії товарів</span>
+							</div>
+							<span class="arrow fw-semibold float-end">></span>
+						</a>
+					</li>
+				</ul>
+				@RenderBody()
             </div>
-            </main>
-
-		<!-- Footer -->
-		<footer class="text-center text-muted">
-			<section>
-				<div class="text-white container text-center text-md-start pb-5">
-					<div class="row">
-						<h6 class="text-uppercase fw-bold mt-5 mb-4">VYLKA</h6>
-						<div class="col-md-3 col-lg-4 col-xl-3 mx-auto">
-							<h7>Тобі потрібна допомога?</h7>
-							<p>
-								<a>Обмін та повернення товару</a>
-							</p>
-							<p>Зв'яжіться з нами</p>
-							<p>Доставка</p>
-						</div>
-						<div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-							<h7> Контакти</h7>
-							<p>
-								<a> +380 (068) 202 60 66</a>
-							</p>
-							<p>
-								<a> VYLKASTORE@GMAIL.COM</a>
-							</p>
-						</div>
-						<div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-							<h7>
-								<a>Домашня сторінка</a>
-							</h7>
-							<p>
-								<a>Товари</a>
-							</p>
-						</div>
-						<div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-							<p>
-								<a> Слідкуй за нами </a>
-							</p>
-						</div>
-					</div>
-			</section>
-		</footer>
+        </main>
 	</body>
 </html>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>

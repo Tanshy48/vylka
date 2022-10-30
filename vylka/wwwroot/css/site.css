@@ -154,17 +154,9 @@ footer {
 }
 
 footer h6 {
-	margin-left: 29px;
-}
-
-@media (max-width: 1200px) {
-	footer h6 {
-		margin-left: 0;
-	}
+	margin-left: 14.5%;
 }
 
 footer p {
 	color: rgba(255, 255, 255, 0.58);
 }
-
-.render-content

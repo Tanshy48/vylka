@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="keywords" content="bootstrap, bootstrap5" />
+      <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+      <link href="lib/animate.css/animate.min.css" rel="stylesheet">
+      <link href="css/style.css" rel="stylesheet">
+      <title>VYLKA</title>
+   </head>
+   <body>
+      <nav class="custom-navbar navbar navbar-expand-md navbar-dark" arial-label="Furni navigation bar">
+         <div class="container">
+            <img style="width: 130px;" src="images/logo/logo.png" alt="logo">
+            <div class="collapse navbar-collapse" id="navbarsFurni">
+               <ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
+                  <li class="nav-item"><a class="nav-link" href="#">Про нас</a></li>
+                  <li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+					  Продукти
+					</a>
+					<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+					  <li><a class="dropdown-item">Холодильники</a></li>
+					  <li><a class="dropdown-item">Телевізори</a></li>
+					  <li><a class="dropdown-item">Пилососи</a></li>
+					  <li><a class="dropdown-item">Кондиціонери</a></li>
+					</ul>
+				  </li>
+                  <li class="nav-link"><a>+38 (068) 202 60 66</a></li>
+               </ul>
+			   
+               <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
+                  <li><a class="nav-link" href="#"><img src="images/icons/cart.png"></a></li>
+                  <li><a class="nav-link" href="#"><img src="images/icons/user.png"></a></li>
+				  <button id="logout" class="nav-link" type="submit">Вийти</button>
+				</ul>
+            </div>
+         </div>
+      </nav>
+
+    <div class="render-content">
+        <div class="container mb-5">
+            <a class="return d-flex align-items-center my-3">
+                <img class="mx-2" src="images/icons/home.png">
+                <span class="mx-1" >></span>
+                <span class="mx-2" >Повернутися назад</span>
+            </a>
+            <h1 class="mx-2">Кошик</h1>
+            <section class="products d-flex flex-wrap">
+                <div class="card m-xl-5">
+                    <a class="btn"><img class="position-absolute top-0 end-0 mx-3 my-1" src="images/icons/trash.png" alt="видалити"></a>
+                    <img class="card-img-top mx-auto mt-5" src="images/products/microphone.jpg" alt="Card image cap">
+                    <div class="card-body text-black">
+                        <h5 class="card-title">Мікрофон HYPERX QUADCAST (HX-MICQC-BK)</h5>
+                        <div class="d-flex fs-5 fw-bold">
+                            <label class="mx-1">6100</label>
+                            <p class="">грн</p>
+                        </div>
+                        <div class="counter d-flex fs-6 fw-bold">
+                            <button class="btn border">+</button>
+                            <label class="mx-3" id="count">1</label>
+                            <button class="btn border mx-1">-</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="total d-flex justify-content-center align-items-center">
+            <form>
+                <div class="mb-3 d-flex justify-content-center align-items-center">
+                    <span class="mx-2">Загальна сума</span>
+                    <label class="mx-1 fs-3">46 300</label>
+                    <span>грн</span>
+                </div>
+                <button class="btn btn-primary" type="submit">Оформити замовлення</button>
+            </form>
+        </div>
+    </div>
+    
+
+
+      <!-- Footer -->
+      <script src="lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="lib/jquery/dist/jquery.min.js"></script>
+      <script src="js/site.js"></script>
+   </body>
+</html>

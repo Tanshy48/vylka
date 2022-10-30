@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap');
 
+:root {
+	--default-text-opacity: .9;
+	--default-img-opacity: .6;
+}
+
 body {
 	overflow-x: hidden;
 	position: relative;
@@ -27,10 +32,15 @@ a {
 	padding: 0;
 }
 
+.logo{
+	width: 126px;
+}
+
 .custom-navbar {
 	background-image: url("../images/background/navbar.png");
 	background-repeat: no-repeat;
 	background-position: top;
+	margin-bottom: 0;
 }
 
 .custom-navbar .navbar-brand {
@@ -40,7 +50,7 @@ a {
 
 .navbar-dark .navbar-nav .nav-link {
     color: #75a8d6;
-	opacity: .9;
+	opacity: var(--default-text-opacity);
 }
 
 @media (min-width: 992px) {
@@ -70,7 +80,7 @@ a {
 }
 
 .custom-navbar .custom-navbar-cta img{
-	opacity: 0.6;
+	opacity: var(--default-img-opacity);
 	width: 20px;
 }
 
@@ -137,7 +147,7 @@ a {
 
 .card-text {
 	color: #75a8d6;
-	opacity: .8;
+	opacity: var(--default-text-opacity);
 	font-size: 15px;
 }
 
@@ -149,15 +159,65 @@ footer {
 }
 
 footer h6 {
-	margin-left: 29px;
-}
-
-@media (max-width: 1200px) {
-	footer h6 {
-		margin-left: 0;
-	}
+	margin-left: 14.5%;
 }
 
 footer p {
 	color: rgba(255, 255, 255, 0.58);
+}
+
+.return img {
+	width: 20px;
+	opacity: var(--default-img-opacity);
+}
+
+.return{
+	color: #75a8d6;
+	all: none;
+	text-decoration: none;
+	opacity: var(--default-text-opacity);
+}
+
+.return:hover{
+	color: #75a8d6;
+	opacity: 1;
+}
+
+.return:hover img{
+	opacity: var(--default-img-opacity);
+}
+
+.total{
+	height: 15rem;
+	background-color: #142d53;
+	background-position: top;
+	border-radius: 20px 20px 0 0;
+}
+
+.total button{
+	width: 25rem;
+	height: 3rem;
+	border-radius: 20px;
+}
+
+.products .card{
+	background: #fff;
+	min-width: 20rem;
+}
+
+.products a img{
+	width: 40px;
+	border-radius: 50px;
+	box-shadow: 10px grey;
+}
+
+.products .card-img-top{
+	width: 100px;
+}
+
+.products .counter button {
+	padding: 0;
+	border-radius: 50px;
+	width: 30px;
+	height: 30px;
 }

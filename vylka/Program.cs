@@ -10,14 +10,19 @@ builder.Services.AddDbContext<vylkaContext>(options =>
     options.UseSqlServer(connectionString));
 
 
-builder.Services.AddDefaultIdentity<UserModel>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<vylkaContext>();
+builder.Services.AddIdentity<UserModel, IdentityRole>()
+            .AddEntityFrameworkStores<vylkaContext>()
+            .AddDefaultUI()
+            .AddDefaultTokenProviders();
+
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 
 var app = builder.Build();
+
 
 using (var scope = app.Services.CreateScope())
 {

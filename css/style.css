@@ -3,6 +3,7 @@
 :root {
 	--default-text-opacity: .9;
 	--default-img-opacity: .6;
+	--blue-text: #75a8d6;
 }
 
 body {
@@ -21,11 +22,18 @@ body {
 }
 
 a {
-	text-decoration: none;
 	-webkit-transition: .3s all ease;
 	-o-transition: .3s all ease;
 	transition: .3s all ease;
-	text-decoration: underline;
+	text-decoration: none;
+	color: var(--blue-text);
+	opacity: var(--default-text-opacity);
+}
+
+a:hover {
+	text-decoration: none;
+	color: var(--blue-text);
+	opacity: 1;
 }
 
 .navbar {
@@ -49,7 +57,7 @@ a {
 }
 
 .navbar-dark .navbar-nav .nav-link {
-    color: #75a8d6;
+    color: var(--blue-text);
 	opacity: var(--default-text-opacity);
 }
 
@@ -61,7 +69,7 @@ a {
 }
 
 .custom-navbar .custom-navbar-nav li a {
-	color: #75a8d6;
+	color: var(--blue-text);
 	font-weight: 500;
 	transition: .3s all ease;
 	position: relative;
@@ -146,7 +154,7 @@ a {
 }
 
 .card-text {
-	color: #75a8d6;
+	color: var(--blue-text);
 	opacity: var(--default-text-opacity);
 	font-size: 15px;
 }
@@ -172,14 +180,14 @@ footer p {
 }
 
 .return{
-	color: #75a8d6;
+	color: var(--blue-text);
 	all: none;
 	text-decoration: none;
 	opacity: var(--default-text-opacity);
 }
 
 .return:hover{
-	color: #75a8d6;
+	color: var(--blue-text);
 	opacity: 1;
 }
 
@@ -194,7 +202,7 @@ footer p {
 	border-radius: 20px 20px 0 0;
 }
 
-.total button{
+.total .submit{
 	width: 25rem;
 	height: 3rem;
 	border-radius: 20px;
@@ -220,4 +228,8 @@ footer p {
 	border-radius: 50px;
 	width: 30px;
 	height: 30px;
+}
+
+.auth-container{
+	width: 500px;
 }

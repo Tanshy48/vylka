@@ -15,11 +15,14 @@ namespace vylka.Controllers
         }
         public IActionResult TVs()
         {
-            return View();
+            FetchDataTV();
+            return View(ProductsList);
         }
         public IActionResult Vacuums()
         {
-            return View();
+
+            FetchDataVacuums();
+            return View(ProductsList);
         }
         public IActionResult Conditioners()
         {

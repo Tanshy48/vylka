@@ -15,24 +15,25 @@ namespace vylka.Controllers
 
         public IActionResult Refrigerators()
         {
-            return View();
+            FetchDataRegrigerator();
+            return View(ProductsList);
         }
         public IActionResult TVs()
         {
-            FetchDataTV();
-            return View(ProductsList);
+            return View();
         }
         public IActionResult Vacuums()
         {
-
-            FetchDataVacuums();
-            return View(ProductsList);
+            return View();
         }
         public IActionResult Conditioners()
         {
-            return View();
+            FetchDataConditioner();
+            return View(ProductsList);
         }
-         private void FetchDataVacuums()
+
+
+        private void FetchDataRegrigerator()
         {
             if (ProductsList.Count > 0)
             {
@@ -42,7 +43,7 @@ namespace vylka.Controllers
             {
                 con.Open();
                 com.Connection = con;
-                com.CommandText = "SELECT TOP (1000) [Id], [Name], [Description], [Quantity], [Price], [CategoryId] FROM [vylka].[dbo].[Products] WHERE [CategoryId] = 3";
+                com.CommandText = "SELECT TOP (1000) [Id], [Name], [Description], [Quantity], [Price], [CategoryId] FROM [vylka].[dbo].[Products] WHERE [CategoryId] = 1";
                 dr = com.ExecuteReader();
                 while (dr.Read())
                 {
@@ -65,7 +66,9 @@ namespace vylka.Controllers
             }
         }
 
-        private void FetchDataTV()
+
+
+        private void FetchDataConditioner()
         {
             if (ProductsList.Count > 0)
             {

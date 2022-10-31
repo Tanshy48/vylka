@@ -118,6 +118,7 @@ a {
 	background: linear-gradient(180deg, rgba(24,44,65,1) 0%, rgba(29,31,37,1) 100%);
 	margin: 1rem;
 	border-radius: .5rem;
+	animation: animate__fadeInDown ;
 }
 
 .card-body {
@@ -161,3 +162,8 @@ footer h6 {
 footer p {
 	color: rgba(255, 255, 255, 0.58);
 }
+
+.nav-link:hover{
+display: block;
+}
+

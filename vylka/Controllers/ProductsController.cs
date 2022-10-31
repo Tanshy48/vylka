@@ -15,7 +15,7 @@ namespace vylka.Controllers
 
         public IActionResult Refrigerators()
         {
-            FetchData();
+            FetchDataRegrigerator();
             return View(ProductsList);
         }
         public IActionResult TVs()
@@ -28,11 +28,12 @@ namespace vylka.Controllers
         }
         public IActionResult Conditioners()
         {
-            return View();
+            FetchDataConditioner();
+            return View(ProductsList);
         }
 
 
-        private void FetchData()
+        private void FetchDataRegrigerator()
         {
             if (ProductsList.Count > 0)
             {
@@ -42,7 +43,42 @@ namespace vylka.Controllers
             {
                 con.Open();
                 com.Connection = con;
-                com.CommandText = "SELECT TOP (1000) [Id], [Name], [Description], [Quantity], [Price], [CategoryId] FROM [vylka].[dbo].[Products]";
+                com.CommandText = "SELECT TOP (1000) [Id], [Name], [Description], [Quantity], [Price], [CategoryId] FROM [vylka].[dbo].[Products] WHERE [CategoryId] = 1";
+                dr = com.ExecuteReader();
+                while (dr.Read())
+                {
+                    ProductsList.Add(new ProductModel()
+                    {
+                        Id = (int)dr["Id"],
+                        Name = (string)dr["Name"],
+                        Description = (string)dr["Description"],
+                        Quantity = (int)dr["Quantity"],
+                        Price = (double)dr["Price"],
+                        CategoryId = (int)dr["CategoryId"],
+                    });
+
+                }
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+
+        private void FetchDataConditioner()
+        {
+            if (ProductsList.Count > 0)
+            {
+                ProductsList.Clear();
+            }
+            try
+            {
+                con.Open();
+                com.Connection = con;
+                com.CommandText = "SELECT TOP (1000) [Id], [Name], [Description], [Quantity], [Price], [CategoryId] FROM [vylka].[dbo].[Products] WHERE [CategoryId] = 2";
                 dr = com.ExecuteReader();
                 while (dr.Read())
                 {

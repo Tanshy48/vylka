@@ -15,24 +15,24 @@ namespace vylka.Controllers
 
         public IActionResult Refrigerators()
         {
-            FetchData();
-            return View(ProductsList);
+            return View();
         }
         public IActionResult TVs()
         {
-            return View();
+            FetchDataTV();
+            return View(ProductsList);
         }
         public IActionResult Vacuums()
         {
-            return View();
+
+            FetchDataVacuums();
+            return View(ProductsList);
         }
         public IActionResult Conditioners()
         {
             return View();
         }
-
-
-        private void FetchData()
+         private void FetchDataVacuums()
         {
             if (ProductsList.Count > 0)
             {
@@ -42,7 +42,40 @@ namespace vylka.Controllers
             {
                 con.Open();
                 com.Connection = con;
-                com.CommandText = "SELECT TOP (1000) [Id], [Name], [Description], [Quantity], [Price], [CategoryId] FROM [vylka].[dbo].[Products]";
+                com.CommandText = "SELECT TOP (1000) [Id], [Name], [Description], [Quantity], [Price], [CategoryId] FROM [vylka].[dbo].[Products] WHERE [CategoryId] = 3";
+                dr = com.ExecuteReader();
+                while (dr.Read())
+                {
+                    ProductsList.Add(new ProductModel()
+                    {
+                        Id = (int)dr["Id"],
+                        Name = (string)dr["Name"],
+                        Description = (string)dr["Description"],
+                        Quantity = (int)dr["Quantity"],
+                        Price = (double)dr["Price"],
+                        CategoryId = (int)dr["CategoryId"],
+                    });
+
+                }
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private void FetchDataTV()
+        {
+            if (ProductsList.Count > 0)
+            {
+                ProductsList.Clear();
+            }
+            try
+            {
+                con.Open();
+                com.Connection = con;
+                com.CommandText = "SELECT TOP (1000) [Id], [Name], [Description], [Quantity], [Price], [CategoryId] FROM [vylka].[dbo].[Products] WHERE [CategoryId] = 2";
                 dr = com.ExecuteReader();
                 while (dr.Read())
                 {

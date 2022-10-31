@@ -1,0 +1,58 @@
+@{
+    ViewData["Title"] = "Замовлення";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@section CSS {
+    <link href="@Url.Content("~/lib/fontawesome-free/css/all.min.css")" rel="stylesheet" asp-append-version="true"/>
+    <link href="@Url.Content("~/css/admin.css")" rel="stylesheet" asp-append-version="true"/>
+}
+<div class="render-content">
+		<div class="content-wrapper">
+			<div class="border-top border-primary border-4 bg-light table-responsive">
+				<div class="bg-table-title text-dark d-flex justify-content-between align-items-center">
+					<h1 class=" fw-bolder fs-5 p-lg-3 ">Замовлення</h1>
+				</div>
+				<table class="text-center table table-striped">
+					<thead class="fs-6">
+						<tr>
+							<th scope="col">ID</th>
+							<th scope="col">Товар</th>
+							<th scope="col">Опис</th>
+							<th scope="col">Кількість</th>
+							<th scope="col">Ціна</th>
+							<th scope="col">Категорія</th>
+							<th scope="col">Покупець</th>
+							<th scope="col">Завантажити</th>
+							<th scope="col">Видалити</th>
+						</tr>
+					</thead>
+					<tbody> 
+						<tr>
+							<th scope="row">1</th>
+							<td>Холодильник LG</td>
+							<td>...</td>
+							<td>2</td>
+							<td>3000 грн</td>
+							<td>Холодильники</td>
+							<td>Ім'я Прізвище</td>
+							<td>
+									<button class="btn btn-info">
+										<i class="fa fa-download"></i>
+									</button>
+							</td>
+							<td>
+								<a asp-area="Admin" asp-controller="OrderAdmin" asp-action="DeleteOrder">
+									<button class="btn btn-danger">
+										<i class="fa fa-trash"></i>
+									</button>
+								</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+</div>
+@section Scripts {
+    <script src="@Url.Content("~/js/admin.js")" asp-append-version="true"></script>
+}

@@ -1,0 +1,27 @@
+﻿@{
+    if (ViewData.TryGetValue("ParentLayout", out var parentLayout))
+    {
+        Layout = (string)parentLayout;
+    }
+    else
+    {
+        Layout = "/Areas/Identity/Pages/_Layout.cshtml";
+    }
+}
+<div class="render-content">
+    <h1 class="text-center mt-4">Особистий кабінет</h1>
+    <div>
+        <hr />
+        <div class="row">
+            <div class="col-md-3 mx-5">
+                <partial name="_ManageNav" />
+            </div>
+            <div class="col">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @RenderSection("Scripts", required: false)
+}

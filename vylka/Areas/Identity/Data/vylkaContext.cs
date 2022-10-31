@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using vylka.Areas.DB;
 using vylka.Models;
 
 namespace vylka.Data;
 
-public class vylkaContext : IdentityDbContext<IdentityUser>
+public class vylkaContext : IdentityDbContext<UserModel>
 {
     public vylkaContext(DbContextOptions<vylkaContext> options)
         : base(options)
@@ -21,9 +20,13 @@ public class vylkaContext : IdentityDbContext<IdentityUser>
         // Add your customizations after calling base.OnModelCreating(builder);
     }
 
-    public DbSet<ShippingDetail> ShippingDetails { get; set; }
-    public DbSet<Product> Products { get; set; }
-    public DbSet<Category> Categories { get; set; }
-    public DbSet<Cart> Carts { get; set; }
-    public DbSet<vylka.Models.UserModel> UserModel { get; set; }
+    public DbSet<UserModel> UserModel { get; set; }
+    public DbSet<ShippingDetailModel> ShippingDetails { get; set; }
+    public DbSet<ProductModel> Products { get; set; }
+    public DbSet<CategoryModel> Categories { get; set; }
+    public DbSet<CartModel> Carts { get; set; }
+
+
+
+
 }

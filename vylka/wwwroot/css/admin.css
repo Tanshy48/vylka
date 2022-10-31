@@ -20,16 +20,17 @@ body{
   transition: all 0.5s ease-in-out;
 }
 .side-nav-title{
+  height: 120px;
   padding: 2rem 5rem 2rem 9rem;
-  background: rgb(24,84,150);
-  background: linear-gradient(0deg, rgba(24,84,150,1) 0%, rgba(32,92,159,1) 55%, rgba(24,84,150,1) 100%);
+  background: rgb(7,66,129);
+  background: linear-gradient(180deg, rgba(7,66,129,1) 0%, rgba(1,91,186,1) 100%);
   transition: all 0.5s ease-out;
+}
+.btn-check:focus+.btn, .btn:focus {
+  box-shadow: none;
 }
 .side-nav-title h1{
   font-size: 2.5rem;
-}
-.side-nav-title i{
-  font-size: 1.5rem;
 }
 .sidebar .nav-item{
   padding: 1rem 2.5rem 1rem 10rem;
@@ -40,14 +41,22 @@ body{
 }
 .sidebar .nav-item .nav-link {
   text-align: center;
-  font-size: 1.2rem;
   color: #3977bb;
   display: block;
   text-align: left;
 }
 .sidebar .nav-item .nav-link span {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   display: inline;
+}
+.sidebar .nav-item img {
+  margin-right: .5rem;
+  width: 22px;
+}
+
+.sidebar .side-nav-title img {
+  width: 25px;
+  transition: all 0.5s ease-out;
 }
 
 /* Toggled sidebar styles */
@@ -56,16 +65,21 @@ body{
   overflow: visible;
 }
 .sidebar.toggled .side-nav-title{
+  height: 120px;
   padding: 0.5rem;
   transition: all 0.5s ease-in;
 }
 .sidebar.toggled .side-nav-title h1{
-  
-  visibility: hidden;
-  font-size: 0rem;
+  display: none;
+}
+.sidebar.toggled .side-nav-title img {
+  transform: rotate(90deg);
+  transition: all 0.5s ease-in;
 }
 .sidebar.toggled .nav-item {
-  padding: 0;
+  height: 80.19px;
+  padding-left: 0;
+  padding-right: 0;
   transition: all 0.5s ease-in;
 }
 .sidebar.toggled .nav-item .nav-link {
@@ -73,18 +87,37 @@ body{
   font-size: 1.5rem;
 }
 .sidebar.toggled .nav-item .nav-link span {
-  font-size: 0rem;
-  visibility: hidden;
+  display: none;
+}
+
+.sidebar.toggled .nav-item img {
+  margin-right: 0;
+  margin-left: .5rem;
 }
 
 .content-wrapper {
   overflow-x: hidden;
-  padding: 9rem 7rem 2rem 5rem;
+  padding: 5rem 7rem 2rem 5rem;
   width: 100%;
 }
 
 .content-wrapper .bg-table-title {
   background-color: #ebeced;
+}
+
+.content-wrapper .bg-table-title button {
+  margin-right: 3rem;
+  height: 50px;
+}
+
+.content-wrapper .bg-table-title button i{
+  padding-right: .3rem;
+}
+
+@media screen and (max-width: 1800px){
+  .content-wrapper .bg-table-title button {
+    margin-right: 1rem;
+  }
 }
 
 @media screen and (max-width: 1200px){
@@ -98,4 +131,30 @@ body{
   .content-wrapper h1 {
     padding: 1rem;
   }
+}
+
+table td button{
+  padding: 0;
+}
+
+.render-content table td button i{
+  margin: 0;
+  font-size: .8rem;
+}
+
+.render-content table tr td{
+  vertical-align: middle;
+}
+
+.render-content a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.render-content a:hover {
+  color: #fff;
+}
+
+.render-content form {
+  margin: 0 2rem 2rem 2rem;
 }

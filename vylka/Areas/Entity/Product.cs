@@ -10,9 +10,9 @@ namespace vylka.Areas.Entity
         public string Description { get; set; }
         public int Quantity { get; set; }
         public double Price { get; set; }
-        public string Category { get; set; }
-        public int CartId { get; set; }
-        public Cart Cart { get; set; }
+        public string CategoryId { get; set; }
+        public Category Category { get; set; }
+        public List<Cart> Carts { get; set; }
 
     }
 }

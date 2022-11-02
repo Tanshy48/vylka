@@ -11,7 +11,7 @@ namespace vylka.Areas.Entity
         public int Quantity { get; set; }
         public double Price { get; set; }
         public int CategoryId { get; set; }
-        public Category Category { get; set; }
-        public List<Cart> Carts { get; set; }
+        public virtual Category Category { get; set; }
+        public virtual List<Cart> Carts { get; set; }
     }
 }

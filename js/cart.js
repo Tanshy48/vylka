@@ -29,4 +29,9 @@
         
     })
 
+    $( "#toggler" ).click( function(e) {
+        e.preventDefault();
+        $(".total").toggleClass("toggled");
+    })
+
 })(jQuery);

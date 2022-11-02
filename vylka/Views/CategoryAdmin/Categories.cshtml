@@ -1,3 +1,4 @@
+@model IEnumerable<CategoryModel>
 @{
     ViewData["Title"] = "Категорії";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -21,31 +22,34 @@
 				<table class="text-center table table-striped">
 					<thead class="fs-6">
 						<tr>
-							<th scope="col">ID</th>
+							<th scope="col">Id</th>
 							<th scope="col">Назва категорії</th>
 							<th scope="col">Змінити</th>
 							<th scope="col">Видалити</th>
 						</tr>
 					</thead>
 					<tbody> 
-						<tr>
-							<th scope="row">1</th>
-							<td>Холодильники</td>
-							<td>
-								<a asp-area="Admin" asp-controller="CategoryAdmin" asp-action="EditCategory">
-									<button class="btn btn-primary">
-										<i class="fa fa-pen"></i>
-									</button>
-								</a>
-							</td>
-							<td>
-								<a asp-area="Admin" asp-controller="CategoryAdmin" asp-action="DeleteCategory">
-									<button class="btn btn-danger">
-										<i class="fa fa-trash"></i>
-									</button>
-								</a>
-							</td>
-						</tr>
+						@foreach (var item in Model)
+							{
+								<tr>
+									
+									<td>@item.Name</td>
+									<td>
+										<a asp-area="Admin" asp-controller="CategoryAdmin" asp-action="EditCategory">
+											<button class="btn btn-primary">
+												<i class="fa fa-pen"></i>
+											</button>
+										</a>
+									</td>
+									<td>
+										<a asp-area="Admin" asp-controller="CategoryAdmin" asp-action="DeleteCategory">
+											<button class="btn btn-danger">
+												<i class="fa fa-trash"></i>
+											</button>
+										</a>
+									</td>
+								</tr>
+							}	
 					</tbody>
 				</table>
 			</div>

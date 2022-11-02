@@ -7,6 +7,7 @@
     <link href="@Url.Content("~/lib/fontawesome-free/css/all.min.css")" rel="stylesheet" asp-append-version="true"/>
     <link href="@Url.Content("~/css/admin.css")" rel="stylesheet" asp-append-version="true"/>
 }
+
 <div class="render-content">
         <div class="content-wrapper">
             <div class="border-top border-primary border-4 bg-light table-responsive">
@@ -32,6 +33,10 @@
             </div>
         </div>
 </div>
+
 @section Scripts {
     <script src="@Url.Content("~/js/admin.js")" asp-append-version="true"></script>
+    @{
+        <partial name="_ValidationScriptsPartial.cshtml" />
+    }
 }

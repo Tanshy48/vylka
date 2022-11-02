@@ -1,3 +1,4 @@
+@model vylka.Models.CategoryModel 
 @{
     ViewData["Title"] = "Додати категорію";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -7,35 +8,29 @@
     <link href="@Url.Content("~/css/admin.css")" rel="stylesheet" asp-append-version="true"/>
 }
 <div class="render-content">
-		<div class="content-wrapper">
-			<div class="border-top border-primary border-4 bg-light table-responsive">
-				<div class="bg-table-title text-dark d-flex justify-content-between align-items-center">
-					<h1 class=" fw-bolder fs-5 p-lg-3 ">Додавання категорії</h1>
-				</div>
-				<form class="text-dark" novalidate>
+        <div class="content-wrapper">
+            <div class="border-top border-primary border-4 bg-light table-responsive">
+                <div class="bg-table-title text-dark d-flex justify-content-between align-items-center">
+                    <h1 class=" fw-bolder fs-5 p-lg-3 ">Додавання категорії</h1>
+                </div>
+                 <form class="text-dark" asp-controller="CategoryAdmin" asp-action="AddCategory"> 
                     <div class="mb-3">
                         <label class="form-label">Назва</label>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Активна</label>
-                        <select class="form-select">
-                        <option selected disabled value="">Вибрати...</option>
-                        <option>Так</option>
-                        <option>Ні</option>
-                        </select>
+                        @Html.TextBoxFor(m => m.Name);  
+                        @* <input type="text" class="form-control" id="Name" name="Name"> *@
                     </div>
                     <div>
-                        <button class="btn btn-success" type="submit" asp-area="Admin" asp-controller="CategoryAdmin" asp-action="Categories">
-                            Створити
-                        </button>
-                        <a class="btn text-dark" asp-area="Admin" asp-controller="CategoryAdmin" asp-action="Categories">
+                        @* <a class="btn btn-success" type="submit" href="@Url.Action("AddCategory","CategoryAdmin")"> *@
+                        @*     Створити *@
+                        @* </a> *@
+                        <input type="submit" value="Створити" class="btn btn-primary" />
+                        <a class="btn text-dark" asp-area="" asp-controller="CategoryAdmin" asp-action="Categories">
                             Назад
                         </a>
                     </div>
-                </form>
-			</div>
-		</div>
+                 </form> 
+            </div>
+        </div>
 </div>
 @section Scripts {
     <script src="@Url.Content("~/js/admin.js")" asp-append-version="true"></script>

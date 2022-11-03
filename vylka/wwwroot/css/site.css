@@ -195,19 +195,6 @@ footer p {
 	opacity: var(--default-img-opacity);
 }
 
-.total{
-	height: 15rem;
-	background-color: #142d53;
-	background-position: top;
-	border-radius: 20px 20px 0 0;
-}
-
-.total button{
-	width: 25rem;
-	height: 3rem;
-	border-radius: 20px;
-}
-
 .products .card{
 	background: #fff;
 	min-width: 20rem;
@@ -233,3 +220,51 @@ footer p {
 .auth-container{
 	width: 500px;
 }
+
+.total{
+	overflow:hidden;
+	height: auto;
+	background-color: #142d53;
+	background-position: top;
+	border-radius: 20px 20px 0 0;
+}
+
+.total form{
+	width: 400px;
+}
+
+.total form .btn:focus{
+	box-shadow: none;
+}
+
+.total .submit{
+	padding: auto;
+	width: 25rem;
+	height: 3rem;
+	border-radius: 20px;
+}
+
+.total form .form-group {
+	overflow:hidden;
+	height: auto;
+	opacity: 1;
+	transition: all 0.5s ease-in;
+} 
+.total.toggled form .form-group {
+	opacity: 0;
+	height: 0;
+	transition: all 0.5s ease-out;
+}
+.total form #toggler {
+	opacity: .5;
+	transform: rotate(0deg);
+	transition: all .3s ease-out;
+} 
+.total.toggled form #toggler {
+	transform: rotate(180deg);
+	transition: all .3s ease-in;
+} 
+.total form #toggler:hover {
+	opacity: 1;
+} 
+

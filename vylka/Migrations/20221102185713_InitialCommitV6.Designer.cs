@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using vylka.Data;
 
@@ -11,9 +12,10 @@ using vylka.Data;
 namespace vylka.Migrations
 {
     [DbContext(typeof(vylkaContext))]
-    partial class vylkaContextModelSnapshot : ModelSnapshot
+    [Migration("20221102185713_InitialCommitV6")]
+    partial class InitialCommitV6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,19 +24,19 @@ namespace vylka.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("CartProduct", b =>
+            modelBuilder.Entity("CategoryProduct", b =>
                 {
-                    b.Property<int>("CartsId")
+                    b.Property<int>("CategoriesId")
                         .HasColumnType("int");
 
                     b.Property<int>("ProductsId")
                         .HasColumnType("int");
 
-                    b.HasKey("CartsId", "ProductsId");
+                    b.HasKey("CategoriesId", "ProductsId");
 
                     b.HasIndex("ProductsId");
 
-                    b.ToTable("CartProduct");
+                    b.ToTable("CategoryProduct");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -214,7 +216,7 @@ namespace vylka.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("CategoriesId")
+                    b.Property<int>("CartId")
                         .HasColumnType("int");
 
                     b.Property<string>("CategoryId")
@@ -237,7 +239,7 @@ namespace vylka.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoriesId");
+                    b.HasIndex("CartId");
 
                     b.ToTable("Products");
                 });
@@ -354,11 +356,11 @@ namespace vylka.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("CartProduct", b =>
+            modelBuilder.Entity("CategoryProduct", b =>
                 {
-                    b.HasOne("vylka.Areas.Entity.Cart", null)
+                    b.HasOne("vylka.Areas.Entity.Category", null)
                         .WithMany()
-                        .HasForeignKey("CartsId")
+                        .HasForeignKey("CategoriesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -422,13 +424,13 @@ namespace vylka.Migrations
 
             modelBuilder.Entity("vylka.Areas.Entity.Product", b =>
                 {
-                    b.HasOne("vylka.Areas.Entity.Category", "Categories")
+                    b.HasOne("vylka.Areas.Entity.Cart", "Cart")
                         .WithMany("Products")
-                        .HasForeignKey("CategoriesId")
+                        .HasForeignKey("CartId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Categories");
+                    b.Navigation("Cart");
                 });
 
             modelBuilder.Entity("vylka.Areas.Entity.ShippingDetail", b =>
@@ -455,15 +457,12 @@ namespace vylka.Migrations
 
             modelBuilder.Entity("vylka.Areas.Entity.Cart", b =>
                 {
+                    b.Navigation("Products");
+
                     b.Navigation("ShippingDetails");
 
                     b.Navigation("User")
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("vylka.Areas.Entity.Category", b =>
-                {
-                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }

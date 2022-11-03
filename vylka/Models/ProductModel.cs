@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿#nullable disable
+
+using System.ComponentModel.DataAnnotations;
 
 namespace vylka.Models
 {
@@ -10,8 +12,6 @@ namespace vylka.Models
         public string Description { get; set; }
         public int Quantity { get; set; }
         public double Price { get; set; }
-        public int CategoryId { get; set; }
-        public virtual CategoryModel Category { get; set; }
 
     }
 }

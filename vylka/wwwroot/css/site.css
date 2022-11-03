@@ -207,7 +207,7 @@ footer p {
 	color: #0060c1;
 }
 
-.border{
+.cards .border{
     padding: 10px 30px;
     border-radius: 5rem;
     margin-left: 20px;
@@ -216,8 +216,8 @@ footer p {
 	transition: all .5s ease-out; 
 }
 
-.border:hover {
-	background: #7aafd1;
+.cards .border:hover {
+	background: rgb(122, 175, 209);
 	transition: all .5s ease-in; 
 }
 
@@ -229,9 +229,6 @@ footer p {
 .cards-text{
 	margin-left: 20px;
 	margin-top: 10px;
-}
-
-.cards-text {
 	color: var(--blue-text);
 	font-size: 12px;
 }
@@ -320,6 +317,9 @@ footer p {
 	opacity: 0;
 	height: 0;
 	transition: all 0.5s ease-out;
+}
+.total form img {
+	height: 45px;
 }
 .total form #toggler {
 	opacity: .5;

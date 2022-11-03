@@ -37,6 +37,7 @@
 	margin-bottom: 10px;
 	margin-top: 10px;
 	margin-left: 10px;
+	font-size: 20px;
 }
 
 .order-btn {
@@ -50,10 +51,6 @@
 }
 
 .product-name {
-	margin-left: 10px;
-}
-
-.characteristics {
 	margin-left: 10px;
 }
 

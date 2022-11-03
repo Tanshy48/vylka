@@ -47,7 +47,9 @@
         </div>
         <div class="d-flex justify-content-center align-items-center total toggled">
             <form method="post" asp-controller="ShoppingCart" asp-action="NewOrder">
-                <a id="toggler" class="mt-2 btn w-100 text-white fs-3">^</a>
+                <div class="w-100">
+                    <img id="toggler" class="mt-2 btn w-100 text-white fs-3" src="~/images/icons/angle.svg" />
+                </div>
                 <div class="form-row d-flex justify-content-between">
                     <div class="form-group col-md-5">
                         <label>Місто</label>

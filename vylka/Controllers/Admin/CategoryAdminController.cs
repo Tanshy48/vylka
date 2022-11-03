@@ -32,7 +32,7 @@ namespace Fork_Site.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddCategory(Category model)
+        public IActionResult AddCategory(Category model)
         {
             if(ModelState.IsValid)
             {

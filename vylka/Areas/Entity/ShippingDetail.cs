@@ -11,6 +11,6 @@ namespace vylka.Areas.Entity
         public double AmountPaid { get; set; }
         public string PaymentType { get; set; }
         public int CartId { get; set; }
-        public Cart Cart { get; set; }
+        public virtual Cart Cart { get; set; }
     }
 }

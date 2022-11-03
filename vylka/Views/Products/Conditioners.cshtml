@@ -2,6 +2,31 @@
     ViewData["Title"] = "Кондиціонери";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@section CSS {
+    <link href="@Url.Content("~/css/products.css")" rel="stylesheet" asp-append-version="true"/>
+}
 <div class="render-content container">
-    <h1>Кондиціонери</h1>
+    <a class="return d-flex align-items-center my-3" asp-controller="Home" asp-action="Index">
+                <img class="mx-2" src="~/images/icons/home.png">
+                <span class="mx-1" >></span>
+                <span class="mx-2" >Повернутися назад</span>
+    </a>
+    <div class="shop mb-4">
+			<div class="raw">
+				<img class="mx-auto" src="~/images/products/microphone.jpg" alt="Зображення продукта" />
+				<div class="availability text-dark">В наявності</div>
+				<div class="product-name text-dark">назва</div>
+				<div class="characteristics text-dark">опис</div>
+				<div>
+					<div class="price text-dark">8800 <small>грн</small>
+					</div>
+					<div class="order-btn text-dark">
+						<a href="#" class="button">
+							<span> Купити</span>
+							<img src=~/images/icons/cart.png alt="В кошик" />
+						</a>
+					</div>
+				</div>
+			</div>
+    </div>
 </div>

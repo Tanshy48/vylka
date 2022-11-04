@@ -21,7 +21,39 @@ namespace Fork_Site.Controllers
         {
             return View();
         }
-        public ActionResult EditCategory()
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult EditCategoryPOST(Category obj)
+        {
+
+            if (ModelState.IsValid)
+            {
+                _db.Category.Update(obj);
+                _db.SaveChanges();
+                return RedirectToAction("Categories");
+            }
+            return View(obj);
+        }
+
+        public ActionResult EditCategory(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            var CategoryFromDb = _db.Category.Find(id);
+
+
+            if (CategoryFromDb == null)
+            {
+                return NotFound();
+            }
+
+            return View(CategoryFromDb);
+        }
+
+        public ActionResult DeleteProduct()
         {
             return View();
         }
@@ -44,3 +76,4 @@ namespace Fork_Site.Controllers
         }
     }
 }
+

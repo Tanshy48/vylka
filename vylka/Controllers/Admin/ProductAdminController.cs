@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using vylka.Areas.Entity;
 using vylka.Data;
+using vylka.Models;
 
 namespace Fork_Site.Controllers
 {
@@ -25,6 +27,20 @@ namespace Fork_Site.Controllers
         public ActionResult DeleteProduct()
         {
             return View();
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AddProduct(Product model)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Products.Add(model);
+                _db.SaveChanges();
+                return RedirectToAction("Products");
+            }
+            return View(model);
         }
     }
 }

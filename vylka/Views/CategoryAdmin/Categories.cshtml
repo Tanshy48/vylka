@@ -36,14 +36,14 @@
 									<td>@item.Id</td>
 									<td>@item.Name</td>
 									<td>
-										<a asp-area="Admin" asp-controller="CategoryAdmin" asp-action="EditCategory">
+										<a asp-area="Admin" asp-controller="CategoryAdmin" asp-action="EditCategory" asp-route-id="@item.Id">
 											<button class="btn btn-primary">
 												<i class="fa fa-pen"></i>
 											</button>
 										</a>
 									</td>
 									<td>
-										<a asp-area="Admin" asp-controller="CategoryAdmin" asp-action="DeleteCategory">
+										<a asp-area="Admin" asp-controller="CategoryAdmin" asp-action="DeleteCategory" asp-route-id="@item.Id">
 											<button class="btn btn-danger">
 												<i class="fa fa-trash"></i>
 											</button>

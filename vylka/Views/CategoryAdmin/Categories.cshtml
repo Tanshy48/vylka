@@ -5,56 +5,56 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 @section CSS {
-    <link href="@Url.Content("~/lib/fontawesome-free/css/all.min.css")" rel="stylesheet" asp-append-version="true"/>
-    <link href="@Url.Content("~/css/admin.css")" rel="stylesheet" asp-append-version="true"/>
+    <link href="@Url.Content("~/lib/fontawesome-free/css/all.min.css")" rel="stylesheet" asp-append-version="true" />
+    <link href="@Url.Content("~/css/admin.css")" rel="stylesheet" asp-append-version="true" />
 }
-<div class="render-content">
-		<div class="content-wrapper">
-			<div class="border-top border-primary border-4 bg-light table-responsive">
-				<div class="bg-table-title text-dark d-flex justify-content-between align-items-center">
-					<h1 class=" fw-bolder fs-5 p-lg-3 ">Категорії</h1>
-					<a asp-controller="CategoryAdmin" asp-action="AddCategory">
-						<button class="btn btn-success">
-							<i class="fa-sharp fa-solid fa-file-circle-plus"></i>
-							<span>Додати категорію</span>
-						</button>
-					</a>
-				</div>
-				<table class="text-center table table-striped">
-					<thead class="fs-6">
-						<tr>
-							<th scope="col">Id</th>
-							<th scope="col">Назва категорії</th>
-							<th scope="col">Змінити</th>
-							<th scope="col">Видалити</th>
-						</tr>
-					</thead>
-					<tbody> 
-						@foreach (var item in Model)
-							{
-								<tr>
-									<td>@item.Id</td>
-									<td>@item.Name</td>
-									<td>
-										<a asp-area="Admin" asp-controller="CategoryAdmin" asp-action="EditCategory">
-											<button class="btn btn-primary">
-												<i class="fa fa-pen"></i>
-											</button>
-										</a>
-									</td>
-									<td>
-										<a asp-area="Admin" asp-controller="CategoryAdmin" asp-action="DeleteCategory">
-											<button class="btn btn-danger">
-												<i class="fa fa-trash"></i>
-											</button>
-										</a>
-									</td>
-								</tr>
-							}	
-					</tbody>
-				</table>
-			</div>
-		</div>
+    <div class="render-content">
+        <div class="content-wrapper">
+            <div class="border-top border-primary border-4 bg-light table-responsive">
+                <div class="bg-table-title text-dark d-flex justify-content-between align-items-center">
+                    <h1 class=" fw-bolder fs-5 p-lg-3 ">Категорії</h1>
+                    <a asp-area="Admin" asp-controller="CategoryAdmin" asp-action="AddCategory">
+                        <button class="btn btn-success">
+                            <i class="fa-sharp fa-solid fa-file-circle-plus"></i>
+                            <span>Додати категорію</span>
+                        </button>
+                    </a>
+                </div>
+                <table class="text-center table table-striped">
+                    <thead class="fs-6">
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Назва категорії</th>
+                            <th scope="col">Змінити</th>
+                            <th scope="col">Видалити</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.Name</td>
+                            <td>
+                                <a asp-area="Admin" asp-controller="CategoryAdmin" asp-action="EditCategory" asp-route-id="@item.Id">
+                                    <button class="btn btn-primary">
+                                        <i class="fa fa-pen"></i>
+                                    </button>
+                                </a>
+                            </td>
+                            <td>
+                                <a asp-area="Admin" asp-controller="CategoryAdmin" asp-action="DeleteCategory" asp-route-id="@item.Id">
+                                    <button class="btn btn-danger">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 @section Scripts {
     <script src="@Url.Content("~/js/admin.js")" asp-append-version="true"></script>

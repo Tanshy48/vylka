@@ -32,11 +32,20 @@ namespace Fork_Site.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AddProduct(Product model)
+        public IActionResult AddProduct(ProductModel model)
         {
             if (ModelState.IsValid)
             {
-                _db.Products.Add(model);
+                Product p = new Product()
+                {
+                    Id = model.Id,
+                    Name = model.Name,
+                    Description = model.Description,
+                    Quantity = model.Quantity,
+                    Price = model.Price,
+                    CategoryId = model.CategoryId
+                };
+                _db.Products.Add(p);
                 _db.SaveChanges();
                 return RedirectToAction("Products");
             }

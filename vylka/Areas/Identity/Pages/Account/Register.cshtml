@@ -8,6 +8,7 @@
     <section class="auth-container mx-auto">
         <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
             <hr />
+            
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-floating mb-1">
                 <input asp-for="Input.FirstName" class="form-control" />

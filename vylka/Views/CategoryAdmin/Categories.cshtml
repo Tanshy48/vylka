@@ -33,7 +33,7 @@
 						@foreach (var item in Model)
 							{
 								<tr>
-							<td>@item.Id</td>
+									<td>@item.Id</td>
 									<td>@item.Name</td>
 									<td>
 										<a asp-area="Admin" asp-controller="CategoryAdmin" asp-action="EditCategory" asp-route-id="@item.Id">
@@ -43,7 +43,7 @@
 										</a>
 									</td>
 									<td>
-										<a asp-area="Admin" asp-controller="CategoryAdmin" asp-action="DeleteCategory">
+										<a asp-area="Admin" asp-controller="CategoryAdmin" asp-action="DeleteCategory" asp-route-id="@item.Id">
 											<button class="btn btn-danger">
 												<i class="fa fa-trash"></i>
 											</button>

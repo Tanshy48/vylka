@@ -16,18 +16,13 @@
                 </div>
                  <form class="text-dark" asp-controller="CategoryAdmin" asp-action="AddCategory"> 
                     <div class="mb-3">
-                        <label class="form-label">Назва</label>
-                        @Html.TextBoxFor(m => m.Name);  
-                        @* <input type="text" class="form-control" id="Name" name="Name"> *@
+                        <label class="form-label" asp-for="Name"></label>
+                        <input type="text" asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
                     </div>
                     <div>
-                        @* <a class="btn btn-success" type="submit" href="@Url.Action("AddCategory","CategoryAdmin")"> *@
-                        @*     Створити *@
-                        @* </a> *@
-                        <input type="submit" value="Створити" class="btn btn-primary" />
-                        <a class="btn text-dark" asp-area="" asp-controller="CategoryAdmin" asp-action="Categories">
-                            Назад
-                        </a>
+                       <button class="btn btn-success" type="submit">Створити</button>
+                        <a asp-controller="CategoryAdmin" asp-action="Categories" class="btn text-dark">Назад</a>
                     </div>
                  </form> 
             </div>

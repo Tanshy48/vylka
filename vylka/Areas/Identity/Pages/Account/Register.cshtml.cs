@@ -10,23 +10,24 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using vylka.Areas.Entity;
 using vylka.Models;
 
 namespace vylka.Areas.Identity.Pages.Account
 {
     public class RegisterModel : PageModel
     {
-        private readonly SignInManager<UserModel> _signInManager;
-        private readonly UserManager<UserModel> _userManager;
-        private readonly IUserStore<UserModel> _userStore;
-        private readonly IUserEmailStore<UserModel> _emailStore;
+        private readonly SignInManager<User> _signInManager;
+        private readonly UserManager<User> _userManager;
+        private readonly IUserStore<User> _userStore;
+        private readonly IUserEmailStore<User> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
         public RegisterModel(
-            UserManager<UserModel> userManager,
-            IUserStore<UserModel> userStore,
-            SignInManager<UserModel> signInManager,
+            UserManager<User> userManager,
+            IUserStore<User> userStore,
+            SignInManager<User> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender)
         {
@@ -86,12 +87,12 @@ namespace vylka.Areas.Identity.Pages.Account
             {
                 MailAddress address = new MailAddress(Input.Email);
                 string userName = address.User;
-                var user = new UserModel
+                var user = new User
                 {
                     UserName = userName,
                     Email = Input.Email,
                     FirstName = Input.FirstName,
-                    LastName = Input.LastName
+                    LastName = Input.LastName,
                 };
 
                 await _userStore.SetUserNameAsync(user, userName, CancellationToken.None);
@@ -133,27 +134,27 @@ namespace vylka.Areas.Identity.Pages.Account
             return Page();
         }
 
-        private UserModel CreateUser()
+        private User CreateUser()
         {
             try
             {
-                return Activator.CreateInstance<UserModel>();
+                return Activator.CreateInstance<User>();
             }
             catch
             {
-                throw new InvalidOperationException($"Can't create an instance of '{nameof(UserModel)}'. " +
-                    $"Ensure that '{nameof(UserModel)}' is not an abstract class and has a parameterless constructor, or alternatively " +
+                throw new InvalidOperationException($"Can't create an instance of '{nameof(User)}'. " +
+                    $"Ensure that '{nameof(User)}' is not an abstract class and has a parameterless constructor, or alternatively " +
                     $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
             }
         }
 
-        private IUserEmailStore<UserModel> GetEmailStore()
+        private IUserEmailStore<User> GetEmailStore()
         {
             if (!_userManager.SupportsUserEmail)
             {
                 throw new NotSupportedException("The default UI requires a user store with email support.");
             }
-            return (IUserEmailStore<UserModel>)_userStore;
+            return (IUserEmailStore<User>)_userStore;
         }
     }
 }

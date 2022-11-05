@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using vylka.Data;
 
@@ -11,9 +12,10 @@ using vylka.Data;
 namespace vylka.Migrations
 {
     [DbContext(typeof(vylkaContext))]
-    partial class vylkaContextModelSnapshot : ModelSnapshot
+    [Migration("20221103164013_InitialCommitV8")]
+    partial class InitialCommitV8
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -279,7 +281,7 @@ namespace vylka.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CartId")
+                    b.Property<int>("CartId")
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -337,8 +339,7 @@ namespace vylka.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CartId")
-                        .IsUnique()
-                        .HasFilter("[CartId] IS NOT NULL");
+                        .IsUnique();
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -443,7 +444,9 @@ namespace vylka.Migrations
                 {
                     b.HasOne("vylka.Areas.Entity.Cart", "Cart")
                         .WithOne("User")
-                        .HasForeignKey("vylka.Areas.Entity.User", "CartId");
+                        .HasForeignKey("vylka.Areas.Entity.User", "CartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Cart");
                 });

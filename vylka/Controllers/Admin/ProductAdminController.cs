@@ -20,9 +20,47 @@ namespace Fork_Site.Controllers
         {
             return View();
         }
-        public ActionResult EditProduct()
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult EditProductPOST(ProductModel model)
         {
-            return View();
+
+            if (ModelState.IsValid)
+            {
+                var p = new Product()
+                {
+                    Id = model.Id,
+                    Name = model.Name,
+                    Description = model.Description,
+                    Quantity = model.Quantity,
+                    Price = model.Price,
+                    CategoryId = model.CategoryId
+                };
+                _db.Products.Update(p);
+                _db.SaveChanges();
+                return RedirectToAction("Products");
+            }
+            return View(model);
+        }
+
+
+
+        public ActionResult EditProduct(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            var ProductsFromDb = _db.Products.Find(id);
+
+
+            if (ProductsFromDb == null)
+            {
+                return NotFound();
+            }
+
+            return View(ProductsFromDb);
         }
         public ActionResult DeleteProduct()
         {

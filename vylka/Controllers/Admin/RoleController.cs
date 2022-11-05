@@ -12,7 +12,7 @@ namespace vylka.Controllers.Admin
             this.roleManager = roleManager;
         }
 
-        public IActionResult Index()
+        public IActionResult Roles()
         {
             var roles = roleManager.Roles.ToList();
             return View(roles);

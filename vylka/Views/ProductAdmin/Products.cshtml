@@ -1,3 +1,5 @@
+@using vylka.Areas.Entity
+@model IEnumerable<Product>
 @{
     ViewData["Title"] = "Товари";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -26,35 +28,38 @@
 							<th scope="col">Опис</th>
 							<th scope="col">Кількість</th>
 							<th scope="col">Ціна</th>
-							<th scope="col">Зображення</th>
+							<th scope="col">CategoryId</th>
 							<th scope="col">Змінити</th>
 							<th scope="col">Видалити</th>
 						</tr>
 					</thead>
-					<tbody> 
+					<tbody>
+					@foreach (var item in Model)
+					{
 						<tr>
-							<th scope="row">1</th>
-							<td>Холодильник LG</td>
-							<td>Опис холодильника</td>
-							<td>10</td>
-							<td>3000 грн</td>
-							<td>...</td>
+							<td>@item.Id</td>
+							<td>@item.Name</td>
+							<td>@item.Description</td>
+							<td>@item.Quantity</td>
+							<td>@item.Price</td>
+							<td>@item.CategoryId</td>
 							<td>
-								<a asp-area="Admin" asp-controller="ProductAdmin" asp-action="EditProduct">
+								<a asp-area="Admin" asp-controller="ProductAdmin" asp-action="EditProduct" asp-route-id="@item.Id">
 									<button class="btn btn-primary">
 										<i class="fa fa-pen"></i>
 									</button>
 								</a>
 							</td>
 							<td>
-								<a asp-area="Admin" asp-controller="ProductAdmin" asp-action="DeleteProduct">
+								<a asp-area="Admin" asp-controller="ProductAdmin" asp-action="DeleteProduct" asp-route-id="@item.Id">
 									<button class="btn btn-danger">
 										<i class="fa fa-trash"></i>
 									</button>
 								</a>
 							</td>
 						</tr>
-					</tbody>
+					}
+				</tbody>
 				</table>
 			</div>
 		</div>

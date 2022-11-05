@@ -92,12 +92,14 @@ namespace vylka.Areas.Identity.Pages.Account
                     UserName = userName,
                     Email = Input.Email,
                     FirstName = Input.FirstName,
-                    LastName = Input.LastName,
+                    LastName = Input.LastName
+                    
                 };
-
+                
                 await _userStore.SetUserNameAsync(user, userName, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
+                // user.CartId = user.Id
 
                 if (result.Succeeded)
                 {

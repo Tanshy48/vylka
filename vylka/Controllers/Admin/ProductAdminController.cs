@@ -20,13 +20,31 @@ namespace Fork_Site.Controllers
         {
             return View();
         }
-        public ActionResult EditProduct()
+        public ActionResult EditProduct(int? id)
         {
-            return View();
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            var ProductFromDb = _db.Products.Find(id);
+            if (ProductFromDb == null)
+            {
+                return NotFound();
+            }
+            return View(ProductFromDb);
         }
-        public ActionResult DeleteProduct()
+        public ActionResult DeleteProduct(int? id)
         {
-            return View();
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            var ProductFromDb = _db.Products.Find(id);
+            if (ProductFromDb == null)
+            {
+                return NotFound();
+            }
+            return View(ProductFromDb);
         }
 
 
@@ -50,6 +68,43 @@ namespace Fork_Site.Controllers
                 return RedirectToAction("Products");
             }
             return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult EditProductPOST(ProductModel model)
+        {
+            
+            if (ModelState.IsValid)
+            {
+                var p = new Product()
+                {
+                    Id = model.Id,
+                    Name = model.Name,
+                    Description = model.Description,
+                    Quantity = model.Quantity,
+                    Price = model.Price,
+                    CategoryId = model.CategoryId
+                };
+                _db.Products.Update(p);
+                _db.SaveChanges();
+                return RedirectToAction("Products");
+            }
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteProductPOST(int? id)
+        {
+            var obj = _db.Products.Find(id);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            _db.Products.Remove(obj);
+            _db.SaveChanges();
+            return RedirectToAction("Products");
         }
     }
 }

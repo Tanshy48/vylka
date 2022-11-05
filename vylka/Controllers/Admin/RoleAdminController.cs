@@ -1,24 +1,25 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
+using vylka.Areas.Entity;
 using vylka.Data;
+using vylka.Models;
 
 namespace vylka.Controllers.Admin
 {
     public class RoleAdminController : Controller
     {
-        private readonly vylkaContext _db;
-        RoleManager<IdentityRole> roleManager;
+        private RoleManager<IdentityRole> roleManager;
+        private UserManager<User> userManager;
 
-        public RoleAdminController(vylkaContext db, RoleManager<IdentityRole> roleManager)
+        public RoleAdminController(RoleManager<IdentityRole> roleMgr, UserManager<User> userMrg)
         {
-            _db = db;
-            this.roleManager = roleManager;
-
+            roleManager = roleMgr;
+            userManager = userMrg;
         }
         public IActionResult Roles()
         {
-            var roles = roleManager.Roles.ToList();
-            return View(roles);
+            return View(roleManager.Roles);
         }
 
         public IActionResult AddRole()
@@ -26,20 +27,6 @@ namespace vylka.Controllers.Admin
             return View(new IdentityRole());
         }
 
-        public async Task<IActionResult> EditRole(string? id)
-        {
-            var role = await roleManager.FindByIdAsync(id);
-            if(role == null)
-            {
-                return NotFound();
-            }
-            var model = new IdentityRole
-            {
-                Id = role.Id,
-                Name = role.Name
-            };
-            return View(model);
-        }
         public async Task<IActionResult> DeleteRole(string? id)
         {
             var role = await roleManager.FindByIdAsync(id);
@@ -56,56 +43,84 @@ namespace vylka.Controllers.Admin
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddRole(IdentityRole role)
+        public async Task<IActionResult> AddRole([Required] string name)
         {
-            await roleManager.CreateAsync(role);
-            return RedirectToAction("Roles");
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditRole(IdentityRole model)
-        {
-            var role = await roleManager.FindByIdAsync(model.Id); 
-            if(role == null)
+            if (ModelState.IsValid)
             {
-                return NotFound();
-            }
-            else
-            {
-                role.Name = model.Name;
-                var result = await roleManager.UpdateAsync(role);
-
-                if(result.Succeeded)
-                {
-                    return RedirectToAction("Roles");
-                }
-            }
-            return View(model);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteRole(IdentityRole model)
-        {
-            var role = await roleManager.FindByIdAsync(model.Id);
-            if (role == null)
-            {
-                return NotFound();
-            }
-            else
-            {
-                var result = await roleManager.DeleteAsync(role);
-
+                IdentityResult result = await roleManager.CreateAsync(new IdentityRole(name));
                 if (result.Succeeded)
-                {
                     return RedirectToAction("Roles");
-                }
             }
-            return View(model);
+            return View(name);
+        }
+        
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteRolePOST(string id)
+        {
+            IdentityRole role = await roleManager.FindByIdAsync(id);
+            if (role != null)
+            {
+                IdentityResult result = await roleManager.DeleteAsync(role);
+                if (result.Succeeded)
+                    return RedirectToAction("Roles");
+            }
+            else
+                ModelState.AddModelError("", "No role found");
+            return View("Roles", roleManager.Roles);
+        }
+        
+        public async Task<IActionResult> UpdateRole(string id)
+        {
+            IdentityRole role = await roleManager.FindByIdAsync(id);
+            List<User> members = new List<User>();
+            List<User> nonMembers = new List<User>();
+            foreach (User user in userManager.Users)
+            {
+                var list = await userManager.IsInRoleAsync(user, role.Name) ? members : nonMembers;
+                list.Add(user);
+            }
+            return View(new RoleEdit
+            {
+                Role = role,
+                Members = members,
+                NonMembers = nonMembers
+            });
         }
 
+        [HttpPost]
+        public async Task<IActionResult> UpdateRole(RoleModification model)
+        {
+            IdentityResult result;
+            if (ModelState.IsValid)
+            {
+                foreach (string userId in model.AddIds ?? new string[] { })
+                {
+                    User user = await userManager.FindByIdAsync(userId);
+                    if (user != null)
+                    {
+                        result = await userManager.AddToRoleAsync(user, model.RoleName);
+                        if (!result.Succeeded)
+                            NotFound(userId);
+                    }
+                }
+                foreach (string userId in model.DeleteIds ?? new string[] { })
+                {
+                    User user = await userManager.FindByIdAsync(userId);
+                    if (user != null)
+                    {
+                        result = await userManager.RemoveFromRoleAsync(user, model.RoleName);
+                        if (!result.Succeeded)
+                            NotFound(userId);
+                    }
+                }
+            }
+
+            if (ModelState.IsValid)
+                return RedirectToAction(nameof(Roles));
+            else
+                return await UpdateRole(model.RoleId);
+        }
 
     }
 }

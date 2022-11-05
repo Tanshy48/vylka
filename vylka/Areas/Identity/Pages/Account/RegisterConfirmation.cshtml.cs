@@ -46,7 +46,7 @@ namespace vylka.Areas.Identity.Pages.Account
 
             Email = email;
             
-            DisplayConfirmAccountLink = true;
+            DisplayConfirmAccountLink = false;
             if (DisplayConfirmAccountLink)
             {
                 var userId = await _userManager.GetUserIdAsync(user);

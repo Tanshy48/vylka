@@ -15,13 +15,17 @@
 				</div>
 				<form class="text-dark" method="post" asp-controller="RoleAdmin" asp-action="DeleteRolePOST">
                     <input asp-for="Id" hidden />
-                    <div class="mb-3" mt-3>
-                        <label asp-for="Name" class="form-label"></label>
+                    <div class="mb-3 mt-3">
+                        <h5>Ви впевнені, що хочете видалити цю роль?</h5>
+                        <label asp-for="Name" class="form-label">Назва ролі</label>
                         <input type="text" asp-for="Name" disabled class="form-control">
-                        <h5>Ви впевнені що хочете видалити цю категорію?</h5>
+                    </div>
+                    <div class="mb-3 form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="delCheckBox">
+                        <label class="form-check-label">Так, я свідомо видаляю цю роль</label>
                     </div>
                     <div>
-                        <button class="btn btn-danger" type="submit" >
+                        <button disabled id="sendFormBtn" class="btn btn-danger" type="submit" >
                             Підтвердити
                         </button>
                         <a class="btn text-dark" asp-area="Admin" asp-controller="RoleAdmin" asp-action="Roles">

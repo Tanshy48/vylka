@@ -1,12 +1,7 @@
 #nullable disable
 
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Data.SqlClient;
-using System.Dynamic;
-using vylka.Constants;
 using vylka.Data;
-using vylka.Models;
 
 
 namespace Fork_Site.Controllers

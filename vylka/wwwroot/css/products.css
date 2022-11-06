@@ -21,8 +21,8 @@
     margin: 3rem;
 }
 
-.raw img {
-	width: 100px;
+.raw .product-img {
+	height: 250px;
 	margin-top: 30px;
 }
 

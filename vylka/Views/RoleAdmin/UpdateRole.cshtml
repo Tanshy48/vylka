@@ -20,7 +20,7 @@
                 <input type="hidden" name="roleId" value="@Model.Role.Id" />
 
                 <h2 class="m-3 text-dark fs-4 text-center">Додати в групу @Model.Role.Name</h2>
-                <table class="table mx-5">
+                <table class="table m-auto w-50">
                     @if (Model.NonMembers.Count() == 0)
                     {
                         <input disabled type="text" class="form-control text-center m-auto w-50" value="Всім користувачам притаманна ця роль." />
@@ -40,7 +40,7 @@
                 </table>
   
                 <h2 class="m-3 text-dark fs-4 text-center">Вилучення з @Model.Role.Name</h2>
-                <table class="table mx-5">
+                <table class="table m-auto w-50">
                     @if (Model.Members.Count() == 0)
                     {
                         <input disabled type="text" class="form-control text-center m-auto w-50" value="Відсутні користувачі, яким притаманна ця роль." />

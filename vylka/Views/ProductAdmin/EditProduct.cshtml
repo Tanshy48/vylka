@@ -17,24 +17,24 @@
                 <form class="text-dark" method="post" asp-controller="ProductAdmin" asp-action="EditProductPOST">
                     <input asp-for="Id" hidden />
                     <div class="mb-3">
-                         <label asp-for="Name" class="form-label"></label>
+                         <label asp-for="Name" class="form-label">Назва товару</label>
                         <input type="text" asp-for="Name" class="form-control">
                     </div>
                     <div class="mb-3">
-                         <label asp-for="Description" class="form-label"></label>
+                         <label asp-for="Description" class="form-label">Опис</label>
                         <input type="text" asp-for="Description" class="form-control">
                     </div>
                     <div class="mb-3">
-                         <label asp-for="Quantity" class="form-label"></label>
-                        <input type="text" asp-for="Quantity" class="form-control">
+                         <label asp-for="Quantity" class="form-label">Кількість</label>
+                        <input type="number" asp-for="Quantity" class="form-control">
                     </div>
                     <div class="mb-3">
-                         <label asp-for="Price" class="form-label"></label>
-                        <input type="text" asp-for="Price" class="form-control">
+                         <label asp-for="Price" class="form-label">Ціна</label>
+                        <input type="number" asp-for="Price" class="form-control">
                     </div>
                     <div class="mb-3">
-                         <label asp-for="CategoryId" class="form-label"></label>
-                        <input type="text" asp-for="CategoryId" class="form-control">
+                         <label asp-for="CategoryId" class="form-label">ID категорії</label>
+                        <input type="number" asp-for="CategoryId" class="form-control">
                     </div>
                     <div>
                         <button class="btn btn-success" type="submit" >

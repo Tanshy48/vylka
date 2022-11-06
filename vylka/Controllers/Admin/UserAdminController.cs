@@ -18,10 +18,6 @@ namespace Fork_Site.Controllers
         {
             return View(_db.User.ToList());
         }
-        public ActionResult EditUserRole()
-        {
-            return View(_db.User.ToList());
-        }
 
     }
 }

@@ -18,7 +18,7 @@
         $( "#totalAmount" ).html(money)
     })
     $( ".products" ).on('click', '.minus', function(event) {
-        if(+$(this).prev().html() > 0) {
+        if(+$(this).prev().html() > 1) {
             event.preventDefault();
             count = +$(this).prev().html() - 1
             $(this).prev().html(count)

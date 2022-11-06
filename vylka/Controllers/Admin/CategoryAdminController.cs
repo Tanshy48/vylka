@@ -21,13 +21,31 @@ namespace Fork_Site.Controllers
         {
             return View();
         }
-        public ActionResult EditCategory()
+        public ActionResult EditCategory(int? id)
         {
-            return View();
+            if( id == null || id == 0)
+            {
+                return NotFound();
+            }
+            var CategoryFromDb = _db.Category.Find(id);
+            if(CategoryFromDb == null)
+            {
+                return NotFound();
+            }
+            return View(CategoryFromDb);
         }
-        public ActionResult DeleteCategory()
+        public ActionResult DeleteCategory(int? id)
         {
-            return View();
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            var CategoryFromDb = _db.Category.Find(id);
+            if (CategoryFromDb == null)
+            {
+                return NotFound();
+            }
+            return View(CategoryFromDb);
         }
 
         [HttpPost]
@@ -52,6 +70,34 @@ namespace Fork_Site.Controllers
             {
                 return BadRequest();
             }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult EditCategoryPOST(Category obj)
+        {
+
+            if (ModelState.IsValid)
+            {
+                _db.Category.Update(obj);
+                _db.SaveChanges();
+                return RedirectToAction("Categories");
+            }
+            return View(obj);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteCategoryPOST(int? id)
+        {
+            var obj = _db.Category.Find(id);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            _db.Category.Remove(obj);
+            _db.SaveChanges();
+            return RedirectToAction("Categories");
         }
     }
 }

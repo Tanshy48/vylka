@@ -1,7 +1,6 @@
-@using vylka.Areas.Entity
-@model Category
+﻿@model Microsoft.AspNetCore.Identity.IdentityRole  
 @{
-    ViewData["Title"] = "Змінити категорію";
+    ViewData["Title"] = "Змінити роль";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 @section CSS {
@@ -12,9 +11,9 @@
 		<div class="content-wrapper">
 			<div class="border-top border-primary border-4 bg-light table-responsive">
 				<div class="bg-table-title text-dark d-flex justify-content-between align-items-center">
-					<h1 class=" fw-bolder fs-5 p-lg-3 ">Редагування категорії</h1>
+					<h1 class=" fw-bolder fs-5 p-lg-3 ">Редагування ролі</h1>
 				</div>
-				<form class="text-dark" method="post" asp-controller="CategoryAdmin" asp-action="EditCategoryPOST">
+				<form class="text-dark" method="post" asp-controller="RoleAdmin" asp-action="EditRole">
                     <input asp-for="Id" hidden />
                     <div class="mb-3">
                          <label asp-for="Name" class="form-label"></label>
@@ -24,7 +23,7 @@
                         <button class="btn btn-success" type="submit" >
                             Зберегти
                         </button>
-                        <a class="btn text-dark" asp-area="Admin" asp-controller="CategoryAdmin" asp-action="Categories">
+                        <a class="btn text-dark" asp-area="Admin" asp-controller="RoleAdmin" asp-action="Roles">
                             Назад
                         </a>
                     </div>

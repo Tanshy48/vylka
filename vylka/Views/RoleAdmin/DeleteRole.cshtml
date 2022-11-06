@@ -1,8 +1,7 @@
-@using vylka.Areas.Entity
-@model Product
+﻿@model Microsoft.AspNetCore.Identity.IdentityRole  
 @{
-    ViewData["Title"] = "Видалити товар";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+     ViewData["Title"] = "Видалити роль";
+     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 @section CSS {
     <link href="@Url.Content("~/lib/fontawesome-free/css/all.min.css")" rel="stylesheet" asp-append-version="true"/>
@@ -12,20 +11,20 @@
 		<div class="content-wrapper">
 			<div class="border-top border-primary border-4 bg-light table-responsive">
 				<div class="bg-table-title text-dark d-flex justify-content-between align-items-center">
-					<h1 class="fw-bolder fs-5 p-lg-3 ">Видалення товару</h1>
+					<h1 class="fw-bolder fs-5 p-lg-3 ">Видалення ролі</h1>
 				</div>
-				<form class="text-dark" method="post" asp-controller="ProductAdmin" asp-action="DeleteProductPOST">
+				<form class="text-dark" method="post" asp-controller="RoleAdmin" asp-action="DeleteRolePOST">
                     <input asp-for="Id" hidden />
                     <div class="mb-3" mt-3>
                         <label asp-for="Name" class="form-label"></label>
                         <input type="text" asp-for="Name" disabled class="form-control">
-                        <h5>Ви впевнені що хочете видалити цей товар?</h5>
+                        <h5>Ви впевнені що хочете видалити цю категорію?</h5>
                     </div>
                     <div>
                         <button class="btn btn-danger" type="submit" >
                             Підтвердити
                         </button>
-                        <a class="btn text-dark" asp-area="Admin" asp-controller="ProductAdmin" asp-action="Products">
+                        <a class="btn text-dark" asp-area="Admin" asp-controller="RoleAdmin" asp-action="Roles">
                             Скасувати
                         </a>
                     </div>

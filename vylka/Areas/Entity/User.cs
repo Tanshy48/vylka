@@ -6,7 +6,7 @@ namespace vylka.Areas.Entity
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public int CartId { get; set; }
+        public int? CartId { get; set; }
         public virtual Cart Cart { get; set; }
        
     }

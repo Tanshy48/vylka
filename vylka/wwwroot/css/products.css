@@ -22,8 +22,9 @@
 }
 
 .raw .product-img {
-	height: 250px;
-	margin-top: 30px;
+	max-height: 300px;
+    max-width: 250px;
+    margin: auto;
 }
 
 .availability {

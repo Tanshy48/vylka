@@ -14,27 +14,26 @@
                 <span class="mx-2" >Повернутися назад</span>
     </a>
     <div class="shop mb-4">
-			<div class="raw">
-				@foreach (var item in Model)
+		@foreach (var item in Model)
+			{
+				if(item.CategoryId == 1)
 					{
-						if(item.CategoryId == 1)
-						{
+						<div class="raw">
 							<img class="product-img mx-auto" src="~/images/products/(@item.Id).jpg" alt="Зображення продукта" />
 							<div class="availability text-dark">В наявності</div>
 							<div class="product-name text-dark">@item.Name</div>
 							<div>
-								<div class="price text-dark">@item.Price <small>грн</small>
-								</div>
+								<div class="price text-dark">@item.Price <small>грн</small></div>
 								<div class="order-btn text-dark">
 									<a href="#" class="button">
 										<span> Купити</span>
 										<img src=~/images/icons/cart.png alt="В кошик" />
 									</a>
 								</div>
-							</div>
-						}
+							</div>		
+						</div>
 					}
-			</div>
+			}
     </div>
 </div>
 @* <div class="render-content">

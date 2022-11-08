@@ -1,11 +1,13 @@
 #nullable disable
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using vylka.Data;
-
+using vylka.Models;
 
 namespace Fork_Site.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class UserAdminController : Controller
     {
         private readonly vylkaContext _db;
@@ -16,7 +18,7 @@ namespace Fork_Site.Controllers
         
         public ActionResult Users()
         {
-            return View(_db.User.ToList());
+           return View(_db.User.ToList());
         }
 
     }

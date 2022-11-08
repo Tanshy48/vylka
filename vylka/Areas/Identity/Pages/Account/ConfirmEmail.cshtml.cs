@@ -37,7 +37,12 @@ namespace vylka.Areas.Identity.Pages.Account
             code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
             var result = await _userManager.ConfirmEmailAsync(user, code);
             StatusMessage = result.Succeeded ? "Дякуємо, за підтвердження вашої електронної скриньки." : "Помилка під час підтвердження електронної скриньки.";
-            return Page();
+
+            // після підтвердження перехід на головну
+            return RedirectToPage("/Account/Login", new { area = "Identity" });
+          //  return RedirectToPage("/Account/Login");
+            //повертає ту ж сторінку з підтвердженням
+            //return Page();
         }
     }
 }

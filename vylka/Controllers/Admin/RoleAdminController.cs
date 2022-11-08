@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using vylka.Areas.Entity;
@@ -7,6 +8,7 @@ using vylka.Models;
 
 namespace vylka.Controllers.Admin
 {
+    [Authorize(Roles = "Admin")]
     public class RoleAdminController : Controller
     {
         private RoleManager<IdentityRole> roleManager;

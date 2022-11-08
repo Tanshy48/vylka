@@ -159,6 +159,11 @@ a:hover {
 	font-size: 15px;
 }
 
+.testimonials {
+	margin-top: 7rem;
+    margin-bottom: 10rem;
+}
+
 footer {
 	width: 100%;
 	background-image: url("../images/background/footer.png");
@@ -172,6 +177,64 @@ footer h6 {
 
 footer p {
 	color: rgba(255, 255, 255, 0.58);
+}
+
+.colortext{
+	color: #75a8d6;
+}
+
+.colortext h5{
+	font-weight: 0;
+	line-height: 0;
+	margin-bottom:50px;
+	margin-top: 40px;
+}
+
+.cards-body {
+	flex: 1 auto;
+}
+
+.cards {
+	width: 22rem;
+	height: 9rem;
+	background: rgb(24,44,65);
+	background: linear-gradient(180deg, rgba(24,44,65,1) 0%, rgba(29,31,37,1) 100%);
+	margin: 2rem;
+	border-radius: .3rem;
+}
+ 
+.cards-name{
+	color: #0060c1;
+}
+
+.cards .border{
+    padding: 10px 30px;
+    border-radius: 5rem;
+    margin-left: 20px;
+    margin-top: 20px;
+    border: 2px solid #0060c1!important;
+	transition: all .5s ease-out; 
+}
+
+.cards .border:hover {
+	background: rgb(122, 175, 209);
+	transition: all .5s ease-in; 
+}
+
+.cards-name h6{
+    margin: 0;
+    padding: 0;
+}
+
+.cards-text{
+	margin-left: 20px;
+	margin-top: 10px;
+	color: var(--blue-text);
+	font-size: 12px;
+}
+
+.about-us {
+	margin-top: 7rem;
 }
 
 .return img {
@@ -255,6 +318,9 @@ footer p {
 	height: 0;
 	transition: all 0.5s ease-out;
 }
+.total form img {
+	height: 45px;
+}
 .total form #toggler {
 	opacity: .5;
 	transform: rotate(0deg);
@@ -267,3 +333,4 @@ footer p {
 .total form #toggler:hover {
 	opacity: 1;
 } 
+

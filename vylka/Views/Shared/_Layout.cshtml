@@ -4,6 +4,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>@ViewData["Title"] - VYLKA</title>
+		<link rel="icon" type="image/x-icon" href="~/images/favicon/favicon.png">
 		<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
         @RenderSection("CSS", required: false)
@@ -17,27 +18,24 @@
 					<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
 						<li class="nav-item">
 							<a class="nav-link" asp-area="Admin" asp-controller="UserAdmin" asp-action="Users">Admin</a>
-						</li>
-						<li class="nav-item">  
-                            <a class="nav-link" asp-area="Admin" asp-controller="Role" asp-action="Index">Role</a>  
-                        </li>  
+						</li> 
 						<li class="nav-item">
-							<a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Про нас</a>
+							<a class="nav-link"  asp-controller="Home" asp-action="Index">Про нас</a>
 						</li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Товари </a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 								<li>
-									<a class="dropdown-item" asp-area="" asp-controller="Products" asp-action="Refrigerators">Холодильники</a>
+									<a class="dropdown-item"  asp-controller="Products" asp-action="Refrigerators">Холодильники</a>
 								</li>
 								<li>
-									<a class="dropdown-item" asp-area="" asp-controller="Products" asp-action="TVs">Телевізори</a>
+									<a class="dropdown-item"  asp-controller="Products" asp-action="TVs">Телевізори</a>
 								</li>
 								<li>
-									<a class="dropdown-item" asp-area="" asp-controller="Products" asp-action="Vacuums">Пилососи</a>
+									<a class="dropdown-item"  asp-controller="Products" asp-action="Vacuums">Пилососи</a>
 								</li>
 								<li>
-									<a class="dropdown-item" asp-area="" asp-controller="Products" asp-action="Conditioners">Кондиціонери</a>
+									<a class="dropdown-item"  asp-controller="Products" asp-action="Conditioners">Кондиціонери</a>
 								</li>
 							</ul>
 						</li>
@@ -45,7 +43,7 @@
 					</ul>
 					<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
 						<li>
-							<a class="nav-link" asp-area="" asp-controller="ShoppingCart" asp-action="Index">
+							<a class="nav-link"  asp-controller="ShoppingCart" asp-action="Index">
 								<img src="~/images/icons/cart.png" alt="shopping cart">
 							</a>
 						</li>
@@ -65,8 +63,8 @@
 						<h6 class="text-uppercase fw-bold mt-5 mb-4">VYLKA</h6>
 						<div class="col-md-3 col-lg-4 col-xl-3 mx-auto">
 							<h7>Тобі потрібна допомога?</h7>
-							<p><a>Обмін та повернення товару</a></p>
-							<p><a>Доставка</a></p>
+							<p><a asp-controller="Home" asp-action="ProductReturn">Обмін та повернення товару</a></p>
+							<p><a asp-controller="Home" asp-action="Delivery">Доставка</a></p>
 						</div>
 						<div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
 							<h7>Контакти</h7>

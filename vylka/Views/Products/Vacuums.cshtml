@@ -5,47 +5,38 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section CSS {
-    <link href="@Url.Content("~/lib/fontawesome-free/css/all.min.css")" rel="stylesheet" asp-append-version="true"/>
-    <link href="@Url.Content("~/css/admin.css")" rel="stylesheet" asp-append-version="true"/>
+    <link href="@Url.Content("~/css/products.css")" rel="stylesheet" asp-append-version="true"/>
 }
-<div class="render-content">
-		<div class="content-wrapper">
-			<div class="border-top border-primary border-4 bg-light table-responsive">
-				<div class="bg-table-title text-dark d-flex justify-content-between align-items-center">
-					<h1 class=" fw-bolder fs-5 p-lg-3 ">Пилососи</h1>
-					
-				</div>
-				<table class="text-center table table-striped">
-					<thead class="fs-6">
-						<tr>
-							<th scope="col">ID</th>
-							<th scope="col">Назва</th>
-							<th scope="col">Опис</th>
-							<th scope="col">Кількість</th>
-							<th scope="col">Ціна</th>
-						    <th scope="col">Категорія</th>
-						</tr>
-					</thead>
-				<tbody>
-					@foreach (var item in Model)
+<div class="render-content container">
+    <a class="return d-flex align-items-center my-3" asp-controller="Home" asp-action="Index">
+                <img class="mx-2" src="~/images/icons/home.png">
+                <span class="mx-1" >></span>
+                <span class="mx-2" >Повернутися назад</span>
+    </a>
+    <div class="shop mb-4">
+		@foreach (var item in Model)
+			{
+				if(item.CategoryId == 4)
 					{
-						if(item.CategoryId == 4)
-						{
-							<tr>
-								<th scope="row">@item.Id</th>
-								<td>@item.Name</td>
-								<td>@item.Description</td>
-								<td>@item.Quantity</td>
-								<td>@item.Price</td>
-								<td>@item.CategoryId</td>
-							</tr>
-						}
+						<div class="raw">
+							<img class="product-img mx-auto" src="~/images/products/(@item.Id).jpg" alt="Зображення продукта" />
+							<div class="availability text-dark">В наявності</div>
+							<div class="product-name text-dark">@item.Name</div>
+							<div>
+								<div class="price text-dark">@item.Price <small>грн</small></div>
+								<div class="order-btn text-dark">
+									<a id="" class="button">
+										<label id="textBtn"> Купити</label>
+										<img class="iconCartBtn" src=~/images/icons/cartWhite.png alt="В кошик" />
+										<img class="iconTickBtn" src=~/images/icons/tick.png alt="В кошик" />
+									</a>
+								</div>
+							</div>		
+						</div>
 					}
-				</tbody>
-				</table>
-			</div>
-		</div>
+			}
+    </div>
 </div>
 @section Scripts {
-    <script src="@Url.Content("~/js/admin.js")" asp-append-version="true"></script>
+	<script src="@Url.Content("~/js/products.js")" asp-append-version="true"></script>
 }

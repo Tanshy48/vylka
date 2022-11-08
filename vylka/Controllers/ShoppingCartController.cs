@@ -1,38 +1,20 @@
-using System.Data.SqlClient;
 using Microsoft.AspNetCore.Mvc;
-using vylka.Models;
-using System.Data;
 
 namespace vylka.Controllers
 {
     public class ShoppingCartController : Controller
     {
         
-        SqlCommand command = new();
-        SqlDataReader dr;
-        SqlConnection connection = new(Constants.Constants.Connection);
         public IActionResult Index()
         {
             return View();
         }
 
-        [HttpPost]
+        /* [HttpPost]
         public IActionResult NewOrder(int id, string address, string city, string amountPaid, string paymentType)
         {
-            try
-            {
-                connection.Open();
-                command.Connection = connection;
-                command.CommandText = "INSERT INTO [vylka].[dbo].[ShippingDetails] values(" + id + ",'" + address + "','" + city + "','" + amountPaid + "','" + paymentType + "')";
-                command.ExecuteReader();
-                connection.Close();
-                return RedirectToAction("Index", "ShoppingCart");
-            }
-            catch(Exception)
-            {
-                throw;
-            }
-        }
+           
+        } */
         /* public JsonResult AddData(ShippingDetailModel shippingDetail)
         {
             string msg = string.Empty;

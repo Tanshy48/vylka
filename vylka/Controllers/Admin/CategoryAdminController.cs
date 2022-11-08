@@ -52,13 +52,24 @@ namespace Fork_Site.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult AddCategory(Category model)
         {
-            if(ModelState.IsValid)
+            if (model == null)
+            {
+                return BadRequest();
+            }
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            try
             {
                 _db.Category.Add(model);
                 _db.SaveChanges();
                 return RedirectToAction("Categories");
             }
-            return View(model);
+            catch (Exception)
+            {
+                return BadRequest();
+            }
         }
 
         [HttpPost]

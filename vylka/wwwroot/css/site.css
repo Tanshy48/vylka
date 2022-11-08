@@ -258,6 +258,10 @@ footer p {
 	opacity: var(--default-img-opacity);
 }
 
+.products {
+	min-height: 500px;
+}
+
 .products .card{
 	background: #fff;
 	min-width: 20rem;
@@ -285,6 +289,8 @@ footer p {
 }
 
 .total{
+	position: sticky;
+    bottom: 0px;
 	overflow:hidden;
 	height: auto;
 	background-color: #142d53;
@@ -333,4 +339,3 @@ footer p {
 .total form #toggler:hover {
 	opacity: 1;
 } 
-

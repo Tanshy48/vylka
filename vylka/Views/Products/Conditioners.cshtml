@@ -25,9 +25,10 @@
 							<div>
 								<div class="price text-dark">@item.Price <small>грн</small></div>
 								<div class="order-btn text-dark">
-									<a href="#" class="button">
-										<span> Купити</span>
-										<img src=~/images/icons/cart.png alt="В кошик" />
+									<a id="" class="button">
+										<label id="textBtn"> Купити</label>
+										<img class="iconCartBtn" src=~/images/icons/cartWhite.png alt="В кошик" />
+										<img class="iconTickBtn" src=~/images/icons/tick.png alt="В кошик" />
 									</a>
 								</div>
 							</div>		
@@ -37,5 +38,6 @@
     </div>
 </div>
 @section Scripts {
-    <script src="@Url.Content("~/js/admin.js")" asp-append-version="true"></script>
+	<script src="@Url.Content("~/js/products.js")" asp-append-version="true"></script>
 }
+

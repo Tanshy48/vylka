@@ -6,7 +6,6 @@
 
 .shop {
     display: flex;
-	justify-content: space-between;
 	flex-wrap: wrap;
     font-size: 18px;
 }
@@ -30,14 +29,11 @@
 
 .availability {
 	font-size: 13px;
-	margin-bottom: 5px;
 	margin-left: 10px;
 }
 
 .price {
 	font-weight: bolder;
-	margin-bottom: 10px;
-	margin-top: 10px;
 	margin-left: 10px;
 	font-size: 20px;
 }
@@ -45,6 +41,7 @@
 .order-btn {
 	display: flex;
 	align-items: center;
+	margin-bottom: .9rem;
 }
 
 .order-btn img {

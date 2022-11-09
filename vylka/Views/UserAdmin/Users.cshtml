@@ -1,4 +1,5 @@
-@model dynamic
+@using vylka.Areas.Entity
+@model IEnumerable<User>
 @{ 
     ViewData["Title"] = "Користувачі"; 
     Layout = "~/Views/Shared/_AdminLayout.cshtml"; 
@@ -20,6 +21,7 @@
 							<th scope="col">UserName</th>
 							<th scope="col">Ім'я</th>
 							<th scope="col">Прізвище</th>
+							<th scope="col">Корзина</th>
 						</tr>
 					</thead>
 					<tbody> 
@@ -29,6 +31,7 @@
 							<td>@item.UserName</td>
 							<td>@item.FirstName</td>
 							<td>@item.LastName</td>
+							<td>@item.CartId</td>
 						</tr> 
 						}
 					</tbody>

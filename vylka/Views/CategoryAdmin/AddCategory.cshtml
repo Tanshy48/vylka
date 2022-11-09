@@ -1,0 +1,37 @@
+@model vylka.Models.CategoryModel 
+@{
+    ViewData["Title"] = "Додати категорію";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@section CSS {
+    <link href="@Url.Content("~/lib/fontawesome-free/css/all.min.css")" rel="stylesheet" asp-append-version="true"/>
+    <link href="@Url.Content("~/css/admin.css")" rel="stylesheet" asp-append-version="true"/>
+}
+
+<div class="render-content">
+        <div class="content-wrapper">
+            <div class="border-top border-primary border-4 bg-light table-responsive">
+                <div class="bg-table-title text-dark d-flex justify-content-between align-items-center">
+                    <h1 class="fw-bolder fs-5 p-lg-3 ">Додавання категорії</h1>
+                </div>
+                 <form class="text-dark" asp-controller="CategoryAdmin" asp-action="AddCategory"> 
+                    <div class="mb-3">
+                        <label class="form-label" asp-for="Name">Назва категорії</label>
+                        <input type="text" asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div>
+                       <button class="btn btn-success" type="submit">Створити</button>
+                        <a asp-controller="CategoryAdmin" asp-action="Categories" class="btn text-dark">Назад</a>
+                    </div>
+                 </form> 
+            </div>
+        </div>
+</div>
+
+@section Scripts {
+    <script src="@Url.Content("~/js/admin.js")" asp-append-version="true"></script>
+    @{
+        <partial name="_ValidationScriptsPartial.cshtml" />
+    }
+}

@@ -5,15 +5,16 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using vylka.Areas.Entity;
 using vylka.Models;
 
 namespace vylka.Areas.Identity.Pages.Account
 {
     public class ConfirmEmailModel : PageModel
     {
-        private readonly UserManager<UserModel> _userManager;
+        private readonly UserManager<User> _userManager;
 
-        public ConfirmEmailModel(UserManager<UserModel> userManager)
+        public ConfirmEmailModel(UserManager<User> userManager)
         {
             _userManager = userManager;
         }
@@ -36,7 +37,12 @@ namespace vylka.Areas.Identity.Pages.Account
             code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
             var result = await _userManager.ConfirmEmailAsync(user, code);
             StatusMessage = result.Succeeded ? "Дякуємо, за підтвердження вашої електронної скриньки." : "Помилка під час підтвердження електронної скриньки.";
-            return Page();
+
+            // після підтвердження перехід на головну
+            return RedirectToPage("/Account/Login", new { area = "Identity" });
+          //  return RedirectToPage("/Account/Login");
+            //повертає ту ж сторінку з підтвердженням
+            //return Page();
         }
     }
 }

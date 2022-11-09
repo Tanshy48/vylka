@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿#nullable disable
+
+using Microsoft.AspNetCore.Identity;
 
 namespace vylka.Models
 {

@@ -1,3 +1,45 @@
 .product-return .decimal{
 	list-style-type: decimal;
 }
+.decimal{
+	list-style-type: decimal;
+}
+
+.decimal{
+	list-style-type: decimal;
+}
+
+h1.h1{
+	font-size:25px;
+	font-weight:300;
+}
+
+h2.h2 {
+	font-size:15px;
+	font-weight:200;
+}
+
+.p1{
+	font-size:20px;
+	font-weight: 200;
+}
+
+
+.p3{
+font-size:20px;
+font-weight: 200;
+}
+
+
+
+h3.h3 {
+	font-size: 15px;
+
+}
+
+
+h4.h1 {
+	font-size: 15px;
+	font-weight:300;
+}
+

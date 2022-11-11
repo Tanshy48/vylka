@@ -1,4 +1,5 @@
 ﻿#nullable disable
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using vylka.Areas.Entity;
@@ -6,8 +7,13 @@ using vylka.Models;
 
 namespace vylka.Data;
 
-public class vylkaContext : IdentityDbContext<User>
+public class vylkaContext : IdentityDbContext<IdentityUser>
 {
+    public DbSet<CartItem> CartItem { get; set; }
+    public DbSet<Product> Product { get; set; }
+    public DbSet<Category> Category { get; set; }
+    public DbSet<Cart> Cart { get; set; }
+
     public vylkaContext(DbContextOptions<vylkaContext> options)
         : base(options)
     {
@@ -21,14 +27,5 @@ public class vylkaContext : IdentityDbContext<User>
         // Add your customizations after calling base.OnModelCreating(builder);
 
     }
-
-    public DbSet<User> User { get; set; }
-    public DbSet<ShippingDetail> ShippingDetails { get; set; }
-    public DbSet<Product> Products { get; set; }
-    public DbSet<Category> Category { get; set; }
-    public DbSet<Cart> Carts { get; set; }
-
-
-
 
 }

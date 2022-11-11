@@ -12,14 +12,14 @@ using vylka.Data;
 namespace vylka.Migrations
 {
     [DbContext(typeof(vylkaContext))]
-    [Migration("20221020090404_InitialCommitV2")]
-    partial class InitialCommitV2
+    [Migration("20221111182428_initialCommitV2")]
+    partial class initialCommitV2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.9")
+                .HasAnnotation("ProductVersion", "6.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -169,12 +169,10 @@ namespace vylka.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderKey")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -211,12 +209,10 @@ namespace vylka.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -226,23 +222,31 @@ namespace vylka.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("vylka.Areas.DB.Cart", b =>
+            modelBuilder.Entity("vylka.Areas.Entity.Cart", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("CartUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreateCart")
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Carts");
+                    b.HasIndex("CartUserId");
+
+                    b.ToTable("Cart");
                 });
 
-            modelBuilder.Entity("vylka.Areas.DB.Category", b =>
+            modelBuilder.Entity("vylka.Areas.Entity.CartItem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -250,11 +254,38 @@ namespace vylka.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                    b.Property<int>("CartId")
+                        .HasColumnType("int");
 
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ProductName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CartId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("CartItem");
+                });
+
+            modelBuilder.Entity("vylka.Areas.Entity.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -262,10 +293,10 @@ namespace vylka.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Category");
                 });
 
-            modelBuilder.Entity("vylka.Areas.DB.Product", b =>
+            modelBuilder.Entity("vylka.Areas.Entity.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -280,49 +311,18 @@ namespace vylka.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
+                    b.Property<string>("ProductName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("vylka.Areas.DB.ShippingDetail", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("AmountPaid")
-                        .HasColumnType("float");
-
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PaymentType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ShippingDetails");
+                    b.ToTable("Product");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -376,10 +376,38 @@ namespace vylka.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("vylka.Areas.DB.Product", b =>
+            modelBuilder.Entity("vylka.Areas.Entity.Cart", b =>
                 {
-                    b.HasOne("vylka.Areas.DB.Category", "Category")
-                        .WithMany("Product")
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "CartUser")
+                        .WithMany()
+                        .HasForeignKey("CartUserId");
+
+                    b.Navigation("CartUser");
+                });
+
+            modelBuilder.Entity("vylka.Areas.Entity.CartItem", b =>
+                {
+                    b.HasOne("vylka.Areas.Entity.Cart", "Cart")
+                        .WithMany("CartItem")
+                        .HasForeignKey("CartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("vylka.Areas.Entity.Product", "Product")
+                        .WithMany("CartItem")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cart");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("vylka.Areas.Entity.Product", b =>
+                {
+                    b.HasOne("vylka.Areas.Entity.Category", "Category")
+                        .WithMany("Products")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -387,9 +415,19 @@ namespace vylka.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("vylka.Areas.DB.Category", b =>
+            modelBuilder.Entity("vylka.Areas.Entity.Cart", b =>
                 {
-                    b.Navigation("Product");
+                    b.Navigation("CartItem");
+                });
+
+            modelBuilder.Entity("vylka.Areas.Entity.Category", b =>
+                {
+                    b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("vylka.Areas.Entity.Product", b =>
+                {
+                    b.Navigation("CartItem");
                 });
 #pragma warning restore 612, 618
         }

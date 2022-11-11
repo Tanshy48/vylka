@@ -27,7 +27,7 @@
                     }
                     else
                     {
-                        @foreach (User user in Model.NonMembers)
+                        @foreach (IdentityUser user in Model.NonMembers)
                         {
                             <tr>
                                 <td>@user.UserName</td>
@@ -45,7 +45,7 @@
                     {
                         <input disabled type="text" class="form-control text-center m-auto w-50" value="Відсутні користувачі, яким притаманна ця роль." />
                     } else {
-                        @foreach (User user in Model.Members)
+                        @foreach (IdentityUser user in Model.Members)
                         {
                             <tr>
                                 <td>@user.UserName</td>

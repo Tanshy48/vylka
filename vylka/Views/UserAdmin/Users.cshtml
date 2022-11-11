@@ -1,5 +1,5 @@
 @using vylka.Areas.Entity
-@model IEnumerable<User>
+@model IEnumerable<IdentityUser>
 @{ 
     ViewData["Title"] = "Користувачі"; 
     Layout = "~/Views/Shared/_AdminLayout.cshtml"; 
@@ -29,9 +29,7 @@
 						<tr>
 							<th scope="row">@item.Id</th>
 							<td>@item.UserName</td>
-							<td>@item.FirstName</td>
-							<td>@item.LastName</td>
-							<td>@item.CartId</td>
+							
 						</tr> 
 						}
 					</tbody>

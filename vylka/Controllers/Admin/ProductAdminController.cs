@@ -6,7 +6,7 @@ using vylka.Models;
 
 namespace Fork_Site.Controllers
 {
-    /* [Authorize(Roles = "Admin")] */
+    //[Authorize(Roles = "Admin")]
     public class ProductAdminController : Controller
     {
         private readonly vylkaContext _db;
@@ -16,7 +16,7 @@ namespace Fork_Site.Controllers
         }
         public ActionResult Products()
         {
-            return View(_db.Products.ToList());
+            return View(_db.Product.ToList());
         }
         public ActionResult AddProduct()
         {
@@ -28,7 +28,7 @@ namespace Fork_Site.Controllers
             {
                 return NotFound();
             }
-            var ProductFromDb = _db.Products.Find(id);
+            var ProductFromDb = _db.Product.Find(id);
             if (ProductFromDb == null)
             {
                 return NotFound();
@@ -41,7 +41,7 @@ namespace Fork_Site.Controllers
             {
                 return NotFound();
             }
-            var ProductFromDb = _db.Products.Find(id);
+            var ProductFromDb = _db.Product.Find(id);
             if (ProductFromDb == null)
             {
                 return NotFound();
@@ -59,13 +59,12 @@ namespace Fork_Site.Controllers
                 Product p = new Product()
                 {
                     Id = model.Id,
-                    Name = model.Name,
+                    ProductName = model.ProductName,
                     Description = model.Description,
-                    Quantity = model.Quantity,
                     Price = model.Price,
                     CategoryId = model.CategoryId
                 };
-                _db.Products.Add(p);
+                _db.Product.Add(p);
                 _db.SaveChanges();
                 return RedirectToAction("Products");
             }
@@ -82,13 +81,12 @@ namespace Fork_Site.Controllers
                 var p = new Product()
                 {
                     Id = model.Id,
-                    Name = model.Name,
+                    ProductName = model.ProductName,
                     Description = model.Description,
-                    Quantity = model.Quantity,
                     Price = model.Price,
                     CategoryId = model.CategoryId
                 };
-                _db.Products.Update(p);
+                _db.Product.Update(p);
                 _db.SaveChanges();
                 return RedirectToAction("Products");
             }
@@ -99,12 +97,12 @@ namespace Fork_Site.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteProductPOST(int? id)
         {
-            var obj = _db.Products.Find(id);
+            var obj = _db.Product.Find(id);
             if (obj == null)
             {
                 return NotFound();
             }
-            _db.Products.Remove(obj);
+            _db.Product.Remove(obj);
             _db.SaveChanges();
             return RedirectToAction("Products");
         }

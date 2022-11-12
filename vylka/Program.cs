@@ -11,7 +11,7 @@ builder.Services.AddDbContext<vylkaContext>(options =>
     options.UseSqlServer(connectionString));
 
 
-builder.Services.AddIdentity<User, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
             .AddEntityFrameworkStores<vylkaContext>()
             .AddDefaultUI()
             .AddDefaultTokenProviders();

@@ -17,16 +17,12 @@
                 <form class="text-dark" method="post" asp-controller="ProductAdmin" asp-action="EditProductPOST">
                     <input asp-for="Id" hidden />
                     <div class="mb-3">
-                         <label asp-for="Name" class="form-label">Назва товару</label>
-                        <input type="text" asp-for="Name" class="form-control">
+                         <label asp-for="ProductName" class="form-label">Назва товару</label>
+                        <input type="text" asp-for="ProductName" class="form-control">
                     </div>
                     <div class="mb-3">
                          <label asp-for="Description" class="form-label">Опис</label>
                         <input type="text" asp-for="Description" class="form-control">
-                    </div>
-                    <div class="mb-3">
-                         <label asp-for="Quantity" class="form-label">Кількість</label>
-                        <input type="number" asp-for="Quantity" class="form-control">
                     </div>
                     <div class="mb-3">
                          <label asp-for="Price" class="form-label">Ціна</label>

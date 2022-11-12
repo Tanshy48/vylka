@@ -29,13 +29,11 @@
                         </div>
                         <div class="order-btn text-dark">
                             <form asp-controller="Products" asp-action="Refrigerators" asp-route-id="@item.Id" method="post">
-                                @* <a class="button"> *@
                                     <button class="btn btn-primary">
                                         <label id="textBtn"> Купити</label>
                                         <img class="iconCartBtn" src=~/images/icons/cartWhite.png alt="В кошик"/>
                                         <img class="iconTickBtn" src=~/images/icons/tick.png alt="В кошик"/>
                                     </button>
-                                @* </a>*@
                             </form>
                         </div>
                     </div>

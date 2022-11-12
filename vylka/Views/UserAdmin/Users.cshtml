@@ -1,4 +1,3 @@
-@using vylka.Areas.Entity
 @model IEnumerable<IdentityUser>
 @{ 
     ViewData["Title"] = "Користувачі"; 
@@ -19,9 +18,7 @@
 						<tr>
 							<th scope="col">ID</th>
 							<th scope="col">UserName</th>
-							<th scope="col">Ім'я</th>
-							<th scope="col">Прізвище</th>
-							<th scope="col">Корзина</th>
+							<th scope="col">Видалити</th>
 						</tr>
 					</thead>
 					<tbody> 
@@ -29,7 +26,13 @@
 						<tr>
 							<th scope="row">@item.Id</th>
 							<td>@item.UserName</td>
-							
+							<td>
+                            	<a asp-route-id="@item.Id" asp-controller="UserAdmin" asp-action="DeleteUser" >
+                            		<button class="btn btn-danger">
+                            			<i class="fa fa-trash"></i>
+                            		</button>
+                            	</a>
+                            </td>
 						</tr> 
 						}
 					</tbody>

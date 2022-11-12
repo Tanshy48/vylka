@@ -17,6 +17,12 @@ namespace vylka.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+            var currentAccount = _context.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
+
+            if (currentAccount == null)
+            {
+                return Redirect("/Identity/Account/Register");
+            }
             var delivery = GetDelivery();
 
             if (delivery == null || delivery.IsActive == false)

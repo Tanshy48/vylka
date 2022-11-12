@@ -1,3 +1,5 @@
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<vylka.Areas.Entity.CartItem>
 @{
     ViewData["Title"] = "Кошик";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -11,38 +13,25 @@
             </a>
             <h1 class="mx-2">Кошик</h1>
             <section class="products d-flex flex-wrap">
-                <div class="card m-xl-5">
-                    <a class="btn delBtn"><img class="position-absolute top-0 end-0 mx-3 my-1" src="images/icons/trash.png" alt="видалити"></a>
-                    <img class="card-img-top mx-auto mt-5" src="images/products/microphone.jpg" alt="Card image cap">
-                    <div class="card-body text-black">
-                        <h5 class="card-title">Мікрофон HYPERX QUADCAST (HX-MICQC-BK)</h5>
-                        <div class="d-flex fs-5 fw-bold">
-                            <label class="mx-1 price">6100</label>
-                            <p>грн</p>
-                        </div>
-                        <div class="counter d-flex fs-6 fw-bold">
-                            <button class="btn border plus">+</button>
-                            <label class="mx-3 countNum">1</label>
-                            <button class="btn border mx-1 minus">-</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="card m-xl-5">
-                    <a class="btn delBtn"><img class="position-absolute top-0 end-0 mx-3 my-1" src="images/icons/trash.png" alt="видалити"></a>
-                    <img class="card-img-top mx-auto mt-5" src="images/products/microphone.jpg" alt="Card image cap">
-                    <div class="card-body text-black">
-                        <h5 class="card-title">Мікрофон HYPERX QUADCAST (HX-MICQC-BK)</h5>
-                        <div class="d-flex fs-5 fw-bold">
-                            <label class="mx-1 price">8100</label>
-                            <p>грн</p>
-                        </div>
-                        <div class="counter d-flex fs-6 fw-bold">
-                            <button class="btn border plus">+</button>
-                            <label class="mx-3 countNum">1</label>
-                            <button class="btn border mx-1 minus">-</button>
+                @foreach (var item in Model)
+                {
+                    <div class="card m-xl-5">
+                        <a class="btn delBtn"><img class="position-absolute top-0 end-0 mx-3 my-1" src="images/icons/trash.png" alt="видалити"></a>
+                        <img class="card-img-top mx-auto mt-5" src="~/images/products/(@item.Id).jpg"  alt="Card image cap">
+                        <div class="card-body text-black">
+                            <h5 class="card-title">@item.ProductName</h5>
+                            <div class="d-flex fs-5 fw-bold">
+                                <label class="mx-1 price">@item.Price</label>
+                                <p>грн</p>
+                            </div>
+                            <div class="counter d-flex fs-6 fw-bold">
+                                <button class="btn border plus">+</button>
+                                <label class="mx-3 countNum">@item.Quantity</label>
+                                <button class="btn border mx-1 minus">-</button>
+                            </div>
                         </div>
                     </div>
-                </div>
+                }
             </section>
         </div>
         <div class="d-flex justify-content-center align-items-center total toggled">

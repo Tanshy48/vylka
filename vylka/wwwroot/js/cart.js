@@ -29,9 +29,9 @@
     })
 
     //розкриття форми
-    $( '#toggler' ).click( function(e) {
-        e.preventDefault()
-        $('.total').toggleClass('toggled')
+    $( '#toggler' ).click( (e) => {
+        e.preventDefault();
+        $('.total').toggleClass('toggled');
     })
 
     //видалення товару із корзини

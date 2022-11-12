@@ -7,7 +7,7 @@ using vylka.Models;
 
 namespace Fork_Site.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    /* [Authorize(Roles = "Admin")] */
     public class UserAdminController : Controller
     {
         private readonly vylkaContext _db;

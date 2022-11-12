@@ -8,7 +8,7 @@ using vylka.Models;
 
 namespace vylka.Controllers.Admin
 {
-    [Authorize(Roles = "Admin")]
+    /* [Authorize(Roles = "Admin")] */
     public class RoleAdminController : Controller
     {
         private RoleManager<IdentityRole> roleManager;

@@ -190,6 +190,10 @@ footer p {
 	margin-top: 40px;
 }
 
+.animate_custom_delay {
+	--animate-delay: 0.8s;
+}
+
 .cards-body {
 	flex: 1 auto;
 }

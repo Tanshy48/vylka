@@ -1,7 +1,6 @@
 (function($) {
     'use strict'
 
-    console.log("Value saved is: "+ localStorage.getItem($('.button')));
     //по дефолту ховаємо кнопки з галочкою
     $('.iconTickBtn').each(function() {
         $(this).hide()

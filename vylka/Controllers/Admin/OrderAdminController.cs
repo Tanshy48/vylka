@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Fork_Site.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    /* [Authorize(Roles = "Admin")] */
     public class OrderAdminController : Controller
     {
         public ActionResult Orders()

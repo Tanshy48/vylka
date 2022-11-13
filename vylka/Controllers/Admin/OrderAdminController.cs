@@ -4,7 +4,7 @@ using vylka.Data;
 
 namespace Fork_Site.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    /* [Authorize(Roles = "Admin")] */
     public class OrderAdminController : Controller
     {
         private readonly vylkaContext _context;

@@ -1,21 +1,24 @@
 ﻿@{
     ViewData["Title"] = "Головна";
 }
+@section CSS {
+    <link href="~/lib/animate.css/animate.min.css" rel="stylesheet">
+} 
 <div class="render-content">
 	<!-- Start Hero Section -->
 	<div class="hero">
 		<div class="text-center mb-5">
 			<div>
-				<h1>Магазин електроніки</h1>
+				<h1 class="animate__animated animate__slideInUp">Магазин електроніки</h1>
 				<span class="colortext">
-					<h4>Широкий вибір побутової техніки</h4>
+					<h4 class="animate__animated animate__slideInUp">Широкий вибір побутової техніки</h4>
 				</span>
 			</div>
 		</div>
 	</div>
 	<div class="container mb-5">
 		<div class="d-flex flex-grow-0">
-			<div class="cards">
+			<div class="cards animate__animated animate__zoomIn">
 				<div class="cards-body d-flex align-items-center">
 					<span class="border">
 						<span class="cards-name">
@@ -29,7 +32,7 @@
 					</p>
 				</div>
 			</div>
-			<div class="cards">
+			<div class="cards animate__animated animate__zoomIn">
 				<div class="cards-body d-flex align-items-center">
 					<span class="border">
 						<span class="cards-name text-center mb-5 ">
@@ -43,7 +46,7 @@
 					</p>
 				</div>
 			</div>
-			<div class="cards">
+			<div class="cards animate__animated animate__zoomIn">
 				<div class="cards-body d-flex align-items-center">
 					<span class="border">
 						<span class="cards-name text-center mb-5 ">
@@ -59,7 +62,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="about-us overflow-hidden">
+	<div class="about-us overflow-hidden animate__animated animate__fadeInUp">
 		<div class="text-center mb-5">
 			<div>
 				<h1 class="text-uppercase mb-4">Про нас</h1>
@@ -117,3 +120,6 @@
 		</div>
 	</div>
 </div>
+@section Scripts {
+    <script src="@Url.Content("~/js/site.js")" asp-append-version="true"></script>
+}

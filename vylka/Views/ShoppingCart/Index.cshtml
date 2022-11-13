@@ -6,7 +6,7 @@
 }
 <div class="render-content">
         <div class="container mb-5">
-            <a class="return d-flex align-items-center my-3" asp-area="" asp-controller="Home" asp-action="Index">
+            <a class="return d-flex align-items-center my-3" asp-controller="Home" asp-action="Index">
                 <img class="mx-2" src="~/images/icons/home.png">
                 <span class="mx-1" >></span>
                 <span class="mx-2" >Повернутися назад</span>
@@ -17,7 +17,7 @@
                 {
                     <div class="card m-xl-5">
                         <a class="btn delBtn"><img class="position-absolute top-0 end-0 mx-3 my-1" src="images/icons/trash.png" alt="видалити"></a>
-                        <img class="card-img-top mx-auto mt-5" src="~/images/products/(@item.Id).jpg"  alt="Card image cap">
+                        <img class="card-img-top mx-auto mt-5" src="~/images/products/(@item.ProductId).jpg"  alt="Card image cap">
                         <div class="card-body text-black">
                             <h5 class="card-title">@item.ProductName</h5>
                             <div class="d-flex fs-5 fw-bold">
@@ -25,9 +25,10 @@
                                 <p>грн</p>
                             </div>
                             <div class="counter d-flex fs-6 fw-bold">
-                                <button class="btn border plus">+</button>
+                                <input type="button" class="btn border plus" value="+"/>
                                 <label class="mx-3 countNum">@item.Quantity</label>
-                                <button class="btn border mx-1 minus">-</button>
+                                <input type="button" class="btn border mx-1 minus" value="-"/>
+                                <input id="itemId" hidden value="@item.Id"/>
                             </div>
                         </div>
                     </div>

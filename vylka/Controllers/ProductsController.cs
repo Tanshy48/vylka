@@ -34,7 +34,7 @@ namespace vylka.Controllers
             return View(_context.Product.ToList());
         }
         [HttpPost]
-        public IActionResult Refrigerators(int? id)
+        public async Task<IActionResult> AddToCart(int id)
         {
 
             var currentAccount = _context.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
@@ -77,13 +77,7 @@ namespace vylka.Controllers
                 item.Quantity++;
                 _context.SaveChanges();
             }
-            return RedirectToAction("Refrigerators");
-
+            return Ok();
         }
-
-
-    }
-
-
-    
+    }   
 }

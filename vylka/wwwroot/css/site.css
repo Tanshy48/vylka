@@ -190,6 +190,10 @@ footer p {
 	margin-top: 40px;
 }
 
+.animate_custom_delay {
+	--animate-delay: 0.8s;
+}
+
 .cards-body {
 	flex: 1 auto;
 }
@@ -258,6 +262,10 @@ footer p {
 	opacity: var(--default-img-opacity);
 }
 
+.products {
+	min-height: 500px;
+}
+
 .products .card{
 	background: #fff;
 	min-width: 20rem;
@@ -270,10 +278,12 @@ footer p {
 }
 
 .products .card-img-top{
-	width: 100px;
+	max-height: 300px;
+    max-width: 250px;
+    margin: auto;
 }
 
-.products .counter button {
+.products .counter input[type=button] {
 	padding: 0;
 	border-radius: 50px;
 	width: 30px;
@@ -285,6 +295,7 @@ footer p {
 }
 
 .total{
+    bottom: 0px;
 	overflow:hidden;
 	height: auto;
 	background-color: #142d53;
@@ -333,4 +344,3 @@ footer p {
 .total form #toggler:hover {
 	opacity: 1;
 } 
-

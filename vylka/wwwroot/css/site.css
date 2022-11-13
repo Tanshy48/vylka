@@ -194,10 +194,6 @@ footer p {
 	--animate-delay: 0.8s;
 }
 
-.cards-body {
-	flex: 1 auto;
-}
-
 .cards {
 	width: 22rem;
 	height: 9rem;
@@ -205,6 +201,10 @@ footer p {
 	background: linear-gradient(180deg, rgba(24,44,65,1) 0%, rgba(29,31,37,1) 100%);
 	margin: 2rem;
 	border-radius: .3rem;
+}
+
+.cards .cards-body {
+	flex: 1 auto;
 }
  
 .cards-name{
@@ -264,11 +264,23 @@ footer p {
 
 .products {
 	min-height: 500px;
+	display: flex;
+	flex-wrap: wrap;
 }
 
 .products .card{
+	min-height: 500px;
+	display: flex;
+	flex-direction: column;
 	background: #fff;
-	min-width: 20rem;
+	padding: 10px 5px;
+	border-radius: 10px;
+    min-width: 20rem;
+    margin: 3rem;
+}
+
+.products .card-body{
+	flex: none;
 }
 
 .products a img{

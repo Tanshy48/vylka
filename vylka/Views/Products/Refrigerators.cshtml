@@ -28,14 +28,12 @@
                             @item.Price <small>грн</small>
                         </div>
                         <div class="order-btn text-dark">
-                            @* <form asp-controller="Products" asp-action="Refrigerators" asp-route-id="@item.Id" method="post"> *@
-                                    <button class="btn btn-primary button">
-                                        Купити
-                                        <img class="iconCartBtn" src=~/images/icons/cartWhite.png alt="В кошик"/>
-                                        <img class="iconTickBtn" src=~/images/icons/tick.png alt="В кошик"/>
-                                    </button>
-                                    <input id="itemId" hidden value="@item.Id"/>
-                            @* </form> *@
+                            <button class="btn btn-primary button">
+                                Купити
+                                <img class="iconCartBtn" src=~/images/icons/cartWhite.png alt="В кошик"/>
+                                <img class="iconTickBtn" src=~/images/icons/tick.png alt="В кошик"/>
+                            </button>
+                            <input id="itemId" hidden value="@item.Id"/>
                         </div>
                     </div>
                 </div>

@@ -11,47 +11,7 @@
 	</head>
 	<body> 
         <!-- Navbar -->
-        <nav class="custom-navbar navbar navbar-expand-md navbar-dark">
-			<div class="container">
-				<a asp-controller="Home" asp-action="Index"><img class="logo" src="~/images/logo/logo.png" alt="logo" ></a>
-				<div class="collapse navbar-collapse" id="navbarsFurni">
-					<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
-						<li class="nav-item">
-							<a class="nav-link" asp-controller="UserAdmin" asp-action="Users">Admin</a>
-						</li> 
-						<li class="nav-item">
-							<a class="nav-link"  asp-controller="Home" asp-action="Index">Про нас</a>
-						</li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Товари </a>
-							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<li>
-									<a class="dropdown-item"  asp-controller="Products" asp-action="Refrigerators">Холодильники</a>
-								</li>
-								<li>
-									<a class="dropdown-item"  asp-controller="Products" asp-action="TVs">Телевізори</a>
-								</li>
-								<li>
-									<a class="dropdown-item"  asp-controller="Products" asp-action="Vacuums">Пилососи</a>
-								</li>
-								<li>
-									<a class="dropdown-item"  asp-controller="Products" asp-action="Conditioners">Кондиціонери</a>
-								</li>
-							</ul>
-						</li>
-						<li class="nav-link">+38 (068) 202 60 66</li>
-					</ul>
-					<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
-						<li>
-							<a class="nav-link"  asp-controller="ShoppingCart" asp-action="Index">
-								<img src="~/images/icons/cart.png" alt="shopping cart">
-							</a>
-						</li>
-						<partial name="_LoginPartial" />
-					</ul>
-				</div>
-			</div>
-		</nav>
+        <partial name="_NavBar" />
 
 		<main role="main"> @RenderBody() </main>
 

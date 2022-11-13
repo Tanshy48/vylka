@@ -7,8 +7,10 @@ namespace vylka.Models
     public class CategoryModel
     {
         public int Id { get; set; }
+       
+        [Required(ErrorMessage = "Будь ласка, введіть дані")]
+        [StringLength(30)]
 
-        [Required]
         public string Name { get; set; }
     }
 }

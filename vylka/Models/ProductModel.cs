@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
+
 namespace vylka.Models
 {
     public class ProductModel
@@ -16,4 +17,5 @@ namespace vylka.Models
         public int CategoryId { get; set; }
 
     }
+    
 }

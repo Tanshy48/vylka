@@ -76,16 +76,21 @@ namespace Fork_Site.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult EditCategoryPOST(Category obj)
+        public IActionResult EditCategoryPOST(CategoryModel model)
         {
-
             if (ModelState.IsValid)
             {
-                _db.Category.Update(obj);
+                var p = new Category()
+                {
+                    Id = model.Id,
+                    Name = model.Name,
+                    
+                };
+                _db.Category.Update(p);
                 _db.SaveChanges();
-                return RedirectToAction("Categories");
+                return RedirectToAction("Category");
             }
-            return View(obj);
+            return View(model);
         }
 
         [HttpPost]

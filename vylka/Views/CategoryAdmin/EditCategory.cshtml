@@ -19,6 +19,7 @@
                     <div class="mb-3">
                          <label asp-for="Name" class="form-label">Назва категорії</label>
                         <input type="text" asp-for="Name" class="form-control">
+                        <span asp-validation-for="Name" class="text-danger"></span>
                     </div>
                     <div>
                         <button class="btn btn-success" type="submit" >
@@ -34,4 +35,7 @@
 </div>
 @section Scripts {
     <script src="@Url.Content("~/js/admin.js")" asp-append-version="true"></script>
+    @{
+        <partial name="_ValidationScriptsPartial.cshtml" />
+    }
 }

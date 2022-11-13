@@ -9,15 +9,15 @@ namespace Fork_Site.Controllers
     /* [Authorize(Roles = "Admin")] */
     public class CategoryAdminController : Controller
     {
-        private readonly vylkaContext _db;
-        public CategoryAdminController(vylkaContext db)
+        private readonly vylkaContext _context;
+        public CategoryAdminController(vylkaContext context)
         {
-            _db = db;  
+            _context = context;  
         }
 
         public ActionResult Categories()
         {
-            return View(_db.Category.ToList());
+            return View(_context.Category.ToList());
         }
         public ActionResult AddCategory()
         {
@@ -29,7 +29,7 @@ namespace Fork_Site.Controllers
             {
                 return NotFound();
             }
-            var CategoryFromDb = _db.Category.Find(id);
+            var CategoryFromDb = _context.Category.Find(id);
             if(CategoryFromDb == null)
             {
                 return NotFound();
@@ -42,7 +42,7 @@ namespace Fork_Site.Controllers
             {
                 return NotFound();
             }
-            var CategoryFromDb = _db.Category.Find(id);
+            var CategoryFromDb = _context.Category.Find(id);
             if (CategoryFromDb == null)
             {
                 return NotFound();
@@ -64,8 +64,8 @@ namespace Fork_Site.Controllers
             }
             try
             {
-                _db.Category.Add(model);
-                _db.SaveChanges();
+                _context.Category.Add(model);
+                _context.SaveChanges();
                 return RedirectToAction("Categories");
             }
             catch (Exception)
@@ -81,24 +81,24 @@ namespace Fork_Site.Controllers
 
             if (ModelState.IsValid)
             {
-                _db.Category.Update(obj);
-                _db.SaveChanges();
+                _context.Category.Update(obj);
+                _context.SaveChanges();
                 return RedirectToAction("Categories");
             }
-            return View(obj);
+            return View("EditCategory");
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteCategoryPOST(int? id)
         {
-            var obj = _db.Category.Find(id);
+            var obj = _context.Category.Find(id);
             if (obj == null)
             {
                 return NotFound();
             }
-            _db.Category.Remove(obj);
-            _db.SaveChanges();
+            _context.Category.Remove(obj);
+            _context.SaveChanges();
             return RedirectToAction("Categories");
         }
     }

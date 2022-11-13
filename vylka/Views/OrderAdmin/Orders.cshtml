@@ -1,3 +1,4 @@
+@model IEnumerable<vylka.Areas.Entity.CartItem>
 @{
     ViewData["Title"] = "Замовлення";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -17,37 +18,36 @@
 						<tr>
 							<th scope="col">ID</th>
 							<th scope="col">Товар</th>
-							<th scope="col">Опис</th>
 							<th scope="col">Кількість</th>
 							<th scope="col">Ціна</th>
-							<th scope="col">Категорія</th>
-							<th scope="col">Покупець</th>
+							<th scope="col">ID кошика</th>
 							<th scope="col">Завантажити</th>
 							<th scope="col">Видалити</th>
 						</tr>
 					</thead>
-					<tbody> 
+					<tbody>
+					@foreach (var item in Model)
+					{
 						<tr>
-							<th scope="row">1</th>
-							<td>Холодильник LG</td>
-							<td>...</td>
-							<td>2</td>
-							<td>3000 грн</td>
-							<td>Холодильники</td>
-							<td>Ім'я Прізвище</td>
+							<th>@item.Id</th>
+							<td>@item.ProductName</td>
+							<td>@item.Quantity</td>
+							<td>@item.Price</td>
+							<td>@item.CartId</td>
 							<td>
-									<button class="btn btn-info">
-										<i class="fa fa-download"></i>
-									</button>
+								<button class="btn btn-info">
+									<i class="fa fa-download"></i>
+								</button>
 							</td>
 							<td>
-								<a asp-area="Admin" asp-controller="OrderAdmin" asp-action="DeleteOrder">
-									<button class="btn btn-danger">
-										<i class="fa fa-trash"></i>
-									</button>
-								</a>
-							</td>
+                            	<a asp-route-id="@item.Id" asp-controller="OrderAdmin" asp-action="DeleteOrder">
+                            		<button class="btn btn-danger">
+                            			<i class="fa fa-trash"></i>
+                            		</button>
+                            	</a>
+                            </td>
 						</tr>
+					}
 					</tbody>
 				</table>
 			</div>

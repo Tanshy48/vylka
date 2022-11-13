@@ -1,3 +1,4 @@
+@model vylka.Areas.Entity.CartItem
 @{
     ViewData["Title"] = "Видалити замовлення";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -11,7 +12,8 @@
 				<div class="bg-table-title text-dark d-flex justify-content-between align-items-center">
 					<h1 class="fw-bolder fs-5 p-lg-3 ">Видалення замовлення</h1>
 				</div>
-				<form class="text-dark">
+                <form class="text-dark" method="post" asp-controller="OrderAdmin" asp-action="DeleteOrderPOST">
+                    <input asp-for="Id" hidden />
                     <div class="mb-3 mt-3">
                         <h5>Ви впевненні, що хочете видалити замовлення?</h5>
                     </div>
@@ -20,10 +22,10 @@
                         <label class="form-check-label">Так, я свідомо видаляю це замовлення</label>
                     </div>
                     <div>
-                        <button disabled id="sendFormBtn" class="btn btn-danger" type="submit" >
+                        <button disabled id="sendFormBtn" class="btn btn-danger" type="submit">
                             Підтвердити
                         </button>
-                        <a class="btn text-dark" asp-area="Admin" asp-controller="OrderAdmin" asp-action="Orders">
+                        <a class="btn text-dark" asp-controller="OrderAdmin" asp-action="Orders">
                             Скасувати
                         </a>
                     </div>

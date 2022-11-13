@@ -16,6 +16,7 @@ namespace vylka.Controllers
         {
             _context = db;
         }
+        [HttpGet]
         public IActionResult Refrigerators()
         {
             return View(_context.Product.ToList());
@@ -33,19 +34,19 @@ namespace vylka.Controllers
             return View(_context.Product.ToList());
         }
         [HttpPost]
-        public IActionResult AddProductToCart(int id)
+        public IActionResult Refrigerators(int? id)
         {
 
             var currentAccount = _context.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
 
             if (currentAccount == null)
             {
-                return RedirectToAction("/Identity/Account/Register");
+                return Redirect("/Identity/Account/Register");
             }
 
-            var delivery = _context.Cart.OrderBy(o => o.Id).LastOrDefault(u => u.CartUserId == currentAccount);
+            var currentUserCart = _context.Cart.OrderBy(o => o.Id).LastOrDefault(u => u.CartUserId == currentAccount);
 
-            if (delivery == null || delivery.IsActive == false)
+            if (currentUserCart == null || currentUserCart.IsActive == false)
             {
                 var userOder = new Cart()
                 {
@@ -56,10 +57,39 @@ namespace vylka.Controllers
 
                 _context.Cart.Add(userOder);
                 _context.SaveChanges();
-                return View();
+                return View("Refrigerators");
             }
 
-            return View();
+            var selectedProduct = _context.Product.FirstOrDefault(p => p.Id == id);
+
+            var item = _context.CartItem.FirstOrDefault(i =>
+                i.ProductId == id && i.CartId == currentUserCart.Id);
+
+            if (item == null)
+            {
+                var order = new CartItem()
+                {
+                    ProductId = selectedProduct.Id,
+                    Quantity = 1,
+                    Price = selectedProduct.Price,
+                    CartId = currentUserCart.Id,
+                    Product = selectedProduct,
+                    ProductName = selectedProduct.ProductName,
+                };
+                _context.CartItem.Add(order);
+                _context.SaveChanges();
+            }
+            else
+            {
+                item.Quantity++;
+                /*
+                _context.CartItem
+                    .FirstOrDefault(i => i.ProductId == id && i.CartId == currentUserCart.Id)
+                    .Quantity++;*/
+                _context.SaveChanges();
+            }
+            return RedirectToAction("Refrigerators");
+
         }
 
 

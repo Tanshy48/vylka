@@ -1,40 +1,47 @@
-@using vylka.Areas.Entity
-@model IEnumerable<Product>
+@model IEnumerable<vylka.Areas.Entity.Product>
 @{
     ViewData["Title"] = "Холодильники";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 @section CSS {
     <link href="@Url.Content("~/css/products.css")" rel="stylesheet" asp-append-version="true"/>
 }
+
 <div class="render-content container">
     <a class="return d-flex align-items-center my-3" asp-controller="Home" asp-action="Index">
-                <img class="mx-2" src="~/images/icons/home.png">
-                <span class="mx-1" >></span>
-                <span class="mx-2" >Повернутися назад</span>
+        <img class="mx-2" src="~/images/icons/home.png">
+        <span class="mx-1">></span>
+        <span class="mx-2">Повернутися назад</span>
     </a>
     <div class="shop mb-4">
-		@foreach (var item in Model)
-			{
-				if(item.CategoryId == 1)
-					{
-						<div class="raw">
-							<img class="product-img mx-auto" src="~/images/products/(@item.Id).jpg" alt="Зображення продукта" />
-							<div class="availability text-dark">В наявності</div>
-							<div class="product-name text-dark">@item.ProductName</div>
-							<div>
-								<div class="price text-dark">@item.Price <small>грн</small></div>
-								<div class="order-btn text-dark">
-									<a id="" class="button" asp-controller="Products" asp-action="AddProductToCart">
-										<label id="textBtn"> Купити</label>
-										<img class="iconCartBtn" src=~/images/icons/cartWhite.png alt="В кошик" />
-										<img class="iconTickBtn" src=~/images/icons/tick.png alt="В кошик" />
-									</a>
-								</div>
-							</div>		
-						</div>
-					}
-			}
+        @foreach (var item in Model)
+        {
+            if (item.CategoryId == 1)
+            {
+                <div class="raw">
+                    <img class="product-img mx-auto" src="~/images/products/(@item.Id).jpg" alt="Зображення продукта"/>
+                    <div class="availability text-dark">В наявності</div>
+                    <div class="product-name text-dark">@item.ProductName</div>
+                    <div>
+                        <div class="price text-dark">
+                            @item.Price <small>грн</small>
+                        </div>
+                        <div class="order-btn text-dark">
+                            <form asp-controller="Products" asp-action="Refrigerators" asp-route-id="@item.Id" method="post">
+                                @* <a class="button"> *@
+                                    <button class="btn btn-primary">
+                                        <label id="textBtn"> Купити</label>
+                                        <img class="iconCartBtn" src=~/images/icons/cartWhite.png alt="В кошик"/>
+                                        <img class="iconTickBtn" src=~/images/icons/tick.png alt="В кошик"/>
+                                    </button>
+                                @* </a>*@
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
     </div>
 </div>
 

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using vylka.Areas.Entity;
 using vylka.Data;
@@ -5,6 +6,7 @@ using vylka.Models;
 
 namespace Fork_Site.Controllers
 {
+    //[Authorize(Roles = "Admin")]
     public class CategoryAdminController : Controller
     {
         private readonly vylkaContext _db;
@@ -21,9 +23,18 @@ namespace Fork_Site.Controllers
         {
             return View();
         }
-        public ActionResult EditCategory()
+        public ActionResult EditCategory(int? id)
         {
-            return View();
+            if( id == null || id == 0)
+            {
+                return NotFound();
+            }
+            var CategoryFromDb = _db.Category.Find(id);
+            if(CategoryFromDb == null)
+            {
+                return NotFound();
+            }
+            return View(CategoryFromDb);
         }
         public ActionResult DeleteCategory(int? id)
         {
@@ -32,7 +43,6 @@ namespace Fork_Site.Controllers
                 return NotFound();
             }
             var CategoryFromDb = _db.Category.Find(id);
-
             if (CategoryFromDb == null)
             {
                 return NotFound();
@@ -40,7 +50,7 @@ namespace Fork_Site.Controllers
             return View(CategoryFromDb);
         }
 
-            [HttpPost]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult AddCategory(Category model)
         {
@@ -63,12 +73,32 @@ namespace Fork_Site.Controllers
                 return BadRequest();
             }
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult EditCategoryPOST(CategoryModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var p = new Category()
+                {
+                    Id = model.Id,
+                    Name = model.Name,
+                    
+                };
+                _db.Category.Update(p);
+                _db.SaveChanges();
+                return RedirectToAction("Category");
+            }
+            return View(model);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteCategoryPOST(int? id)
         {
             var obj = _db.Category.Find(id);
-            if(obj == null)
+            if (obj == null)
             {
                 return NotFound();
             }
@@ -78,3 +108,4 @@ namespace Fork_Site.Controllers
         }
     }
 }
+

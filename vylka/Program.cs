@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using vylka.Data;
 using vylka.Models;
+using vylka.Areas.Entity;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("vylkaContextConnection") ?? throw new InvalidOperationException("Connection string 'vylkaContextConnection' not found.");
@@ -10,10 +11,11 @@ builder.Services.AddDbContext<vylkaContext>(options =>
     options.UseSqlServer(connectionString));
 
 
-builder.Services.AddIdentity<UserModel, IdentityRole>()
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
             .AddEntityFrameworkStores<vylkaContext>()
             .AddDefaultUI()
             .AddDefaultTokenProviders();
+
 
 
 

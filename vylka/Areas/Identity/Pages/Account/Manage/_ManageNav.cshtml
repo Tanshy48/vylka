@@ -1,5 +1,6 @@
-﻿@using vylka.Models
-@inject SignInManager<UserModel> SignInManager
+﻿@using vylka.Areas.Entity
+@using vylka.Models
+@inject SignInManager<IdentityUser> SignInManager
 @{
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
 }

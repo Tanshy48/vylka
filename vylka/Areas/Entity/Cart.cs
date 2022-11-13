@@ -1,15 +1,23 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace vylka.Areas.Entity
 {
     public class Cart
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+
         public bool IsActive { get; set; }
-        public int UserId { get; set; }
-        public User User { get; set; }
-        public List<ShippingDetail> ShippingDetails { get; set; }
-        public List<Product> Products { get; set; }
+        
+        public DateTime CreateCart { get; set; }
+
+        public IdentityUser CartUserId { get; set; }
+
+        public List<CartItem>? CartItem { get; set; }
+
+
     }
 }

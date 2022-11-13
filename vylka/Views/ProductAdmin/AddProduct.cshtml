@@ -1,5 +1,6 @@
+@model vylka.Areas.Entity.Product
 @{
-    ViewData["Title"] = "Додати товар";
+    ViewData["Title"] = "Додати категорію";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 @section CSS {
@@ -12,37 +13,29 @@
 				<div class="bg-table-title text-dark d-flex justify-content-between align-items-center">
 					<h1 class=" fw-bolder fs-5 p-lg-3 ">Додавання товару</h1>
 				</div>
-				<form class="text-dark" novalidate>
+                 <form class="text-dark" asp-controller="ProductAdmin" asp-action="AddProduct"> 
                     <div class="mb-3">
-                        <label class="form-label">Назва</label>
-                        <input type="text" class="form-control">
+                        <label class="form-label" asp-for="ProductName">Назва</label>
+                        <input type="text" asp-for="ProductName" class="form-control" />
+                        <span asp-validation-for="ProductName" class="text-danger"></span>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Опис</label>
-                        <textarea class="form-control"></textarea>
+                        <label class="form-label" asp-for="Description">Опис</label>
+                        <input type="text" asp-for="Description" class="form-control" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Кількість</label>
-                        <input type="number" class="form-control" value="1">
+                        <label class="form-label" asp-for="Price">Ціна</label>
+                        <input type="number" asp-for="Price" class="form-control" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Ціна</label>
-                        <input type="number" class="form-control" value="100">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Категорія</label>
-                        <select class="form-select">
-                        <option selected disabled value="">Вибрати...</option>
-                        <option>Холодильники</option>
-                        <option>Телевізори</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="formFile" class="form-label">Фотографія</label>
-                        <input class="form-control" type="file" id="formFile">
+                        <label class="form-label" asp-for="CategoryId">ID категорії</label>
+                        <input type="number" asp-for="CategoryId" class="form-control" />
+                        <span asp-validation-for="CategoryId" class="text-danger"></span>
                     </div>
                     <div>
-                        <button class="btn btn-success" type="submit" asp-area="Admin" asp-controller="ProductAdmin" asp-action="Products">
+                        <button class="btn btn-success" type="submit">
                             Створити
                         </button>
                         <a class="btn text-dark" asp-area="Admin" asp-controller="ProductAdmin" asp-action="Products">
@@ -55,4 +48,10 @@
 </div>
 @section Scripts {
     <script src="@Url.Content("~/js/admin.js")" asp-append-version="true"></script>
+    @{
+        <partial name="_ValidationScriptsPartial.cshtml" />
+    }
 }
+
+
+

@@ -1,7 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Identity
+@using vylka.Areas.Entity
 
-@inject SignInManager<UserModel> SignInManager
-@inject UserManager<UserModel> UserManager
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))

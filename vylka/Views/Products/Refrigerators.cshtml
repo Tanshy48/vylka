@@ -1,3 +1,5 @@
+@using vylka.Areas.Entity
+@model IEnumerable<Product>
 @{
     ViewData["Title"] = "Холодильники";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -12,21 +14,30 @@
                 <span class="mx-2" >Повернутися назад</span>
     </a>
     <div class="shop mb-4">
-			<div class="raw">
-				<img class="mx-auto" src="~/images/products/microphone.jpg" alt="Зображення продукта" />
-				<div class="availability text-dark">В наявності</div>
-				<div class="product-name text-dark">назва</div>
-				<div class="characteristics text-dark">опис</div>
-				<div>
-					<div class="price text-dark">8800 <small>грн</small>
-					</div>
-					<div class="order-btn text-dark">
-						<a href="#" class="button">
-							<span> Купити</span>
-							<img src=~/images/icons/cart.png alt="В кошик" />
-						</a>
-					</div>
-				</div>
-			</div>
+		@foreach (var item in Model)
+			{
+				if(item.CategoryId == 1)
+					{
+						<div class="raw">
+							<img class="product-img mx-auto" src="~/images/products/(@item.Id).jpg" alt="Зображення продукта" />
+							<div class="availability text-dark">В наявності</div>
+							<div class="product-name text-dark">@item.ProductName</div>
+							<div>
+								<div class="price text-dark">@item.Price <small>грн</small></div>
+								<div class="order-btn text-dark">
+									<a id="" class="button" asp-controller="Products" asp-action="AddProductToCart">
+										<label id="textBtn"> Купити</label>
+										<img class="iconCartBtn" src=~/images/icons/cartWhite.png alt="В кошик" />
+										<img class="iconTickBtn" src=~/images/icons/tick.png alt="В кошик" />
+									</a>
+								</div>
+							</div>		
+						</div>
+					}
+			}
     </div>
 </div>
+
+@section Scripts {
+    <script src="@Url.Content("~/js/products.js")" asp-append-version="true"></script>
+}

@@ -1,0 +1,67 @@
+﻿@using vylka.Areas.Entity
+@model RoleEdit
+@{  
+    ViewData["Title"] = "Оновлення ролі";  
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}  
+@section CSS {
+    <link href="@Url.Content("~/lib/fontawesome-free/css/all.min.css")" rel="stylesheet" asp-append-version="true"/>
+    <link href="@Url.Content("~/css/admin.css")" rel="stylesheet" asp-append-version="true"/>
+} 
+<div class="render-content">
+	<div class="content-wrapper">
+        <div class="border-top border-primary border-4 bg-light table-responsive">
+            <div class="bg-table-title text-dark d-flex justify-content-between align-items-center">
+                <h1 class="fw-bolder fs-5 p-lg-3">Оновлення ролі</h1>
+                <div asp-validation-summary="All" class="text-danger"></div>
+            </div>
+            <form method="post">
+                <input type="hidden" name="roleName" value="@Model.Role.Name" />
+                <input type="hidden" name="roleId" value="@Model.Role.Id" />
+
+                <h2 class="m-3 text-dark fs-4 text-center">Додати в групу @Model.Role.Name</h2>
+                <table class="table m-auto w-50">
+                    @if (Model.NonMembers.Count() == 0)
+                    {
+                        <input disabled type="text" class="form-control text-center m-auto w-50" value="Всім користувачам притаманна ця роль." />
+                    }
+                    else
+                    {
+                        @foreach (IdentityUser user in Model.NonMembers)
+                        {
+                            <tr>
+                                <td>@user.UserName</td>
+                                <td>
+                                    <input type="checkbox" name="AddIds" value="@user.Id">
+                                </td>
+                            </tr>
+                        }
+                    }
+                </table>
+  
+                <h2 class="m-3 text-dark fs-4 text-center">Вилучення з @Model.Role.Name</h2>
+                <table class="table m-auto w-50">
+                    @if (Model.Members.Count() == 0)
+                    {
+                        <input disabled type="text" class="form-control text-center m-auto w-50" value="Відсутні користувачі, яким притаманна ця роль." />
+                    } else {
+                        @foreach (IdentityUser user in Model.Members)
+                        {
+                            <tr>
+                                <td>@user.UserName</td>
+                                <td>
+                                    <input type="checkbox" name="DeleteIds" value="@user.Id">
+                                </td>
+                            </tr>
+                        }
+                    }
+                </table>
+                <button type="submit" class="btn btn-success">Зберегти</button>
+                <a asp-controller="RoleAdmin" asp-action="Roles" class="btn text-dark">Назад</a>
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script src="@Url.Content("~/js/admin.js")" asp-append-version="true"></script>
+}

@@ -1,0 +1,41 @@
+﻿@model Microsoft.AspNetCore.Identity.IdentityRole  
+@{
+     ViewData["Title"] = "Видалити роль";
+     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@section CSS {
+    <link href="@Url.Content("~/lib/fontawesome-free/css/all.min.css")" rel="stylesheet" asp-append-version="true"/>
+    <link href="@Url.Content("~/css/admin.css")" rel="stylesheet" asp-append-version="true"/>
+}
+<div class="render-content">
+		<div class="content-wrapper">
+			<div class="border-top border-primary border-4 bg-light table-responsive">
+				<div class="bg-table-title text-dark d-flex justify-content-between align-items-center">
+					<h1 class="fw-bolder fs-5 p-lg-3 ">Видалення ролі</h1>
+				</div>
+				<form class="text-dark" method="post" asp-controller="RoleAdmin" asp-action="DeleteRolePOST">
+                    <input asp-for="Id" hidden />
+                    <div class="mb-3 mt-3">
+                        <h5>Ви впевнені, що хочете видалити цю роль?</h5>
+                        <label asp-for="Name" class="form-label">Назва ролі</label>
+                        <input type="text" asp-for="Name" disabled class="form-control">
+                    </div>
+                    <div class="mb-3 form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="delCheckBox">
+                        <label class="form-check-label">Так, я свідомо видаляю цю роль</label>
+                    </div>
+                    <div>
+                        <button disabled id="sendFormBtn" class="btn btn-danger" type="submit" >
+                            Підтвердити
+                        </button>
+                        <a class="btn text-dark" asp-area="Admin" asp-controller="RoleAdmin" asp-action="Roles">
+                            Скасувати
+                        </a>
+                    </div>
+                </form>
+			</div>
+		</div>
+</div>
+@section Scripts {
+    <script src="@Url.Content("~/js/admin.js")" asp-append-version="true"></script>
+}

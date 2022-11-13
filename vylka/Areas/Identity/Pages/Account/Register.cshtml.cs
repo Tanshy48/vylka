@@ -51,17 +51,18 @@ namespace vylka.Areas.Identity.Pages.Account
         public class InputModel
         {
 
-            [Required]
+            [Required(ErrorMessage = "Будь ласка, введіть дані")]
             [EmailAddress]
             [Display(Name = "Поштова скринька")]
             public string Email { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "Будь ласка, введіть дані")]
             [StringLength(100, ErrorMessage = "{0} повинен містити щонайменше {2} та не більше {1} символів.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Пароль")]
             public string Password { get; set; }
 
+            [Required(ErrorMessage = "Будь ласка, введіть дані")]
             [DataType(DataType.Password)]
             [Display(Name = "Підтвердити пароль")]
             [Compare("Password", ErrorMessage = "Паролі не співпадають.")]

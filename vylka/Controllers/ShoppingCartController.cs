@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using vylka.Areas.Entity;
 using vylka.Data;
+using vylka.Models;
 
 namespace vylka.Controllers
 {
@@ -31,9 +32,25 @@ namespace vylka.Controllers
             return View(items);
         }
 
-        [HttpPost]
         public IActionResult NewOrder()
         {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult NewOrder(ShippingDetail shippingDetail)
+        {
+            var currentAccount = _context.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
+            shippingDetail.CreateDelivery = DateTime.Now;
+            shippingDetail.UserId = currentAccount;
+            
+            if (ModelState.IsValid)
+            {
+                _context.ShippingDetail.Update(shippingDetail);
+                _context.SaveChanges();
+                return Redirect("/Home");
+
+            }
             return View();
         }
 

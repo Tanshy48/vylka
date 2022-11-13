@@ -41,8 +41,8 @@ namespace Fork_Site.Controllers
         public IActionResult DeleteUserPOST(string id)
         {
             var obj = _context.Users.Find(id);
-            var cart = _context.Cart.Find(id);
-            if (obj == null)
+            var cart = _context.Cart.OrderBy(o => o.Id).LastOrDefault(u => u.CartUserId.Id == id);
+            if (obj == null || cart == null)
             {
                 return NotFound();
             }

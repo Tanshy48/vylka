@@ -18,30 +18,23 @@ namespace vylka.Controllers
         public IActionResult Index()
         {
             var currentAccount = _context.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
-
             if (currentAccount == null)
             {
                 return Redirect("/Identity/Account/Register");
             }
             var delivery = GetDelivery();
-
             if (delivery == null || delivery.IsActive == false)
             {
                 return RedirectToAction("Index", "Home");
             }
-            
-            
             var items = _context.CartItem.Select(s => s).Where(w => w.CartId == delivery.Id);
-            
-            var currentAccount = _context.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
-
-            if (currentAccount == null)
-            {
-                return Redirect("/Identity/Account/Register");
-            }
-
             return View(items);
-            
+        }
+
+        [HttpPost]
+        public IActionResult NewOrder()
+        {
+            return View();
         }
 
         [HttpPost]
@@ -84,5 +77,6 @@ namespace vylka.Controllers
 
             return _context.Cart.OrderBy(o => o.Id).LastOrDefault(u => u.CartUserId == currentUser);
         }
+        
     }
 }

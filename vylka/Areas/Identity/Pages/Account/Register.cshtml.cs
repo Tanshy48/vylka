@@ -28,8 +28,6 @@ namespace vylka.Areas.Identity.Pages.Account
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly vylkaContext _context;
 
-        private readonly vylkaContext _context;
-
         public RegisterModel(
             UserManager<IdentityUser> userManager,
             IUserStore<IdentityUser> userStore,

@@ -45,7 +45,7 @@ namespace vylka.Controllers.Admin
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddRole([Required] string name)
+        public async Task<IActionResult> AddRole([Required(ErrorMessage = "Таких не знаємо")] string name)
         {
             if (ModelState.IsValid)
             {
@@ -74,6 +74,7 @@ namespace vylka.Controllers.Admin
         
         public async Task<IActionResult> UpdateRole(string id)
         {
+            
             IdentityRole role = await roleManager.FindByIdAsync(id);
             List<IdentityUser> members = new List<IdentityUser>();
             List<IdentityUser> nonMembers = new List<IdentityUser>();

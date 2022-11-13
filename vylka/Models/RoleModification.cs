@@ -6,7 +6,7 @@ namespace vylka.Models
     {
         [Required(ErrorMessage = "Таких не знаємо")]
         [StringLength(30)]
-        public string? RoleName { get; set; }
+        public string RoleName { get; set; }
 
         public string RoleId { get; set; }
 

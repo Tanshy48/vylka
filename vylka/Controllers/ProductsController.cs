@@ -34,7 +34,7 @@ namespace vylka.Controllers
             return View(_context.Product.ToList());
         }
         [HttpPost]
-        public IActionResult Refrigerators(int? id)
+        public async Task<IActionResult> AddToCart(int id)
         {
 
             var currentAccount = _context.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
@@ -45,20 +45,6 @@ namespace vylka.Controllers
             }
 
             var currentUserCart = _context.Cart.OrderBy(o => o.Id).LastOrDefault(u => u.CartUserId == currentAccount);
-
-            if (currentUserCart == null || currentUserCart.IsActive == false)
-            {
-                var userOder = new Cart()
-                {
-                    CreateCart = DateAndTime.Now,
-                    IsActive = true,
-                    CartUserId = currentAccount,
-                };
-
-                _context.Cart.Add(userOder);
-                _context.SaveChanges();
-                return View("Refrigerators");
-            }
 
             var selectedProduct = _context.Product.FirstOrDefault(p => p.Id == id);
 
@@ -82,19 +68,9 @@ namespace vylka.Controllers
             else
             {
                 item.Quantity++;
-                /*
-                _context.CartItem
-                    .FirstOrDefault(i => i.ProductId == id && i.CartId == currentUserCart.Id)
-                    .Quantity++;*/
                 _context.SaveChanges();
             }
-            return RedirectToAction("Refrigerators");
-
+            return Ok();
         }
-
-
-    }
-
-
-    
+    }   
 }

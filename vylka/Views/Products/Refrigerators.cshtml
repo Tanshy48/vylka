@@ -1,6 +1,6 @@
 @model IEnumerable<vylka.Areas.Entity.Product>
 @{
-    ViewData["Title"] = "Холодильники";
+    ViewData["Title"] = "Товари";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -28,15 +28,14 @@
                             @item.Price <small>грн</small>
                         </div>
                         <div class="order-btn text-dark">
-                            <form asp-controller="Products" asp-action="Refrigerators" asp-route-id="@item.Id" method="post">
-                                @* <a class="button"> *@
-                                    <button class="btn btn-primary">
-                                        <label id="textBtn"> Купити</label>
+                            @* <form asp-controller="Products" asp-action="Refrigerators" asp-route-id="@item.Id" method="post"> *@
+                                    <button class="btn btn-primary button">
+                                        Купити
                                         <img class="iconCartBtn" src=~/images/icons/cartWhite.png alt="В кошик"/>
                                         <img class="iconTickBtn" src=~/images/icons/tick.png alt="В кошик"/>
                                     </button>
-                                @* </a>*@
-                            </form>
+                                    <input id="itemId" hidden value="@item.Id"/>
+                            @* </form> *@
                         </div>
                     </div>
                 </div>

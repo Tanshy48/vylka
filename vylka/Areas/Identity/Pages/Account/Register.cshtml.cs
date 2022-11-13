@@ -10,7 +10,9 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.VisualBasic;
 using vylka.Areas.Entity;
+using vylka.Data;
 using vylka.Models;
 
 namespace vylka.Areas.Identity.Pages.Account
@@ -25,13 +27,16 @@ namespace vylka.Areas.Identity.Pages.Account
         private readonly IEmailSender _emailSender;
         private readonly RoleManager<IdentityRole> _roleManager;
 
+        private readonly vylkaContext _context;
+
         public RegisterModel(
             UserManager<IdentityUser> userManager,
             IUserStore<IdentityUser> userStore,
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
             RoleManager<IdentityRole> roleManager,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            vylkaContext context)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -40,6 +45,7 @@ namespace vylka.Areas.Identity.Pages.Account
             _logger = logger;
             _emailSender = emailSender;
             _roleManager = roleManager;
+            _context = context;
         }
         [BindProperty]
         public InputModel Input { get; set; }
@@ -89,6 +95,16 @@ namespace vylka.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
+                    var userOder = new Cart()
+                    {
+                        CreateCart = DateAndTime.Now,
+                        IsActive = true,
+                        CartUserId = user,
+                    };
+
+                    _context.Cart.Add(userOder);
+                    _context.SaveChanges();
+                    
                     _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using vylka.Data;
 
@@ -11,9 +12,10 @@ using vylka.Data;
 namespace vylka.Migrations
 {
     [DbContext(typeof(vylkaContext))]
-    partial class vylkaContextModelSnapshot : ModelSnapshot
+    [Migration("20221113125836_initialCommitV6")]
+    partial class initialCommitV6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -335,9 +337,6 @@ namespace vylka.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CartId")
-                        .HasColumnType("int");
-
                     b.Property<string>("City")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -353,15 +352,13 @@ namespace vylka.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("TotalPrice")
-                        .HasColumnType("real");
+                    b.Property<double>("TotalPrice")
+                        .HasColumnType("float");
 
                     b.Property<string>("UserIdId")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CartId");
 
                     b.HasIndex("UserIdId");
 
@@ -460,17 +457,9 @@ namespace vylka.Migrations
 
             modelBuilder.Entity("vylka.Areas.Entity.ShippingDetail", b =>
                 {
-                    b.HasOne("vylka.Areas.Entity.Cart", "Cart")
-                        .WithMany()
-                        .HasForeignKey("CartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "UserId")
                         .WithMany()
                         .HasForeignKey("UserIdId");
-
-                    b.Navigation("Cart");
 
                     b.Navigation("UserId");
                 });

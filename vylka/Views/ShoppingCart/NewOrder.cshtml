@@ -1,0 +1,79 @@
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model vylka.Areas.Entity.ShippingDetail
+@{
+    ViewData["Title"] = "Оформлення замовлення";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="render-content">
+     <div class="d-flex justify-content-center align-items-center">
+         <form method="post" asp-controller="ShoppingCart" asp-action="NewOrder">
+             <div class="mt-5 mb-4 d-flex justify-content-center align-items-center">
+                 <span class="mx-2">Загальна сума</span>
+                 <label class="mx-1 fs-3" id="totalAmountInOrder">0</label>
+                 <span>грн</span>
+             </div>
+             <div class="form-row d-flex justify-content-between">
+                 <div class="form-group col-md-5">
+                     <label class="form-label">Місто</label>
+                     <input type="text" asp-for="City" class="form-control"/>
+                     <span asp-validation-for="City" class="text-danger"></span>
+                 </div>
+                 <div class="form-group col-md-6">
+                     <label class="form-label">Область</label>
+                     <input type="text" asp-for="District" class="form-control"/>
+                     @*<select id="State" class="form-control" asp-for="District">
+                        <option selected>Виберіть...</option>
+                        <option>Київська</option>
+                        <option>Вінницька</option>
+                        <option>Волинська</option>
+                        <option>Дніпропетровська</option>
+                        <option>Донецька</option>
+                        <option>Житомирська</option>
+                        <option>Закарпатська</option>
+                        <option>Запорізька</option>
+                        <option>Івано-Франківська</option>
+                        <option>Кіровоградська</option>
+                        <option>Луганська</option>
+                        <option>Львівська</option>
+                        <option>Миколаївська</option>
+                        <option>Одеська</option>
+                        <option>Полтавська</option>
+                        <option>Рівненська</option>
+                        <option>Сумська</option>
+                        <option>Тернопільська</option>
+                        <option>Харківська</option>
+                        <option>Херсонська</option>
+                        <option>Хмельницька</option>
+                        <option>Черкаська</option>
+                        <option>Чернівецька</option>
+                        <option>Чернігівська</option>
+                    </select>*@
+                     <span asp-validation-for="District" class="text-danger"></span>
+                 </div>
+             </div>
+             <div class="form-group">
+                 <label class="form-label">Адреса</label>
+                 <input type="text" asp-for="Address" class="form-control" placeholder="Вулиця, номер будинку та номер квартири"/>
+                 <span asp-validation-for="Address" class="text-danger"></span>
+             </div>
+             <div class="form-group">
+                 <label class="form-label">Доставка</label>
+                 <input type="text" asp-for="DeliveryType" class="form-control"/>
+                 @*<select id="State" class="form-control" asp-for="DeliveryType">
+                    <option selected>Виберіть...</option>
+                    <option>Нова пошта</option>
+                    <option>Укрпошта</option>
+                </select>*@
+                 <span asp-validation-for="DeliveryType" class="text-danger"></span>
+             </div>
+             <button class="mt-2 mb-4 btn btn-primary submit" type="submit">Підтвердити замовлення</button>
+         </form>
+     </div> 
+</div>  
+@section Scripts {
+    <script src="~/lib/jquery-cookie/src/jquery.cookie.js"></script>
+    <script src="@Url.Content("~/js/newOrder.js")" asp-append-version="true"></script>
+    @{
+        <partial name="_ValidationScriptsPartial.cshtml" />
+    }
+}

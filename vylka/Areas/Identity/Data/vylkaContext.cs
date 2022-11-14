@@ -13,6 +13,7 @@ public class vylkaContext : IdentityDbContext<IdentityUser>
     public DbSet<Product> Product { get; set; }
     public DbSet<Category> Category { get; set; }
     public DbSet<Cart> Cart { get; set; }
+    public DbSet<ShippingDetail> ShippingDetail { get; set; }
 
     public vylkaContext(DbContextOptions<vylkaContext> options)
         : base(options)

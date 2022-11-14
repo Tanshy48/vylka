@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using vylka.Data;
 
@@ -11,9 +12,10 @@ using vylka.Data;
 namespace vylka.Migrations
 {
     [DbContext(typeof(vylkaContext))]
-    partial class vylkaContextModelSnapshot : ModelSnapshot
+    [Migration("20221113125707_initialCommitV5")]
+    partial class initialCommitV5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -323,51 +325,6 @@ namespace vylka.Migrations
                     b.ToTable("Product");
                 });
 
-            modelBuilder.Entity("vylka.Areas.Entity.ShippingDetail", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("CartId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreateDelivery")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("DeliveryType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("District")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<float>("TotalPrice")
-                        .HasColumnType("real");
-
-                    b.Property<string>("UserIdId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CartId");
-
-                    b.HasIndex("UserIdId");
-
-                    b.ToTable("ShippingDetail");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -456,23 +413,6 @@ namespace vylka.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("vylka.Areas.Entity.ShippingDetail", b =>
-                {
-                    b.HasOne("vylka.Areas.Entity.Cart", "Cart")
-                        .WithMany()
-                        .HasForeignKey("CartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "UserId")
-                        .WithMany()
-                        .HasForeignKey("UserIdId");
-
-                    b.Navigation("Cart");
-
-                    b.Navigation("UserId");
                 });
 
             modelBuilder.Entity("vylka.Areas.Entity.Cart", b =>

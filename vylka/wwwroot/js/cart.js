@@ -46,10 +46,10 @@
     }
 
     //розкриття форми
-    $( '#toggler' ).click( (e) => {
+    /*$( '#toggler' ).click( (e) => {
         e.preventDefault();
         $('.total').toggleClass('toggled');
-    })
+    })*/
 
     //видалення товару із корзини
     $( '.delBtn' ).on('click', function() {
@@ -72,26 +72,12 @@
             }
         })
 
-        //видалення товару із корзини
-        $( '#submitBtn' ).on('click', function() {
-            const formDiv = $(this).parent()
-            const itemId = itemDiv.find('.counter #itemId').val()
-            const itemPrice = itemDiv.find('.price').text()
-            const itemQuantity = itemDiv.find('.counter .countNum').text()
-
-            $.ajax({
-                type: 'POST',
-                url: '/ShoppingCart/Delete',
-                data: {Id: itemId},
-                success: function () {
-                    itemDiv.remove()
-                    money -= +itemPrice * +itemQuantity
-                    totalMoney.html(money)
-                },
-                error: function (e) {
-                    console.log(e);
-                }
-            })
+        //
+        $( '#submitBtn' ).click( function() {
+            $.cookie('totalPrice', $('#totalAmount').html());
+           /* window.location.href = 'NewOrder';*/
+            console.log(window.location)
+            /*window.location = '/ShoppingCart/NewOrder?val' + $('#totalAmount').html()*/
         })
     })
     

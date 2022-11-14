@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using vylka.Areas.Entity;
 using vylka.Data;
+using vylka.Models;
 
 namespace vylka.Controllers
 {
@@ -30,25 +31,34 @@ namespace vylka.Controllers
             var items = _context.CartItem.Select(s => s).Where(w => w.CartId == delivery.Id);
             return View(items);
         }
+        
 
-        [HttpPost]
-        public async Task<IActionResult> NewOrder(int id, string operation)
+        public IActionResult NewOrder()
         {
-            var item = await _context.CartItem.FirstOrDefaultAsync(i => i.Id == id);
-            switch (operation) 
-            {
-                case "+":
-                    ++item.Quantity;
-                    break;
-                case "-":
-                    --item.Quantity;
-                    break;
-                default:
-                    return BadRequest("Not valid");
-            }
-            _context.CartItem.Update(item);
-            await _context.SaveChangesAsync();
-            return Ok();
+            return View();
+        }
+    
+        [HttpPost]
+        public IActionResult NewOrder(ShippingDetail shippingDetail)
+        {
+            var currentAccount = _context.Users.FirstOrDefault(u => u.UserName == User.Identity!.Name);
+            if (currentAccount != null) shippingDetail.UserId = currentAccount;
+            
+            shippingDetail.CreateDelivery = DateTime.Now;
+            
+            shippingDetail.TotalPrice = 0;
+            
+            var item = _context.CartItem.Where(u => u.Cart.CartUserId == currentAccount);
+            shippingDetail.
+
+            /*if (ModelState.IsValid)
+            {*/
+                _context.ShippingDetail.Update(shippingDetail);
+                _context.SaveChanges();
+                return Redirect("/Home");
+
+            /*}*/
+            return View();
         }
 
         [HttpPost]

@@ -71,7 +71,28 @@
                 console.log(e);
             }
         })
-        
+
+        //видалення товару із корзини
+        $( '#submitBtn' ).on('click', function() {
+            const formDiv = $(this).parent()
+            const itemId = itemDiv.find('.counter #itemId').val()
+            const itemPrice = itemDiv.find('.price').text()
+            const itemQuantity = itemDiv.find('.counter .countNum').text()
+
+            $.ajax({
+                type: 'POST',
+                url: '/ShoppingCart/Delete',
+                data: {Id: itemId},
+                success: function () {
+                    itemDiv.remove()
+                    money -= +itemPrice * +itemQuantity
+                    totalMoney.html(money)
+                },
+                error: function (e) {
+                    console.log(e);
+                }
+            })
+        })
     })
     
 })(jQuery);

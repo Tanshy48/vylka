@@ -7,7 +7,7 @@
 <div class="render-content">
         <div class="container mb-5">
             <a class="return d-flex align-items-center my-3" asp-controller="Home" asp-action="Index">
-                <img class="mx-2" src="~/images/icons/home.png">
+                <img class="mx-2" src="~/images/icons/home.png" alt="додому">
                 <span class="mx-1" >></span>
                 <span class="mx-2" >Повернутися назад</span>
             </a>
@@ -38,7 +38,7 @@
         <div class="d-flex justify-content-center align-items-center total toggled">
             <form method="post" asp-controller="ShoppingCart" asp-action="NewOrder">
                 <div class="w-100">
-                    <img id="toggler" class="mt-2 btn w-100 text-white fs-3" src="~/images/icons/angle.svg" />
+                    <img id="toggler" class="mt-2 btn w-100 text-white fs-3" src="~/images/icons/angle.svg" alt="toggler" />
                 </div>
                 <div class="form-row d-flex justify-content-between">
                     <div class="form-group col-md-5">
@@ -82,7 +82,7 @@
                 </div>
                 <div class="form-group">
                     <label>Доставка</label>
-                    <select id="State" class="form-control">
+                    <select id="Delivery" class="form-control">
                         <option selected>Виберіть...</option>
                         <option>Нова пошта</option>
                         <option>Укрпошта</option>
@@ -93,7 +93,7 @@
                     <label class="mx-1 fs-3" id="totalAmount">0</label>
                     <span>грн</span>
                 </div>
-                <button class="mt-2 mb-4 btn btn-primary submit" type="submit">Оформити замовлення</button>
+                <button id="submitBtn" class="mt-2 mb-4 btn btn-primary submit" type="submit">Оформити замовлення</button>
             </form>
         </div>
 </div>

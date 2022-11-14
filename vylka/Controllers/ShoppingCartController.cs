@@ -23,7 +23,7 @@ namespace vylka.Controllers
                 return Redirect("/Identity/Account/Register");
             }
             var delivery = GetDelivery();
-            if (delivery == null || delivery.IsActive == false)
+            if (delivery.IsActive == false)
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -32,9 +32,23 @@ namespace vylka.Controllers
         }
 
         [HttpPost]
-        public IActionResult NewOrder()
+        public async Task<IActionResult> NewOrder(int id, string operation)
         {
-            return View();
+            var item = await _context.CartItem.FirstOrDefaultAsync(i => i.Id == id);
+            switch (operation) 
+            {
+                case "+":
+                    ++item.Quantity;
+                    break;
+                case "-":
+                    --item.Quantity;
+                    break;
+                default:
+                    return BadRequest("Not valid");
+            }
+            _context.CartItem.Update(item);
+            await _context.SaveChangesAsync();
+            return Ok();
         }
 
         [HttpPost]

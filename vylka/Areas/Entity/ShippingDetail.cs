@@ -18,10 +18,10 @@ public class ShippingDetail
     
     public string DeliveryType { get; set; }
     
-    public float TotalPrice { get; set; }
+    public double TotalPrice { get; set; }
     
     public DateTime CreateDelivery { get; set; }
-    public Cart Cart { get; set; }
+    
     public IdentityUser UserId { get; set; }
 
 }

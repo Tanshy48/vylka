@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using vylka.Data;
 
@@ -11,9 +12,10 @@ using vylka.Data;
 namespace vylka.Migrations
 {
     [DbContext(typeof(vylkaContext))]
-    partial class vylkaContextModelSnapshot : ModelSnapshot
+    [Migration("20221115060335_initialCommitV8")]
+    partial class initialCommitV8
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -268,6 +270,9 @@ namespace vylka.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
+                    b.Property<float>("TotalPrice")
+                        .HasColumnType("real");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CartId");
@@ -350,8 +355,8 @@ namespace vylka.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("TotalPrice")
-                        .HasColumnType("float");
+                    b.Property<float>("TotalPrice")
+                        .HasColumnType("real");
 
                     b.Property<string>("UserIdId")
                         .HasColumnType("nvarchar(450)");

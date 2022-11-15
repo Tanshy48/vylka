@@ -49,15 +49,13 @@ namespace vylka.Controllers
             shippingDetail.TotalPrice = 0;
             
             var item = _context.CartItem.Where(u => u.Cart.CartUserId == currentAccount);
-            shippingDetail.
+            shippingDetail.TotalPrice = calculate();
 
-            /*if (ModelState.IsValid)
-            {*/
-                _context.ShippingDetail.Update(shippingDetail);
+            
+                _context.ShippingDetail.Add(shippingDetail);
                 _context.SaveChanges();
                 return Redirect("/Home");
 
-            /*}*/
             return View();
         }
 
@@ -100,6 +98,19 @@ namespace vylka.Controllers
             }
 
             return _context.Cart.OrderBy(o => o.Id).LastOrDefault(u => u.CartUserId == currentUser);
+        }
+
+        private double calculate()
+        {
+            var currentAccount = _context.Users.FirstOrDefault(u => u.UserName == User.Identity!.Name);
+            var currentCart = _context.Cart.FirstOrDefault(u => u.CartUserId == currentAccount);
+            var TotalPrice = 0.0;
+            foreach (var item in _context.CartItem.Where(u => u.CartId == currentCart.Id))
+            {
+                var sum = item.Price * item.Quantity;
+                TotalPrice += sum;
+            }
+            return TotalPrice;
         }
         
     }

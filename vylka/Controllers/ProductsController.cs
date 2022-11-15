@@ -12,21 +12,9 @@ namespace vylka.Controllers
             _context = db;
         }
         [HttpGet]
-        public IActionResult Refrigerators()
+        public IActionResult Index(int id)
         {
-            return View(_context.Product.ToList());
-        }
-        public IActionResult TVs()
-        {
-            return View(_context.Product.ToList());
-        }
-        public IActionResult Vacuums()
-        {
-            return View(_context.Product.ToList());
-        }
-        public IActionResult Conditioners()
-        {
-            return View(_context.Product.ToList());
+            return View(_context.Product.Where(p => p.CategoryId == id));
         }
         
         [HttpPost]

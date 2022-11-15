@@ -10,6 +10,7 @@
 <div class="render-content">
     <div class="d-flex justify-content-center align-items-center">
         <form method="post" asp-controller="ShoppingCart" asp-action="NewOrder">
+        <input asp-for="Id" hidden/>
             <div class="mt-5 form-row d-flex justify-content-between">
                 <div class="form-group col-md-6">
                     <label class="form-label">Область</label>

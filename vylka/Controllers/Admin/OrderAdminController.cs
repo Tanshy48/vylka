@@ -17,6 +17,7 @@ namespace vylka.Controllers.Admin
         {
             return View(_context.ShippingDetail.ToList());
         }
+        
         public ActionResult DeleteOrder(int? id)
         {
             if (id == null || id == 0)
@@ -28,19 +29,19 @@ namespace vylka.Controllers.Admin
             {
                 return NotFound();
             }
-            return RedirectToAction("Orders");
+            return View(orderFromDb);
         }
         
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteOrderPost(int? id)
         {
-            var obj = _context.CartItem.Find(id);
-            if (obj == null)
+            var orderFromDb = _context.ShippingDetail.Find(id);
+            if (orderFromDb == null)
             {
                 return NotFound();
             }
-            _context.CartItem.Remove(obj);
+            _context.ShippingDetail.Remove(orderFromDb);
             _context.SaveChanges();
             return RedirectToAction("Orders");
         }

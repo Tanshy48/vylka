@@ -1,5 +1,5 @@
 @using Microsoft.AspNetCore.Mvc.TagHelpers
-@model vylka.Areas.Entity.ShippingDetail
+@model ShippingDetailModel
 @{
     ViewData["Title"] = "Оформлення замовлення";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -36,13 +36,13 @@
                 </select>
                 <span asp-validation-for="DeliveryType" class="text-danger"></span>
             </div>
-            <button class="mt-4 btn btn-primary submit" type="submit">Підтвердити замовлення</button>
+            <button class="mt-4 btn btn-primary submit pdfDownloader" type="submit">Підтвердити замовлення</button>
         </form>
     </div>
 </div>
 
 @section Scripts {
-     <script src="@Url.Content("~/js/site.js")" asp-append-version="true"></script>
+    <script src="@Url.Content("~/js/site.js")" asp-append-version="true"></script>
     <script src="@Url.Content("~/js/districts.js")" asp-append-version="true"></script>
     <script src="@Url.Content("~/js/deliveries.js")" asp-append-version="true"></script>
     @{

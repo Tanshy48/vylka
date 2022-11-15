@@ -1,6 +1,7 @@
 ﻿#nullable disable
 
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity;
 
 namespace vylka.Models
 {
@@ -14,9 +15,13 @@ namespace vylka.Models
         [Required]
         public string District { get; set; }
         [Required]
-        public float TotalPrice { get; set; }
+        public double TotalPrice { get; set; }
         [Required]
         public string DeliveryType { get; set; }
+        [Required]
+        public string UserId { get; set; }
+        [Required]
+        public DateTime CreateDelivery { get; set; }
         
     }
 }

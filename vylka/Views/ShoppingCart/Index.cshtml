@@ -15,6 +15,7 @@
         <section class="products d-flex flex-wrap">
             @foreach (var item in Model)
             {
+                
                 <div class="card m-xl-5">
                     <a class="btn delBtn"><img class="position-absolute top-0 end-0 mx-3 my-1" src="images/icons/trash.png" alt="видалити"></a>
                     <img class="card-img-top mx-auto mt-5" src="~/images/products/(@item.ProductId).jpg"  alt="Card image cap">
@@ -31,6 +32,7 @@
                             <input id="itemId" hidden value="@item.Id"/>
                         </div>
                     </div>
+                    @*<label class="mx-3 countNum" hidden>@item.TotalPrice += @item.Quantity * @item.Price</label>*@
                 </div>
             }
         </section>

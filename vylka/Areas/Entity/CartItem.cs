@@ -15,6 +15,8 @@ namespace vylka.Areas.Entity
 
         public double Price { get; set; }
         
+        //public float TotalPrice { get; set; }
+        
         public int CartId { get; set; }
 
         public Cart Cart { get; set; }

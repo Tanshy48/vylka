@@ -1,10 +1,9 @@
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using vylka.Areas.Entity;
 using vylka.Data;
 using vylka.Models;
 
-namespace Fork_Site.Controllers
+namespace vylka.Controllers.Admin
 {
     //[Authorize(Roles = "Admin")]
     public class ProductAdminController : Controller
@@ -88,9 +87,8 @@ namespace Fork_Site.Controllers
                 };
                 _db.Product.Update(p);
                 _db.SaveChanges();
-                return RedirectToAction("Products");
             }
-            return View(model);
+            return RedirectToAction("Products");
         }
 
         [HttpPost]

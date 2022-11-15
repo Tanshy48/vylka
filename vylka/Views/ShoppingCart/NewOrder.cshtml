@@ -7,12 +7,7 @@
 <div class="render-content">
      <div class="d-flex justify-content-center align-items-center">
          <form method="post" asp-controller="ShoppingCart" asp-action="NewOrder">
-             <div class="mt-5 mb-4 d-flex justify-content-center align-items-center">
-                 <span class="mx-2">Загальна сума</span>
-                 <label class="mx-1 fs-3" id="totalAmountInOrder">0</label>
-                 <span>грн</span>
-             </div>
-             <div class="form-row d-flex justify-content-between">
+             <div class="mt-5 form-row d-flex justify-content-between">
                  <div class="form-group col-md-5">
                      <label class="form-label">Місто</label>
                      <input type="text" asp-for="City" class="form-control"/>
@@ -32,10 +27,10 @@
              <div class="form-group">
                  <label class="form-label">Доставка</label>
                  <select id="State" class="form-control" asp-for="DeliveryType">
-                    <option selected>Виберіть...</option>
-                    <option>Нова пошта</option>
-                    <option>Укрпошта</option>
-                </select>
+                     <option selected>Виберіть...</option>
+                     <option>Нова пошта</option>
+                     <option>Укрпошта</option>
+                 </select>
                  <span asp-validation-for="DeliveryType" class="text-danger"></span>
              </div>
              <button class="mt-2 mb-4 btn btn-primary submit" type="submit">Підтвердити замовлення</button>
@@ -43,8 +38,6 @@
      </div> 
 </div>  
 @section Scripts {
-    <script src="~/lib/jquery-cookie/src/jquery.cookie.js"></script>
-    <script src="@Url.Content("~/js/newOrder.js")" asp-append-version="true"></script>
     @{
         <partial name="_ValidationScriptsPartial.cshtml" />
     }

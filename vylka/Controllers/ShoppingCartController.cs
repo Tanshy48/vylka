@@ -32,7 +32,7 @@ namespace vylka.Controllers
             return View(items);
         }
         
-
+        [HttpGet]
         public IActionResult NewOrder()
         {
             return View();
@@ -46,34 +46,24 @@ namespace vylka.Controllers
             
             shippingDetail.CreateDelivery = DateTime.Now;
             
-            shippingDetail.TotalPrice = 0;
+            shippingDetail.TotalPrice = calculate(); 
             
-            var item = _context.CartItem.Where(u => u.Cart.CartUserId == currentAccount);
-            shippingDetail.TotalPrice = calculate();
-
-            
-                _context.ShippingDetail.Add(shippingDetail);
-                _context.SaveChanges();
-                return Redirect("/Home");
-
-            return View();
+            _context.ShippingDetail.Add(shippingDetail);
+            _context.SaveChanges();
+            return RedirectToAction("NewOrder");
         }
 
         [HttpPost]
         public async Task<IActionResult> ChangeQuantity(int id, string operation)
         {
             var item = await _context.CartItem.FirstOrDefaultAsync(i => i.Id == id);
-            switch (operation) 
-            {
-                case "+":
-                    ++item.Quantity;
-                    break;
-                case "-":
-                    --item.Quantity;
-                    break;
-                default:
-                    return BadRequest("Not valid");
-            }
+            if (operation == "+")
+                ++item.Quantity;
+            else if (operation == "-")
+                --item.Quantity;
+            else
+                return BadRequest("Not valid");
+
             _context.CartItem.Update(item);
             await _context.SaveChangesAsync();
             return Ok();

@@ -45,12 +45,6 @@
         })
     }
 
-    //розкриття форми
-    /*$( '#toggler' ).click( (e) => {
-        e.preventDefault();
-        $('.total').toggleClass('toggled');
-    })*/
-
     //видалення товару із корзини
     $( '.delBtn' ).on('click', function() {
         const itemDiv = $(this).parent()
@@ -71,14 +65,7 @@
                 console.log(e);
             }
         })
-
-        //
-        $( '#submitBtn' ).click( function() {
-            $.cookie('totalPrice', $('#totalAmount').html());
-           /* window.location.href = 'NewOrder';*/
-            console.log(window.location)
-            /*window.location = '/ShoppingCart/NewOrder?val' + $('#totalAmount').html()*/
-        })
+        
     })
     
 })(jQuery);

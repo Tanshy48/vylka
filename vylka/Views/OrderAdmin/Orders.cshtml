@@ -1,4 +1,4 @@
-@model IEnumerable<vylka.Areas.Entity.CartItem>
+@model List<vylka.Areas.Entity.ShippingDetail>
 @{
     ViewData["Title"] = "Замовлення";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -17,10 +17,14 @@
 					<thead class="fs-6">
 						<tr>
 							<th scope="col">ID</th>
-							<th scope="col">Товар</th>
-							<th scope="col">Кількість</th>
-							<th scope="col">Ціна</th>
-							<th scope="col">ID кошика</th>
+							<th scope="col">Дата</th>
+							<th scope="col">Область</th>
+							<th scope="col">Місто</th>
+							<th scope="col">Адреса</th>
+							<th scope="col">Доставка</th>
+							<th scope="col">Користувач</th>
+							<th scope="col">Вартість</th>
+							
 							<th scope="col">Завантажити</th>
 							<th scope="col">Видалити</th>
 						</tr>
@@ -29,13 +33,18 @@
 					@foreach (var item in Model)
 					{
 						<tr>
-							<th>@item.Id</th>
-							<td>@item.ProductName</td>
-							<td>@item.Quantity</td>
-							<td>@item.Price</td>
-							<td>@item.CartId</td>
+							<th id="id">@item.Id</th>
+							<td id="date">@item.CreateDelivery</td>
+							<td id="district">@item.District</td>
+							<td id="city">@item.City</td>
+							<td id="address">@item.Address</td>
+							<td id="delivery">@item.DeliveryType</td>
+							<td id="user">@item.UserId</td>
+							<td id="price">@item.TotalPrice грн</td>
+							
+
 							<td>
-								<button class="btn btn-info">
+								<button class="btn btn-info pdfDownloader">
 									<i class="fa fa-download"></i>
 								</button>
 							</td>
@@ -54,5 +63,7 @@
 		</div>
 </div>
 @section Scripts {
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+	<script src="@Url.Content("~/js/jPDF.js")" asp-append-version="true"></script>
     <script src="@Url.Content("~/js/admin.js")" asp-append-version="true"></script>
 }

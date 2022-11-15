@@ -1,12 +1,9 @@
 #nullable disable
 
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using vylka.Data;
-using vylka.Models;
 
-namespace Fork_Site.Controllers
+namespace vylka.Controllers.Admin
 {
     //[Authorize(Roles = "Admin")]
     public class UserAdminController : Controller

@@ -1,10 +1,8 @@
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using vylka.Areas.Entity;
 using vylka.Data;
-using vylka.Models;
 
-namespace Fork_Site.Controllers
+namespace vylka.Controllers.Admin
 {
     /* [Authorize(Roles = "Admin")] */
     public class CategoryAdminController : Controller

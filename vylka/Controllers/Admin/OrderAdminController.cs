@@ -1,8 +1,7 @@
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using vylka.Data;
 
-namespace Fork_Site.Controllers
+namespace vylka.Controllers.Admin
 {
     /* [Authorize(Roles = "Admin")] */
     public class OrderAdminController : Controller
@@ -16,7 +15,7 @@ namespace Fork_Site.Controllers
 
         public ActionResult Orders()
         {
-            return View(_context.CartItem.ToList());
+            return View(_context.ShippingDetail.ToList());
         }
         public ActionResult DeleteOrder(int? id)
         {
@@ -24,12 +23,12 @@ namespace Fork_Site.Controllers
             {
                 return NotFound();
             }
-            var OrderFromDb = _context.CartItem.Find(id);
+            var OrderFromDb = _context.ShippingDetail.Find(id);
             if (OrderFromDb == null)
             {
                 return NotFound();
             }
-            return View(OrderFromDb);
+            return RedirectToAction("Orders");
         }
         
         [HttpPost]

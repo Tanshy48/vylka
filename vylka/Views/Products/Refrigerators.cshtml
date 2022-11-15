@@ -28,11 +28,8 @@
                             @item.Price <small>грн</small>
                         </div>
                         <div class="order-btn text-dark">
-                            <button class="btn btn-primary button">
-                                Купити
-                                <img class="iconCartBtn" src=~/images/icons/cartWhite.png alt="В кошик"/>
-                                <img class="iconTickBtn" src=~/images/icons/tick.png alt="В кошик"/>
-                            </button>
+                            <partial name="_CheckAuthInShopPartial"/>
+                            
                             <input id="itemId" hidden value="@item.Id"/>
                         </div>
                     </div>

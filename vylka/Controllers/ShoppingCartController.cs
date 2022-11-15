@@ -1,11 +1,12 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using vylka.Areas.Entity;
-using vylka.Data;
-using vylka.Models;
+using vylka.Areas.Identity.Data;
 
 namespace vylka.Controllers
 {
+    [Authorize]
     public class ShoppingCartController : Controller
     {
         private readonly vylkaContext _context;
@@ -18,11 +19,6 @@ namespace vylka.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var currentAccount = _context.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
-            if (currentAccount == null)
-            {
-                return Redirect("/Identity/Account/Register");
-            }
             var delivery = GetDelivery();
             if (delivery.IsActive == false)
             {
@@ -46,7 +42,7 @@ namespace vylka.Controllers
             
             shippingDetail.CreateDelivery = DateTime.Now;
             
-            shippingDetail.TotalPrice = calculate(); 
+            shippingDetail.TotalPrice = Calculate(); 
             
             _context.ShippingDetail.Add(shippingDetail);
             _context.SaveChanges();
@@ -57,14 +53,15 @@ namespace vylka.Controllers
         public async Task<IActionResult> ChangeQuantity(int id, string operation)
         {
             var item = await _context.CartItem.FirstOrDefaultAsync(i => i.Id == id);
-            if (operation == "+")
-                ++item.Quantity;
-            else if (operation == "-")
-                --item.Quantity;
-            else
-                return BadRequest("Not valid");
-
-            _context.CartItem.Update(item);
+            if (item != null)
+            {
+                if (operation == "+" ) ++item.Quantity;
+                else if (operation == "-") --item.Quantity;
+                else return BadRequest("Not valid");
+                
+                _context.CartItem.Update(item);
+            }
+            
             await _context.SaveChangesAsync();
             return Ok();
         }
@@ -73,34 +70,29 @@ namespace vylka.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var item = await _context.CartItem.FirstOrDefaultAsync(i => i.Id == id);
-            _context.CartItem.Remove(item);
-            _context.SaveChanges();
+            if (item != null) _context.CartItem.Remove(item);
+            await _context.SaveChangesAsync();
             return Ok();
         }
 
         private Cart GetDelivery()
         {
-            var currentUser = _context.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
+            var currentUser = _context.Users.FirstOrDefault(u => u.UserName == User.Identity!.Name);
 
-            if (currentUser == null)
-            {
-                currentUser = _context.Users.FirstOrDefault(u => u.Id == currentUser.Id);
-            }
-
-            return _context.Cart.OrderBy(o => o.Id).LastOrDefault(u => u.CartUserId == currentUser);
+            return _context.Cart.OrderBy(o => o.Id).LastOrDefault(u => u.CartUserId == currentUser) ?? throw new InvalidOperationException();
         }
 
-        private double calculate()
+        private double Calculate()
         {
             var currentAccount = _context.Users.FirstOrDefault(u => u.UserName == User.Identity!.Name);
             var currentCart = _context.Cart.FirstOrDefault(u => u.CartUserId == currentAccount);
-            var TotalPrice = 0.0;
-            foreach (var item in _context.CartItem.Where(u => u.CartId == currentCart.Id))
+            var totalPrice = 0.0;
+            foreach (var item in _context.CartItem.Where(u => currentCart != null && u.CartId == currentCart.Id))
             {
                 var sum = item.Price * item.Quantity;
-                TotalPrice += sum;
+                totalPrice += sum;
             }
-            return TotalPrice;
+            return totalPrice;
         }
         
     }

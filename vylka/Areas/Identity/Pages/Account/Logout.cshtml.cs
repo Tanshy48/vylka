@@ -3,8 +3,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using vylka.Areas.Entity;
-using vylka.Models;
 
 namespace vylka.Areas.Identity.Pages.Account
 {
@@ -22,7 +20,7 @@ namespace vylka.Areas.Identity.Pages.Account
         public async Task<IActionResult> OnPost(string returnUrl = null)
         {
             await _signInManager.SignOutAsync();
-            _logger.LogInformation("Користувач вийшов.");
+            _logger.LogInformation("Користувач вийшов");
             if (returnUrl != null)
             {
                 return LocalRedirect(returnUrl);

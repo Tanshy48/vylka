@@ -6,44 +6,45 @@
 @section CSS {
     <link href="@Url.Content("~/css/admin.css")" rel="stylesheet" asp-append-version="true"/>
 }
+
 <div class="render-content">
-		<div class="content-wrapper">
-			<div class="border-top border-primary border-4 bg-light table-responsive">
-				<div class="bg-table-title text-dark d-flex justify-content-between align-items-center">
-					<h1 class=" fw-bolder fs-5 p-lg-3 ">Додавання товару</h1>
-				</div>
-                 <form class="text-dark" asp-controller="ProductAdmin" asp-action="AddProduct"> 
-                    <div class="mb-3">
-                        <label class="form-label" asp-for="ProductName">Назва</label>
-                        <input type="text" asp-for="ProductName" class="form-control" />
-                        <span asp-validation-for="ProductName" class="text-danger"></span>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" asp-for="Description">Опис</label>
-                        <input type="text" asp-for="Description" class="form-control" />
-                        <span asp-validation-for="Description" class="text-danger"></span>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" asp-for="Price">Ціна</label>
-                        <input type="number" asp-for="Price" class="form-control" />
-                        <span asp-validation-for="Price" class="text-danger"></span>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" asp-for="CategoryId">ID категорії</label>
-                        <input type="number" asp-for="CategoryId" class="form-control" />
-                        <span asp-validation-for="CategoryId" class="text-danger"></span>
-                    </div>
-                    <div>
-                        <button class="btn btn-success" type="submit">
-                            Створити
-                        </button>
-                        <a class="btn text-dark" asp-controller="ProductAdmin" asp-action="Products">
-                            Назад
-                        </a>
-                    </div>
-                </form>
-			</div>
-		</div>
+    <div class="content-wrapper">
+        <div class="border-top border-primary border-4 bg-light table-responsive">
+            <div class="bg-table-title text-dark d-flex justify-content-between align-items-center">
+                <h1 class=" fw-bolder fs-5 p-lg-3 ">Додавання товару</h1>
+            </div>
+            <form class="text-dark" asp-controller="ProductAdmin" asp-action="AddProduct">
+                <div class="mb-3">
+                    <label class="form-label" asp-for="ProductName">Назва</label>
+                    <input type="text" asp-for="ProductName" class="form-control"/>
+                    <span asp-validation-for="ProductName" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" asp-for="Description">Опис</label>
+                    <input type="text" asp-for="Description" class="form-control"/>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" asp-for="Price">Ціна</label>
+                    <input type="number" asp-for="Price" class="form-control"/>
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" asp-for="CategoryId">ID категорії</label>
+                    <input type="number" asp-for="CategoryId" class="form-control"/>
+                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+                </div>
+                <div>
+                    <button class="btn btn-success" type="submit">
+                        Створити
+                    </button>
+                    <a class="btn text-dark" asp-controller="ProductAdmin" asp-action="Products">
+                        Назад
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 @section Scripts {
     <script src="@Url.Content("~/js/admin.js")" asp-append-version="true"></script>

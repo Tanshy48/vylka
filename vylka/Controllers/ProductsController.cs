@@ -1,11 +1,6 @@
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualBasic;
-using System.Data.SqlClient;
-using System.Drawing;
 using vylka.Areas.Entity;
-using vylka.Data;
-using vylka.Models;
+using vylka.Areas.Identity.Data;
 
 namespace vylka.Controllers
 {
@@ -33,20 +28,16 @@ namespace vylka.Controllers
         {
             return View(_context.Product.ToList());
         }
+        
         [HttpPost]
-        public async Task<IActionResult> AddToCart(int id)
+        public IActionResult AddToCart(int id)
         {
 
-            var currentAccount = _context.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
-
-            if (currentAccount == null)
-            {
-                return Redirect("/Identity/Account/Register");
-            }
+            var currentAccount = _context.Users.FirstOrDefault(u => u.UserName == User.Identity!.Name);
 
             var currentUserCart = _context.Cart.OrderBy(o => o.Id).LastOrDefault(u => u.CartUserId == currentAccount);
 
-            if (currentUserCart.IsActive == false)
+            if (currentUserCart is { IsActive: false })
             {
                 currentUserCart.IsActive = true;
                 _context.SaveChanges();
@@ -56,9 +47,9 @@ namespace vylka.Controllers
             var selectedProduct = _context.Product.FirstOrDefault(p => p.Id == id);
 
             var item = _context.CartItem.FirstOrDefault(i =>
-                i.ProductId == id && i.CartId == currentUserCart.Id);
+                currentUserCart != null && i.ProductId == id && i.CartId == currentUserCart.Id);
 
-            if (item == null)
+            if (item == null && selectedProduct!=null && currentUserCart!=null)
             {
                 var order = new CartItem()
                 {
@@ -74,7 +65,7 @@ namespace vylka.Controllers
             }
             else
             {
-                item.Quantity++;
+                if (item != null) item.Quantity++;
                 _context.SaveChanges();
             }
             return Ok();

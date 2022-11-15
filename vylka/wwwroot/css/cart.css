@@ -1,0 +1,77 @@
+.products {
+    min-height: 500px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.products .card{
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    padding: 10px 5px;
+    border-radius: 10px;
+    min-width: 20rem;
+    margin: 3rem;
+}
+@media (max-width: 1200px) {
+    .products .card {
+        margin: .5rem;
+    }
+}
+
+@media (max-width: 500px) {
+    .products .card {
+        margin: 3rem;
+    }
+}
+.products .card-body{
+    flex: none;
+}
+.products a img{
+    width: 40px;
+    border-radius: 50px;
+}
+.products .card-img-top{
+    max-height: 300px;
+    max-width: 250px;
+    margin: auto;
+}
+.products .counter input[type=button] {
+    padding: 0;
+    border-radius: 50px;
+    width: 30px;
+    height: 30px;
+}
+.total{
+    bottom: 0;
+    overflow:hidden;
+    height: auto;
+    background-color: #142d53;
+    background-position: top;
+    border-radius: 20px 20px 0 0;
+}
+.total form{
+    width: 400px;
+}
+.total form .btn:focus{
+    box-shadow: none;
+}
+.submit{
+    width: 25rem;
+    height: 3rem;
+    border-radius: 20px;
+}
+.total form .form-group {
+    overflow:hidden;
+    height: auto;
+    opacity: 1;
+    transition: all 0.5s ease-in;
+}
+.total.toggled form .form-group {
+    opacity: 0;
+    height: 0;
+    transition: all 0.5s ease-out;
+}
+.total form img {
+    height: 45px;
+}

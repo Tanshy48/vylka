@@ -5,9 +5,6 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using vylka.Models;
-using System.Net.Mail;
-using vylka.Areas.Entity;
 
 namespace vylka.Areas.Identity.Pages.Account
 {
@@ -87,16 +84,16 @@ namespace vylka.Areas.Identity.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(userName, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("Користувач увійшов.");
+                    _logger.LogInformation("Користувач увійшов");
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
                 {
-                    return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
+                    return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, Input.RememberMe });
                 }
                 if (result.IsLockedOut)
                 {
-                    _logger.LogWarning("Обліковий запис користувача заблоковано.");
+                    _logger.LogWarning("Обліковий запис користувача заблоковано");
                     return RedirectToPage("./Lockout");
                 }
                 else
@@ -112,7 +109,6 @@ namespace vylka.Areas.Identity.Pages.Account
         {
             try
             {
-                MailAddress mail = new MailAddress(emailaddress);
                 return true;
             }
             catch (FormatException)

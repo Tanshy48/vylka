@@ -1,11 +1,4 @@
-﻿@using vylka.Areas.Entity
-@using vylka.Models
-@inject SignInManager<IdentityUser> SignInManager
-@{
-    var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
-}
-
-<ul class="nav nav-pills flex-column">
+﻿<ul class="nav nav-pills flex-column">
     <li class="nav-item"><a class="nav-link text-light @ManageNavPages.IndexNavClass(ViewContext)" id="profile" asp-page="./Index">Профіль</a></li>
     <li class="nav-item"><a class="nav-link text-light @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">Пароль</a></li>
 </ul> 

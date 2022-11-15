@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using vylka.Areas.Entity;
-using vylka.Data;
+using vylka.Areas.Identity.Data;
 
 namespace vylka.Controllers.Admin
 {
@@ -27,12 +27,12 @@ namespace vylka.Controllers.Admin
             {
                 return NotFound();
             }
-            var CategoryFromDb = _context.Category.Find(id);
-            if(CategoryFromDb == null)
+            var categoryFromDb = _context.Category.Find(id);
+            if(categoryFromDb == null)
             {
                 return NotFound();
             }
-            return View(CategoryFromDb);
+            return View(categoryFromDb);
         }
         public ActionResult DeleteCategory(int? id)
         {
@@ -40,22 +40,18 @@ namespace vylka.Controllers.Admin
             {
                 return NotFound();
             }
-            var CategoryFromDb = _context.Category.Find(id);
-            if (CategoryFromDb == null)
+            var categoryFromDb = _context.Category.Find(id);
+            if (categoryFromDb == null)
             {
                 return NotFound();
             }
-            return View(CategoryFromDb);
+            return View(categoryFromDb);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult AddCategory(Category model)
         {
-            if (model == null)
-            {
-                return BadRequest();
-            }
             if (!ModelState.IsValid)
             {
                 return BadRequest();
@@ -74,7 +70,7 @@ namespace vylka.Controllers.Admin
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult EditCategoryPOST(Category obj)
+        public IActionResult EditCategoryPost(Category obj)
         {
 
             if (ModelState.IsValid)
@@ -88,7 +84,7 @@ namespace vylka.Controllers.Admin
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteCategoryPOST(int? id)
+        public IActionResult DeleteCategoryPost(int? id)
         {
             var obj = _context.Category.Find(id);
             if (obj == null)

@@ -8,7 +8,7 @@
     })
     
     function MakePDFFile(btn) {
-        var doc = new jsPDF()
+        let doc = new jsPDF()
         doc.addFont("../fonts/arial.ttf", "arial", "normal")
         doc.setFont("arial")
         

@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
-
 * {
   box-sizing: border-box;
   font-family: 'Montserrat', sans-serif;
@@ -40,7 +38,6 @@ body{
   margin-bottom: 1rem;
 }
 .sidebar .nav-item .nav-link {
-  text-align: center;
   color: #3977bb;
   display: block;
   text-align: left;

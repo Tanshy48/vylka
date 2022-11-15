@@ -1,7 +1,6 @@
 ﻿#nullable disable
 
 using System.ComponentModel.DataAnnotations;
-using System.Net.Mail;
 using System.Text;
 using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Authentication;
@@ -12,8 +11,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.VisualBasic;
 using vylka.Areas.Entity;
-using vylka.Data;
-using vylka.Models;
+using vylka.Areas.Identity.Data;
 
 namespace vylka.Areas.Identity.Pages.Account
 {
@@ -104,9 +102,9 @@ namespace vylka.Areas.Identity.Pages.Account
                         CartUserId = user,
                     };
                     _context.Cart.Add(userOder);
-                    _context.SaveChanges();
+                    await _context.SaveChangesAsync();
                     
-                    _logger.LogInformation("User created a new account with password.");
+                    _logger.LogInformation("Користувач створив новий акаунт з паролем");
     
                     var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -114,15 +112,16 @@ namespace vylka.Areas.Identity.Pages.Account
                     var callbackUrl = Url.Page(
                         "/Account/ConfirmEmail",
                         pageHandler: null,
-                        values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
+                        values: new { area = "Identity", userId, code, returnUrl },
                         protocol: Request.Scheme);
 
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    if (callbackUrl != null)
+                        await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
+                            $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
-                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
+                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl });
                     }
                     else
                     {

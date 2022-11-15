@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using vylka.Data;
+using vylka.Areas.Identity.Data;
 
 namespace vylka.Controllers.Admin
 {
@@ -23,8 +23,8 @@ namespace vylka.Controllers.Admin
             {
                 return NotFound();
             }
-            var OrderFromDb = _context.ShippingDetail.Find(id);
-            if (OrderFromDb == null)
+            var orderFromDb = _context.ShippingDetail.Find(id);
+            if (orderFromDb == null)
             {
                 return NotFound();
             }
@@ -33,7 +33,7 @@ namespace vylka.Controllers.Admin
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteOrderPOST(int? id)
+        public IActionResult DeleteOrderPost(int? id)
         {
             var obj = _context.CartItem.Find(id);
             if (obj == null)

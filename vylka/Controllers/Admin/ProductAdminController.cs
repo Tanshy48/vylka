@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using vylka.Areas.Entity;
-using vylka.Data;
+using vylka.Areas.Identity.Data;
 using vylka.Models;
 
 namespace vylka.Controllers.Admin
@@ -27,12 +27,12 @@ namespace vylka.Controllers.Admin
             {
                 return NotFound();
             }
-            var ProductFromDb = _db.Product.Find(id);
-            if (ProductFromDb == null)
+            var productFromDb = _db.Product.Find(id);
+            if (productFromDb == null)
             {
                 return NotFound();
             }
-            return View(ProductFromDb);
+            return View(productFromDb);
         }
         public ActionResult DeleteProduct(int? id)
         {
@@ -40,12 +40,12 @@ namespace vylka.Controllers.Admin
             {
                 return NotFound();
             }
-            var ProductFromDb = _db.Product.Find(id);
-            if (ProductFromDb == null)
+            var productFromDb = _db.Product.Find(id);
+            if (productFromDb == null)
             {
                 return NotFound();
             }
-            return View(ProductFromDb);
+            return View(productFromDb);
         }
 
 
@@ -72,7 +72,7 @@ namespace vylka.Controllers.Admin
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult EditProductPOST(ProductModel model)
+        public IActionResult EditProductPost(ProductModel model)
         {
             
             if (ModelState.IsValid)
@@ -93,7 +93,7 @@ namespace vylka.Controllers.Admin
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteProductPOST(int? id)
+        public IActionResult DeleteProductPost(int? id)
         {
             var obj = _db.Product.Find(id);
             if (obj == null)

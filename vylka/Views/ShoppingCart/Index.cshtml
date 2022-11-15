@@ -4,10 +4,13 @@
     ViewData["Title"] = "Кошик";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@section CSS {
+    <link href="@Url.Content("~/css/cart.css")" rel="stylesheet" asp-append-version="true"/>
+}
 <div class="render-content">
     <div class="container mb-5">
         <a class="return d-flex align-items-center my-3" asp-controller="Home" asp-action="Index">
-            <img class="mx-2" src="~/images/icons/home.png">
+            <img class="mx-2" src="~/images/icons/home.png" alt="to home">
             <span class="mx-1" >></span>
             <span class="mx-2" >Повернутися назад</span>
         </a>
@@ -18,7 +21,7 @@
                 
                 <div class="card m-xl-5">
                     <a class="btn delBtn"><img class="position-absolute top-0 end-0 mx-3 my-1" src="images/icons/trash.png" alt="видалити"></a>
-                    <img class="card-img-top mx-auto mt-5" src="~/images/products/(@item.ProductId).jpg"  alt="Card image cap">
+                    <img class="card-img-top mx-auto" src="~/images/products/(@item.ProductId).jpg"  alt="Card image cap">
                     <div class="card-body text-black">
                         <h5 class="card-title">@item.ProductName</h5>
                         <div class="d-flex fs-5 fw-bold">
@@ -32,7 +35,6 @@
                             <input id="itemId" hidden value="@item.Id"/>
                         </div>
                     </div>
-                    @*<label class="mx-3 countNum" hidden>@item.TotalPrice += @item.Quantity * @item.Price</label>*@
                 </div>
             }
         </section>
@@ -45,7 +47,7 @@
             <span>грн</span>
         </div>
         <a id="submitBtn" asp-controller="ShoppingCart" asp-action="NewOrder">
-            <button class="mt-2 mb-4 btn btn-primary submit">Оформити замовлення</button>
+            <button class="mt-2 mb-4 btn btn-primary submit">Перейти до оформлення замовлення</button>
         </a>
         </div>
     </div>

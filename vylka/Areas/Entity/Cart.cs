@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿#nullable disable
+using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -16,7 +17,7 @@ namespace vylka.Areas.Entity
 
         public IdentityUser CartUserId { get; set; }
 
-        public List<CartItem>? CartItem { get; set; }
+        public List<CartItem> CartItem { get; set; }
 
 
     }

@@ -7,60 +7,61 @@
     <link href="@Url.Content("~/lib/fontawesome-free/css/all.min.css")" rel="stylesheet" asp-append-version="true"/>
     <link href="@Url.Content("~/css/admin.css")" rel="stylesheet" asp-append-version="true"/>
 }
-<div class="render-content">
-		<div class="content-wrapper">
-			<div class="border-top border-primary border-4 bg-light table-responsive">
-				<div class="bg-table-title text-dark d-flex justify-content-between align-items-center">
-					<h1 class=" fw-bolder fs-5 p-lg-3 ">Замовлення</h1>
-				</div>
-				<table class="text-center table table-striped">
-					<thead class="fs-6">
-						<tr>
-							<th scope="col">ID</th>
-							<th scope="col">Дата</th>
-							<th scope="col">Область</th>
-							<th scope="col">Місто</th>
-							<th scope="col">Адреса</th>
-							<th scope="col">Доставка</th>
-							<th scope="col">Користувач</th>
-							<th scope="col">Вартість</th>
-							
-							<th scope="col">Завантажити</th>
-							<th scope="col">Видалити</th>
-						</tr>
-					</thead>
-					<tbody>
-					@foreach (var item in Model)
-					{
-						<tr>
-							<th id="id">@item.Id</th>
-							<td id="date">@item.CreateDelivery</td>
-							<td id="district">@item.District</td>
-							<td id="city">@item.City</td>
-							<td id="address">@item.Address</td>
-							<td id="delivery">@item.DeliveryType</td>
-							<td id="user">@item.UserId</td>
-							<td id="price">@item.TotalPrice грн</td>
-							
 
-							<td>
-								<button class="btn btn-info pdfDownloader">
-									<i class="fa fa-download"></i>
-								</button>
-							</td>
-							<td>
-                            	<a asp-route-id="@item.Id" asp-controller="OrderAdmin" asp-action="DeleteOrder">
-                            		<button class="btn btn-danger">
-                            			<i class="fa fa-trash"></i>
-                            		</button>
-                            	</a>
-                            </td>
-						</tr>
-					}
-					</tbody>
-				</table>
+<div class="render-content">
+	<div class="content-wrapper">
+		<div class="border-top border-primary border-4 bg-light table-responsive">
+			<div class="bg-table-title text-dark d-flex justify-content-between align-items-center">
+				<h1 class=" fw-bolder fs-5 p-lg-3 ">Замовлення</h1>
 			</div>
+			<table class="text-center table table-striped">
+				<thead class="fs-6">
+				<tr>
+					<th scope="col">ID</th>
+					<th scope="col">Дата</th>
+					<th scope="col">Область</th>
+					<th scope="col">Місто</th>
+					<th scope="col">Адреса</th>
+					<th scope="col">Доставка</th>
+					<th scope="col">Користувач</th>
+					<th scope="col">Вартість</th>
+
+					<th scope="col">Завантажити</th>
+					<th scope="col">Видалити</th>
+				</tr>
+				</thead>
+				<tbody>
+				@foreach (var item in Model)
+				{
+					<tr>
+						<th id="id">@item.Id</th>
+						<td id="date">@item.CreateDelivery</td>
+						<td id="district">@item.District</td>
+						<td id="city">@item.City</td>
+						<td id="address">@item.Address</td>
+						<td id="delivery">@item.DeliveryType</td>
+						<td id="user">@item.UserId</td>
+						<td id="price">@item.TotalPrice грн</td>
+
+
+						<td>
+							<button class="btn btn-info pdfDownloader">
+								<i class="fa fa-download"></i>
+							</button>
+						</td>
+						<td>
+							<a asp-route-id="@item.Id" asp-controller="OrderAdmin" asp-action="DeleteOrder">
+								<button class="btn btn-danger">
+									<i class="fa fa-trash"></i>
+								</button>
+							</a>
+						</td>
+					</tr>
+				}
+				</tbody>
+			</table>
 		</div>
+	</div>
 </div>
 @section Scripts {
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>

@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
-using vylka.Areas.Entity;
+﻿#nullable disable
+using Microsoft.AspNetCore.Identity;
 
 namespace vylka.Models
 {

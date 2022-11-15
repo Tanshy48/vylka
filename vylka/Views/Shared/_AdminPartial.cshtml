@@ -1,9 +1,4 @@
-@using Microsoft.AspNetCore.Identity
-
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
-
-@if(User.IsInRole("Admin")) {
+@if(User.IsInRole("Адмін")) {
     <li class="nav-item">
         <a class="nav-link" asp-controller="UserAdmin" asp-action="Users">Адмін</a>
     </li> 

@@ -42,12 +42,27 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Migrations\" />
-    <Folder Include="wwwroot\lib\pdf" />
   </ItemGroup>
   <ItemGroup>
     <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-cookie\test\.jshintrc" />
     <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-cookie\test\index.html" />
     <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-cookie\test\malformed_cookie.html" />
     <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-cookie\test\tests.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-cookie\.gitignore" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-cookie\.jshintignore" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-cookie\.jshintrc" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-cookie\.tm_properties" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-cookie\.travis.yml" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-cookie\bower.json" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-cookie\CHANGELOG.md" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-cookie\component.json" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-cookie\CONTRIBUTING.md" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-cookie\cookie.jquery.json" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-cookie\Gruntfile.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-cookie\MIT-LICENSE.txt" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-cookie\package.json" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-cookie\README.md" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-cookie\src\.jshintrc" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-cookie\src\jquery.cookie.js" />
   </ItemGroup>
 </Project>

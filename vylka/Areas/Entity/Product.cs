@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿#nullable disable
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace vylka.Areas.Entity
@@ -13,7 +14,7 @@ namespace vylka.Areas.Entity
         public double Price { get; set; }
         public int CategoryId { get; set; }
         public virtual Category Category { get; set; }
-        public List<CartItem>? CartItem { get; set; }
+        public List<CartItem> CartItem { get; set; }
 
     }
 }

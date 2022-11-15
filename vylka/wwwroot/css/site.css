@@ -103,8 +103,8 @@ a:hover {
 }
 
 .custom-navbar .custom-navbar-cta li {
-	margin-left: 0px;
-	margin-right: 0px;
+	margin-left: 0;
+	margin-right: 0;
 }
 
 #logout {
@@ -146,7 +146,6 @@ a:hover {
 	width: 4rem;
 	height: 4rem;
 	margin-right: 1rem;
-	image-size: cover;
 }
 
 .card-title {
@@ -188,10 +187,6 @@ footer p {
 	line-height: 0;
 	margin-bottom:50px;
 	margin-top: 40px;
-}
-
-.animate_custom_delay {
-	--animate-delay: 0.8s;
 }
 
 .cards {
@@ -248,7 +243,6 @@ footer p {
 
 .return{
 	color: var(--blue-text);
-	all: none;
 	text-decoration: none;
 	opacity: var(--default-text-opacity);
 }
@@ -262,97 +256,6 @@ footer p {
 	opacity: var(--default-img-opacity);
 }
 
-.products {
-	min-height: 500px;
-	display: flex;
-	flex-wrap: wrap;
-}
-
-.products .card{
-	min-height: 500px;
-	display: flex;
-	flex-direction: column;
-	background: #fff;
-	padding: 10px 5px;
-	border-radius: 10px;
-    min-width: 20rem;
-    margin: 3rem;
-}
-
-.products .card-body{
-	flex: none;
-}
-
-.products a img{
-	width: 40px;
-	border-radius: 50px;
-	box-shadow: 10px grey;
-}
-
-.products .card-img-top{
-	max-height: 300px;
-    max-width: 250px;
-    margin: auto;
-}
-
-.products .counter input[type=button] {
-	padding: 0;
-	border-radius: 50px;
-	width: 30px;
-	height: 30px;
-}
-
 .auth-container{
 	width: 500px;
 }
-
-.total{
-    bottom: 0px;
-	overflow:hidden;
-	height: auto;
-	background-color: #142d53;
-	background-position: top;
-	border-radius: 20px 20px 0 0;
-}
-
-.total form{
-	width: 400px;
-}
-
-.total form .btn:focus{
-	box-shadow: none;
-}
-
-.total .submit{
-	padding: auto;
-	width: 25rem;
-	height: 3rem;
-	border-radius: 20px;
-}
-
-.total form .form-group {
-	overflow:hidden;
-	height: auto;
-	opacity: 1;
-	transition: all 0.5s ease-in;
-} 
-.total.toggled form .form-group {
-	opacity: 0;
-	height: 0;
-	transition: all 0.5s ease-out;
-}
-.total form img {
-	height: 45px;
-}
-.total form #toggler {
-	opacity: .5;
-	transform: rotate(0deg);
-	transition: all .3s ease-out;
-} 
-.total.toggled form #toggler {
-	transform: rotate(180deg);
-	transition: all .3s ease-in;
-} 
-.total form #toggler:hover {
-	opacity: 1;
-} 

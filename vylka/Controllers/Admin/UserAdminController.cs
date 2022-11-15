@@ -1,7 +1,7 @@
 #nullable disable
 
 using Microsoft.AspNetCore.Mvc;
-using vylka.Data;
+using vylka.Areas.Identity.Data;
 
 namespace vylka.Controllers.Admin
 {
@@ -25,17 +25,17 @@ namespace vylka.Controllers.Admin
             {
                 return NotFound();
             }
-            var UserFromDb = _context.Users.Find(id);
-            if (UserFromDb == null)
+            var userFromDb = _context.Users.Find(id);
+            if (userFromDb == null)
             {
                 return NotFound();
             }
-            return View(UserFromDb);
+            return View(userFromDb);
         }
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteUserPOST(string id)
+        public IActionResult DeleteUserPost(string id)
         {
             var obj = _context.Users.Find(id);
             var cart = _context.Cart.OrderBy(o => o.Id).LastOrDefault(u => u.CartUserId.Id == id);

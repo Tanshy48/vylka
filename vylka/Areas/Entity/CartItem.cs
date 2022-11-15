@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿#nullable disable
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace vylka.Areas.Entity
@@ -14,9 +15,7 @@ namespace vylka.Areas.Entity
         public int Quantity { get; set; }
 
         public double Price { get; set; }
-        
-        //public float TotalPrice { get; set; }
-        
+
         public int CartId { get; set; }
 
         public Cart Cart { get; set; }

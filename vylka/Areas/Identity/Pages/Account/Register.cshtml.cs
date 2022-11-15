@@ -105,6 +105,12 @@ namespace vylka.Areas.Identity.Pages.Account
                     await _context.SaveChangesAsync();
                     
                     _logger.LogInformation("Користувач створив новий акаунт з паролем");
+                    
+                    var defaultrole = _roleManager.FindByNameAsync("Користувач").Result;
+                    if (defaultrole != null)
+                    {
+                        await _userManager.AddToRoleAsync(user, defaultrole.Name);
+                    }
     
                     var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);

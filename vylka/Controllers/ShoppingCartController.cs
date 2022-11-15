@@ -38,15 +38,37 @@ namespace vylka.Controllers
         public IActionResult NewOrder(ShippingDetail shippingDetail)
         {
             var currentAccount = _context.Users.FirstOrDefault(u => u.UserName == User.Identity!.Name);
-            if (currentAccount != null) shippingDetail.UserId = currentAccount;
-            
+            if (currentAccount != null)
+            {
+                shippingDetail.UserId = currentAccount;
+            }
             shippingDetail.CreateDelivery = DateTime.Now;
-            
-            shippingDetail.TotalPrice = Calculate(); 
-            
+            shippingDetail.TotalPrice = Calculate();
+
             _context.ShippingDetail.Add(shippingDetail);
+            
+            //видалення товарів (не працює поки)
+/*
+            var currentCart = _context.Cart.Where(u => u.CartUserId == currentAccount);
+
+            var items = _context.CartItem.Where(u => u.Cart == currentCart);
+            
+            if (items != null)
+            {
+                foreach (var item in _context.CartItem.Where(u => u.Cart == currentCart))
+                {
+                    _context.CartItem.Remove(item);
+                }
+            }
+         */   
+            //деактивація корзини
+            
+            var delivery = GetDelivery();
+            delivery.IsActive = false;
+            
             _context.SaveChanges();
-            return RedirectToAction("NewOrder");
+            
+            return Redirect("Home");
         }
 
         [HttpPost]

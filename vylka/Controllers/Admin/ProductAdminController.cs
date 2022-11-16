@@ -21,13 +21,10 @@ namespace vylka.Controllers.Admin
         {
             return View();
         }
+        
         public ActionResult EditProduct(int? id)
         {
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
-            var productFromDb = _db.Product.Find(id);
+            Product? productFromDb = _db.Product.Find(id);
             if (productFromDb == null)
             {
                 return NotFound();
@@ -47,8 +44,7 @@ namespace vylka.Controllers.Admin
             }
             return View(productFromDb);
         }
-
-
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult AddProduct(ProductModel model)
@@ -74,10 +70,9 @@ namespace vylka.Controllers.Admin
         [ValidateAntiForgeryToken]
         public IActionResult EditProductPost(ProductModel model)
         {
-            
             if (ModelState.IsValid)
             {
-                var p = new Product()
+                Product p = new Product()
                 {
                     Id = model.Id,
                     ProductName = model.ProductName,
@@ -87,11 +82,12 @@ namespace vylka.Controllers.Admin
                 };
                 _db.Product.Update(p);
                 _db.SaveChanges();
+                
             }
             return RedirectToAction("Products");
         }
 
-        [HttpPost]
+        [HttpDelete]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteProductPost(int? id)
         {

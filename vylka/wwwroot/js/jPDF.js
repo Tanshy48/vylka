@@ -29,8 +29,8 @@
         doc.text(20, 90, `Дата оформлення замовлення: ${date}.`)
         doc.text(20, 100, `Адреса: ${district}, ${city}, ${address}.`)
         doc.text(20, 110, `Доставка: ${delivery}.`)
-        doc.text(130, 120, `До сплати: ${price}`)
-        doc.text(130, 130, `Замовник: ${user}`)
+        doc.text(120, 120, `До сплати: ${price}`)
+        doc.text(120, 130, `Замовник: ${user}`)
         doc.setFontSize(16)
         doc.text(50, 150, `Дякуємо, що користуєтесь нашим сервісом!`)
         

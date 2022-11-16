@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using vylka.Areas.Entity;
 using vylka.Areas.Identity.Data;
+using vylka.Models;
 
 namespace vylka.Controllers
 {
@@ -35,11 +36,29 @@ namespace vylka.Controllers
         }
     
         [HttpPost]
-        public IActionResult NewOrder(ShippingDetail shippingDetail)
+        [ValidateAntiForgeryToken]
+        public IActionResult NewOrder(ShippingDetailModel model)
         {
             var currentAccount = _context.Users.FirstOrDefault(u => u.UserName == User.Identity!.Name);
             if (currentAccount != null)
             {
+                ShippingDetail sd = new ShippingDetail()
+                {
+                    Id = model.Id,
+                    CreateDelivery = DateTime.Now,
+                    TotalPrice = Calculate(),
+                    District = model.District,
+                    City = model.City,
+                    Address = model.Address,
+                    DeliveryType = model.DeliveryType,
+                    User = currentAccount,
+                    UserId = currentAccount.Id,
+                }; 
+                _context.ShippingDetail.Add(sd);
+            }
+
+            _context.SaveChanges();
+            return RedirectToAction("Index");
                 shippingDetail.UserId = currentAccount;
             }
             shippingDetail.CreateDelivery = DateTime.Now;

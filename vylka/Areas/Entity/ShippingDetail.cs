@@ -22,7 +22,8 @@ public class ShippingDetail
     public double TotalPrice { get; set; }
     
     public DateTime CreateDelivery { get; set; }
+    public string UserId { get; set; }
     
-    public IdentityUser UserId { get; set; }
+    public virtual IdentityUser User { get; set; }
 
 }

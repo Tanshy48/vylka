@@ -54,12 +54,12 @@ namespace vylka.Areas.Identity.Pages.Account
         public class InputModel
         {
 
-            [Required]
-            [EmailAddress]
-            [Display(Name = "Поштова скринька")]
+            [Required(ErrorMessage = "Поштова скринька обов'язкове поле.")]
+            [DataType(DataType.EmailAddress)]
+            [Display(Name = "Електронна скринька")]
             public string Email { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "Пароль обов'язкове поле.")]
             [StringLength(100, ErrorMessage = "{0} повинен містити щонайменше {2} та не більше {1} символів.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Пароль")]

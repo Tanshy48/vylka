@@ -57,15 +57,6 @@ namespace vylka.Controllers
                 _context.ShippingDetail.Add(sd);
             }
 
-            _context.SaveChanges();
-            return RedirectToAction("Index");
-                shippingDetail.UserId = currentAccount;
-            }
-            shippingDetail.CreateDelivery = DateTime.Now;
-            shippingDetail.TotalPrice = Calculate();
-
-            _context.ShippingDetail.Add(shippingDetail);
-            
             var items = _context.CartItem.Where(u => u.Cart.CartUserId == currentAccount);
             
             if (items != null)
@@ -80,8 +71,7 @@ namespace vylka.Controllers
             delivery.IsActive = false;
             
             _context.SaveChanges();
-            
-            return Redirect("Home");
+            return RedirectToAction("Index");
         }
 
         [HttpPost]

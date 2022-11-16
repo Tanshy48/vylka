@@ -25,7 +25,7 @@ namespace vylka.Controllers
 
             var currentUserCart = _context.Cart.OrderBy(o => o.Id).LastOrDefault(u => u.CartUserId == currentAccount);
 
-            if (currentUserCart is { IsActive: false })
+            if (currentUserCart.IsActive == false)
             {
                 currentUserCart.IsActive = true;
                 _context.SaveChanges();

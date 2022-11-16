@@ -40,7 +40,7 @@ namespace vylka.Controllers.Admin
         {
             var obj = _context.Users.Find(id);
             var cart = _context.Cart.OrderBy(o => o.Id).LastOrDefault(u => u.CartUserId.Id == id);
-            var items = _context.ShippingDetail.Where(u => u.UserId.Id == id);
+            var items = _context.ShippingDetail.Where(u => u.UserId == id);
             
             if (obj == null || cart == null)
             {
@@ -49,7 +49,7 @@ namespace vylka.Controllers.Admin
 
             if (items != null)
             {
-                foreach (var item in _context.ShippingDetail.Where(u => u.UserId.Id == id))
+                foreach (var item in _context.ShippingDetail.Where(u => u.UserId == id))
                 {
                     _context.ShippingDetail.Remove(item);
                 }

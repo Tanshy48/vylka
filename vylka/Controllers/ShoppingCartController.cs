@@ -47,22 +47,16 @@ namespace vylka.Controllers
 
             _context.ShippingDetail.Add(shippingDetail);
             
-            //видалення товарів (не працює поки)
-/*
-            var currentCart = _context.Cart.Where(u => u.CartUserId == currentAccount);
-
-            var items = _context.CartItem.Where(u => u.Cart == currentCart);
+            var items = _context.CartItem.Where(u => u.Cart.CartUserId == currentAccount);
             
             if (items != null)
             {
-                foreach (var item in _context.CartItem.Where(u => u.Cart == currentCart))
+                foreach (var item in _context.CartItem.Where(u => u.Cart.CartUserId == currentAccount))
                 {
                     _context.CartItem.Remove(item);
                 }
             }
-         */   
-            //деактивація корзини
-            
+           
             var delivery = GetDelivery();
             delivery.IsActive = false;
             

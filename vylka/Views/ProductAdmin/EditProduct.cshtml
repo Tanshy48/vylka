@@ -18,18 +18,22 @@
                 <div class="mb-3">
                     <label asp-for="ProductName" class="form-label">Назва товару</label>
                     <input type="text" asp-for="ProductName" class="form-control">
+                    <span asp-validation-for="ProductName" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
                     <label asp-for="Description" class="form-label">Опис</label>
                     <input type="text" asp-for="Description" class="form-control">
+                    <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
                     <label asp-for="Price" class="form-label">Ціна</label>
                     <input type="number" asp-for="Price" class="form-control">
+                    <span asp-validation-for="Price" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
                     <label asp-for="CategoryId" class="form-label">ID категорії</label>
                     <input type="number" asp-for="CategoryId" class="form-control">
+                    <span asp-validation-for="CategoryId" class="text-danger"></span>
                 </div>
                 <div>
                     <button class="btn btn-success" type="submit">

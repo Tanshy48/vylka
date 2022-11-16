@@ -35,14 +35,14 @@
 				@foreach (var item in Model)
 				{
 					<tr>
-						<th id="id">@item.Id</th>
-						<td id="date">@item.CreateDelivery</td>
-						<td id="district">@item.District</td>
-						<td id="city">@item.City</td>
-						<td id="address">@item.Address</td>
-						<td id="delivery">@item.DeliveryType</td>
-						<td id="user">@item.UserId</td>
-						<td id="price">@item.TotalPrice грн</td>
+						<td> <input disabled id="id" value="@item.Id"/> </td>
+						<td> <input disabled id="date" value="@item.CreateDelivery"/> </td>
+						<td> <input disabled id="district" value="@item.District"/></td>
+						<td> <input disabled id="city" value="@item.City"/></td>
+						<td> <input disabled id="address" value="@item.Address"/></td>
+						<td> <input disabled id="delivery" value="@item.DeliveryType"/></td>
+						<td> <input disabled id="user" value="@item.UserId"/></td>
+						<td> <input disabled id="price" value="@item.TotalPrice"/></td>
 
 						<td>
 							<button class="btn btn-info pdfDownloader">

@@ -34,6 +34,14 @@ namespace vylka.Controllers
         {
             return View();
         }
+        
+        [HttpGet]
+        public IActionResult OrderCompleted()
+        {
+            int lastId = _context.ShippingDetail.Max(v => v.Id);
+            var lastOrder = _context.ShippingDetail.Find(lastId);
+            return View(lastOrder);
+        }
     
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -58,7 +66,7 @@ namespace vylka.Controllers
             }
 
             _context.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("OrderCompleted");
         }
 
         [HttpPost]

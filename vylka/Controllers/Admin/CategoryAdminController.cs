@@ -70,16 +70,21 @@ namespace vylka.Controllers.Admin
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult EditCategoryPost(Category obj)
+        public IActionResult EditCategoryPOST(CategoryModel model)
         {
-
             if (ModelState.IsValid)
             {
-                _context.Category.Update(obj);
-                _context.SaveChanges();
-                return RedirectToAction("Categories");
+                var p = new Category()
+                {
+                    Id = model.Id,
+                    Name = model.Name,
+                    
+                };
+                _db.Category.Update(p);
+                _db.SaveChanges();
+                return RedirectToAction("Category");
             }
-            return View("EditCategory");
+            return View(model);
         }
 
         [HttpPost]

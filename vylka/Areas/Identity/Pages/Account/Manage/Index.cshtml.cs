@@ -30,11 +30,19 @@ namespace vylka.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
-            [Display(Name = "Ім'я")]
+            /// <summary>
+            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
+            ///     directly from your code. This API may change or be removed in future releases.
+            /// </summary>
+            
+            [Required(ErrorMessage = "Будь ласка, введіть дані")]
+            [Display(Name = "Username")]
             public string Username { get; set; }
 
+
             [Phone]
-            [Display(Name = "Номер телефону")]
+            [Required(ErrorMessage = "Будь ласка, введіть дані")]
+            [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
         }
 

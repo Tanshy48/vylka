@@ -155,3 +155,10 @@ table td button{
 .render-content form {
   margin: 0 2rem 2rem 2rem;
 }
+
+td input {
+  text-align: center;
+  background: rgba(0, 0, 0, 0);
+  border: none;
+  width: 100%;
+}

@@ -80,8 +80,8 @@ namespace vylka.Controllers.Admin
                     Name = model.Name,
                     
                 };
-                _db.Category.Update(p);
-                _db.SaveChanges();
+                _context.Category.Update(p);
+                _context.SaveChanges();
                 return RedirectToAction("Category");
             }
             return View(model);

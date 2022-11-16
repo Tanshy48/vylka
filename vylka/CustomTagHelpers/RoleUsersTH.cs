@@ -1,13 +1,17 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Razor.TagHelpers;
+using System.ComponentModel.DataAnnotations;
+using vylka.Areas.Entity;
 
 namespace vylka.CustomTagHelpers
 {
     [HtmlTargetElement("td", Attributes = "i-role")]
+
     public class RoleUsersTH : TagHelper
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+
 
         public RoleUsersTH(UserManager<IdentityUser> usermgr, RoleManager<IdentityRole> rolemgr)
         {
@@ -15,7 +19,10 @@ namespace vylka.CustomTagHelpers
             _roleManager = rolemgr;
         }
 
-        [HtmlAttributeName("i-role")] private string Role { get; set; } = null!;
+        [HtmlAttributeName("i-role")]
+        [Required(ErrorMessage = "Таких не знаємо")]
+        [StringLength(30)]
+        public string Role { get; set; }
 
         public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {

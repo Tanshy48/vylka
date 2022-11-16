@@ -26,8 +26,9 @@
             </div>
         </div>
 </div>
-@section Scripts { 
+@section Scripts {
     <script src="@Url.Content("~/js/admin.js")" asp-append-version="true"></script>
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");  
-    }  
+    @{
+        <partial name="_ValidationScriptsPartial.cshtml" />
+    }
 }  

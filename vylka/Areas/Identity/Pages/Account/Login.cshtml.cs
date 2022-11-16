@@ -34,11 +34,13 @@ namespace vylka.Areas.Identity.Pages.Account
         public class InputModel
         {
 
-            [Required]
+ 
+            [Required(ErrorMessage = "Ти шо аферист?")]
             [Display(Name = "Логін")]
             public string Email { get; set; }
 
-            [Required]
+            [Required (ErrorMessage = "Хакер мамкін")]
+            [StringLength(100, ErrorMessage = "У тебе він короткий:)", MinimumLength = 6)]
             [Display(Name = "Пароль")]
             [DataType(DataType.Password)]
             public string Password { get; set; }

@@ -5,7 +5,8 @@ namespace vylka.Models
 {
     public class RoleModification
     {
-        [Required(ErrorMessage = "Будь ласка, введіть дані")]
+        [Required(ErrorMessage = "Таких не знаємо")]
+        [StringLength(30)]
         public string RoleName { get; set; }
         public string RoleId { get; set; }
         public string[] AddIds { get; set; }

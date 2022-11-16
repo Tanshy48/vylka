@@ -42,7 +42,7 @@ namespace vylka.Controllers.Admin
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddRole([Required] string name)
+        public async Task<IActionResult> AddRole([Required(ErrorMessage = "Таких не знаємо")] string name)
         {
             if (ModelState.IsValid)
             {

@@ -1,50 +1,60 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using vylka.Areas.Entity;
 using vylka.Areas.Identity.Data;
+using vylka.Models;
 
 namespace vylka.Controllers.Admin
 {
-    /* [Authorize(Roles = "Admin")] */
+    [Authorize(Roles = "Адмін")]
     public class CategoryAdminController : Controller
     {
         private readonly vylkaContext _context;
+
         public CategoryAdminController(vylkaContext context)
         {
-            _context = context;  
+            _context = context;
         }
 
         public ActionResult Categories()
         {
             return View(_context.Category.ToList());
         }
+
         public ActionResult AddCategory()
         {
             return View();
         }
+
         public ActionResult EditCategory(int? id)
         {
-            if( id == null || id == 0)
+            if (id == null || id == 0)
             {
                 return NotFound();
             }
+
             var categoryFromDb = _context.Category.Find(id);
-            if(categoryFromDb == null)
+            if (categoryFromDb == null)
             {
                 return NotFound();
             }
+
             return View(categoryFromDb);
         }
+
         public ActionResult DeleteCategory(int? id)
         {
             if (id == null || id == 0)
             {
                 return NotFound();
             }
+
             var categoryFromDb = _context.Category.Find(id);
             if (categoryFromDb == null)
             {
                 return NotFound();
             }
+
             return View(categoryFromDb);
         }
 
@@ -56,6 +66,7 @@ namespace vylka.Controllers.Admin
             {
                 return BadRequest();
             }
+
             try
             {
                 _context.Category.Add(model);
@@ -78,13 +89,12 @@ namespace vylka.Controllers.Admin
                 {
                     Id = model.Id,
                     Name = model.Name,
-                    
                 };
-                _db.Category.Update(p);
-                _db.SaveChanges();
-                return RedirectToAction("Category");
+                _context.Category.Update(p);
+                _context.SaveChanges();
             }
-            return View(model);
+
+            return RedirectToAction("Categories");
         }
 
         [HttpPost]
@@ -96,10 +106,10 @@ namespace vylka.Controllers.Admin
             {
                 return NotFound();
             }
+
             _context.Category.Remove(obj);
             _context.SaveChanges();
             return RedirectToAction("Categories");
         }
     }
 }
-

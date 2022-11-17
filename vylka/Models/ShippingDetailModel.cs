@@ -8,19 +8,19 @@ namespace vylka.Models
     public class ShippingDetailModel
     {
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Введіть будь ласка дані")]
         public string Address { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Введіть будь ласка дані")]
         public string City { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Введіть будь ласка дані")]
         public string District { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Введіть будь ласка дані")]
         public double TotalPrice { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Введіть будь ласка дані")]
         public string DeliveryType { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Введіть будь ласка дані")]
         public string UserId { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Введіть будь ласка дані")]
         public DateTime CreateDelivery { get; set; }
         
     }

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using vylka.Areas.Entity;
 using vylka.Areas.Identity.Data;
@@ -5,7 +6,7 @@ using vylka.Models;
 
 namespace vylka.Controllers.Admin
 {
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Адмін")]
     public class ProductAdminController : Controller
     {
         private readonly vylkaContext _db;

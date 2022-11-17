@@ -1,9 +1,10 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using vylka.Areas.Identity.Data;
 
 namespace vylka.Controllers.Admin
 {
-    /* [Authorize(Roles = "Admin")] */
+    [Authorize(Roles = "Адмін")]
     public class OrderAdminController : Controller
     {
         private readonly vylkaContext _context;

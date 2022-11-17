@@ -50,19 +50,21 @@ namespace vylka.Controllers
             var currentAccount = _context.Users.FirstOrDefault(u => u.UserName == User.Identity!.Name);
             if (currentAccount != null)
             {
-                ShippingDetail sd = new ShippingDetail()
-                {
-                    Id = model.Id,
-                    CreateDelivery = DateTime.Now,
-                    TotalPrice = Calculate(),
-                    District = model.District,
-                    City = model.City,
-                    Address = model.Address,
-                    DeliveryType = model.DeliveryType,
-                    User = currentAccount,
-                    UserId = currentAccount.Id,
-                }; 
-                _context.ShippingDetail.Add(sd);
+                
+                    ShippingDetail sd = new ShippingDetail()
+                    {
+                        Id = model.Id,
+                        CreateDelivery = DateTime.Now,
+                        TotalPrice = Calculate(),
+                        District = model.District,
+                        City = model.City,
+                        Address = model.Address,
+                        DeliveryType = model.DeliveryType,
+                        User = currentAccount,
+                        UserId = currentAccount.Id,
+                    };
+                    _context.ShippingDetail.Add(sd);
+                
             }
 
             var items = _context.CartItem.Where(u => u.Cart.CartUserId == currentAccount);

@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Authorization;
 using vylka.Models;
 
 namespace vylka.Controllers.Admin
 {
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Адмін")]
     public class RoleAdminController : Controller
     {
         private readonly RoleManager<IdentityRole> _roleManager;

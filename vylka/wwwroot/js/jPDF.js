@@ -33,7 +33,7 @@
         doc.setFontSize(16)
         doc.text(50, 150, `Дякуємо, що користуєтесь нашим сервісом!`)
         
-        doc.save('order'+id+'.pdf')
+        doc.save('order.pdf')
     }
 
 })(jQuery);

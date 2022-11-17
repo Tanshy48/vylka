@@ -1,11 +1,9 @@
-﻿@using vylka.Areas.Entity
-@model RoleEdit
+﻿@model RoleEdit
 @{  
     ViewData["Title"] = "Оновлення ролі";  
 	Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }  
 @section CSS {
-    <link href="@Url.Content("~/lib/fontawesome-free/css/all.min.css")" rel="stylesheet" asp-append-version="true"/>
     <link href="@Url.Content("~/css/admin.css")" rel="stylesheet" asp-append-version="true"/>
 } 
 <div class="render-content">
@@ -21,13 +19,13 @@
 
                 <h2 class="m-3 text-dark fs-4 text-center">Додати в групу @Model.Role.Name</h2>
                 <table class="table m-auto w-50">
-                    @if (Model.NonMembers.Count() == 0)
+                    @if (!Model.NonMembers.Any())
                     {
                         <input disabled type="text" class="form-control text-center m-auto w-50" value="Всім користувачам притаманна ця роль." />
                     }
                     else
                     {
-                        @foreach (User user in Model.NonMembers)
+                        @foreach (IdentityUser user in Model.NonMembers)
                         {
                             <tr>
                                 <td>@user.UserName</td>
@@ -41,11 +39,11 @@
   
                 <h2 class="m-3 text-dark fs-4 text-center">Вилучення з @Model.Role.Name</h2>
                 <table class="table m-auto w-50">
-                    @if (Model.Members.Count() == 0)
+                    @if (!Model.Members.Any())
                     {
                         <input disabled type="text" class="form-control text-center m-auto w-50" value="Відсутні користувачі, яким притаманна ця роль." />
                     } else {
-                        @foreach (User user in Model.Members)
+                        @foreach (IdentityUser user in Model.Members)
                         {
                             <tr>
                                 <td>@user.UserName</td>

@@ -1,12 +1,12 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using vylka.Areas.Entity;
-using vylka.Data;
+using vylka.Areas.Identity.Data;
 using vylka.Models;
 
-namespace Fork_Site.Controllers
+namespace vylka.Controllers.Admin
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Адмін")]
     public class ProductAdminController : Controller
     {
         private readonly vylkaContext _db;
@@ -16,24 +16,21 @@ namespace Fork_Site.Controllers
         }
         public ActionResult Products()
         {
-            return View(_db.Products.ToList());
+            return View(_db.Product.ToList());
         }
         public ActionResult AddProduct()
         {
             return View();
         }
+        
         public ActionResult EditProduct(int? id)
         {
-            if (id == null || id == 0)
+            Product? productFromDb = _db.Product.Find(id);
+            if (productFromDb == null)
             {
                 return NotFound();
             }
-            var ProductFromDb = _db.Products.Find(id);
-            if (ProductFromDb == null)
-            {
-                return NotFound();
-            }
-            return View(ProductFromDb);
+            return View(productFromDb);
         }
         public ActionResult DeleteProduct(int? id)
         {
@@ -41,15 +38,14 @@ namespace Fork_Site.Controllers
             {
                 return NotFound();
             }
-            var ProductFromDb = _db.Products.Find(id);
-            if (ProductFromDb == null)
+            var productFromDb = _db.Product.Find(id);
+            if (productFromDb == null)
             {
                 return NotFound();
             }
-            return View(ProductFromDb);
+            return View(productFromDb);
         }
-
-
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult AddProduct(ProductModel model)
@@ -59,13 +55,12 @@ namespace Fork_Site.Controllers
                 Product p = new Product()
                 {
                     Id = model.Id,
-                    Name = model.Name,
+                    ProductName = model.ProductName,
                     Description = model.Description,
-                    Quantity = model.Quantity,
                     Price = model.Price,
                     CategoryId = model.CategoryId
                 };
-                _db.Products.Add(p);
+                _db.Product.Add(p);
                 _db.SaveChanges();
                 return RedirectToAction("Products");
             }
@@ -74,37 +69,35 @@ namespace Fork_Site.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult EditProductPOST(ProductModel model)
+        public IActionResult EditProductPost(ProductModel model)
         {
-            
             if (ModelState.IsValid)
             {
-                var p = new Product()
+                Product p = new Product()
                 {
                     Id = model.Id,
-                    Name = model.Name,
+                    ProductName = model.ProductName,
                     Description = model.Description,
-                    Quantity = model.Quantity,
                     Price = model.Price,
                     CategoryId = model.CategoryId
                 };
-                _db.Products.Update(p);
+                _db.Product.Update(p);
                 _db.SaveChanges();
-                return RedirectToAction("Products");
+                
             }
-            return View(model);
+            return RedirectToAction("Products");
         }
 
-        [HttpPost]
+        [HttpDelete]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteProductPOST(int? id)
+        public IActionResult DeleteProductPost(int? id)
         {
-            var obj = _db.Products.Find(id);
+            var obj = _db.Product.Find(id);
             if (obj == null)
             {
                 return NotFound();
             }
-            _db.Products.Remove(obj);
+            _db.Product.Remove(obj);
             _db.SaveChanges();
             return RedirectToAction("Products");
         }

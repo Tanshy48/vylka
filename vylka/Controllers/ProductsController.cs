@@ -1,39 +1,62 @@
 using Microsoft.AspNetCore.Mvc;
-using System.Data.SqlClient;
-using System.Drawing;
-using vylka.Data;
-using vylka.Models;
+using vylka.Areas.Entity;
+using vylka.Areas.Identity.Data;
 
 namespace vylka.Controllers
 {
     public class ProductsController : Controller
     {
-        private readonly vylkaContext _db;
+        private readonly vylkaContext _context;
         public ProductsController(vylkaContext db)
         {
-            _db = db;
+            _context = db;
         }
-        public IActionResult Refrigerators()
+        [HttpGet]
+        public IActionResult Index(int id)
         {
-            return View(_db.Products.ToList());
+            return View(_context.Product.Where(p => p.CategoryId == id));
         }
-        public IActionResult TVs()
-        {
-            return View(_db.Products.ToList());
-        }
-        public IActionResult Vacuums()
-        {
-            return View(_db.Products.ToList());
-        }
-        public IActionResult Conditioners()
-        {
-            return View(_db.Products.ToList());
-        }
-
-
         
-    }
+        [HttpPost]
+        public IActionResult AddToCart(int id)
+        {
 
+            var currentAccount = _context.Users.FirstOrDefault(u => u.UserName == User.Identity!.Name);
 
-    
+            var currentUserCart = _context.Cart.OrderBy(o => o.Id).LastOrDefault(u => u.CartUserId == currentAccount);
+
+            if (currentUserCart.IsActive == false)
+            {
+                currentUserCart.IsActive = true;
+                _context.SaveChanges();
+                
+            }
+
+            var selectedProduct = _context.Product.FirstOrDefault(p => p.Id == id);
+
+            var item = _context.CartItem.FirstOrDefault(i =>
+                currentUserCart != null && i.ProductId == id && i.CartId == currentUserCart.Id);
+
+            if (item == null && selectedProduct!=null && currentUserCart!=null)
+            {
+                var order = new CartItem()
+                {
+                    ProductId = selectedProduct.Id,
+                    Quantity = 1,
+                    Price = selectedProduct.Price,
+                    CartId = currentUserCart.Id,
+                    Product = selectedProduct,
+                    ProductName = selectedProduct.ProductName,
+                };
+                _context.CartItem.Add(order);
+                _context.SaveChanges();
+            }
+            else
+            {
+                if (item != null) item.Quantity++;
+                _context.SaveChanges();
+            }
+            return Ok();
+        }
+    }   
 }

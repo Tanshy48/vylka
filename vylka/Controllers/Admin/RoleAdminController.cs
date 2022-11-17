@@ -1,27 +1,25 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
-using vylka.Areas.Entity;
-using vylka.Data;
+using Microsoft.AspNetCore.Authorization;
 using vylka.Models;
 
 namespace vylka.Controllers.Admin
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Адмін")]
     public class RoleAdminController : Controller
     {
-        private RoleManager<IdentityRole> roleManager;
-        private UserManager<User> userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public RoleAdminController(RoleManager<IdentityRole> roleMgr, UserManager<User> userMrg)
+        public RoleAdminController(RoleManager<IdentityRole> roleMgr, UserManager<IdentityUser> userMrg)
         {
-            roleManager = roleMgr;
-            userManager = userMrg;
+            _roleManager = roleMgr;
+            _userManager = userMrg;
         }
         public IActionResult Roles()
         {
-            return View(roleManager.Roles);
+            return View(_roleManager.Roles);
         }
 
         public IActionResult AddRole()
@@ -31,7 +29,7 @@ namespace vylka.Controllers.Admin
 
         public async Task<IActionResult> DeleteRole(string? id)
         {
-            var role = await roleManager.FindByIdAsync(id);
+            var role = await _roleManager.FindByIdAsync(id);
             if (role == null)
             {
                 return NotFound();
@@ -45,11 +43,11 @@ namespace vylka.Controllers.Admin
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddRole([Required] string name)
+        public async Task<IActionResult> AddRole([Required(ErrorMessage = "Таких не знаємо")] string name)
         {
             if (ModelState.IsValid)
             {
-                IdentityResult result = await roleManager.CreateAsync(new IdentityRole(name));
+                IdentityResult result = await _roleManager.CreateAsync(new IdentityRole(name));
                 if (result.Succeeded)
                     return RedirectToAction("Roles");
             }
@@ -58,28 +56,28 @@ namespace vylka.Controllers.Admin
         
 
         [HttpPost]
-        public async Task<IActionResult> DeleteRolePOST(string id)
+        public async Task<IActionResult> DeleteRolePost(string id)
         {
-            IdentityRole role = await roleManager.FindByIdAsync(id);
+            IdentityRole role = await _roleManager.FindByIdAsync(id);
             if (role != null)
             {
-                IdentityResult result = await roleManager.DeleteAsync(role);
+                IdentityResult result = await _roleManager.DeleteAsync(role);
                 if (result.Succeeded)
                     return RedirectToAction("Roles");
             }
             else
                 ModelState.AddModelError("", "No role found");
-            return View("Roles", roleManager.Roles);
+            return View("Roles", _roleManager.Roles);
         }
         
         public async Task<IActionResult> UpdateRole(string id)
         {
-            IdentityRole role = await roleManager.FindByIdAsync(id);
-            List<User> members = new List<User>();
-            List<User> nonMembers = new List<User>();
-            foreach (User user in userManager.Users)
+            IdentityRole role = await _roleManager.FindByIdAsync(id);
+            List<IdentityUser> members = new List<IdentityUser>();
+            List<IdentityUser> nonMembers = new List<IdentityUser>();
+            foreach (IdentityUser user in _userManager.Users)
             {
-                var list = await userManager.IsInRoleAsync(user, role.Name) ? members : nonMembers;
+                var list = await _userManager.IsInRoleAsync(user, role.Name) ? members : nonMembers;
                 list.Add(user);
             }
             return View(new RoleEdit
@@ -93,25 +91,25 @@ namespace vylka.Controllers.Admin
         [HttpPost]
         public async Task<IActionResult> UpdateRole(RoleModification model)
         {
-            IdentityResult result;
             if (ModelState.IsValid)
             {
+                IdentityResult result;
                 foreach (string userId in model.AddIds ?? new string[] { })
                 {
-                    User user = await userManager.FindByIdAsync(userId);
+                    IdentityUser user = await _userManager.FindByIdAsync(userId);
                     if (user != null)
                     {
-                        result = await userManager.AddToRoleAsync(user, model.RoleName);
+                        result = await _userManager.AddToRoleAsync(user, model.RoleName);
                         if (!result.Succeeded)
                             NotFound(userId);
                     }
                 }
                 foreach (string userId in model.DeleteIds ?? new string[] { })
                 {
-                    User user = await userManager.FindByIdAsync(userId);
+                    IdentityUser user = await _userManager.FindByIdAsync(userId);
                     if (user != null)
                     {
-                        result = await userManager.RemoveFromRoleAsync(user, model.RoleName);
+                        result = await _userManager.RemoveFromRoleAsync(user, model.RoleName);
                         if (!result.Succeeded)
                             NotFound(userId);
                     }

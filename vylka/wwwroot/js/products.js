@@ -5,14 +5,26 @@
     $('.iconTickBtn').each(function() {
         $(this).hide()
     })
+    
+    //відправляємо товар у кошик
+    $( '.sendToCartBtn' ).on('click', function() {
+        const btn = $(this)
+        const orderBtnDiv = $(this).parent()
+        const itemId = orderBtnDiv.find('#itemId').val()
 
-    //змінюємо стиль кнопки, на якій відбувся клік
-    $( '.button' ).on('click', function(event) {
-        event.preventDefault()
-        $(this).css('background-color', '#1f8657')
-        $(this).children('#textBtn').text(' В кошику')
-        $(this).children('.iconCartBtn').hide()
-        $(this).children('.iconTickBtn').show()
+        $.ajax({
+            type: 'POST',
+            url: '/Products/AddToCart',
+            data: { Id: itemId},
+            success: function () {
+                btn.css('background-color', '#1f8657')
+                btn.children('.iconCartBtn').hide()
+                btn.children('.iconTickBtn').show()
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        })
     })
 
 })(jQuery);

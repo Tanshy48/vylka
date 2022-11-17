@@ -1,71 +1,76 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using vylka.Areas.Entity;
-using vylka.Data;
+using vylka.Areas.Identity.Data;
 using vylka.Models;
 
-namespace Fork_Site.Controllers
+namespace vylka.Controllers.Admin
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Адмін")]
     public class CategoryAdminController : Controller
     {
-        private readonly vylkaContext _db;
-        public CategoryAdminController(vylkaContext db)
+        private readonly vylkaContext _context;
+
+        public CategoryAdminController(vylkaContext context)
         {
-            _db = db;  
+            _context = context;
         }
 
         public ActionResult Categories()
         {
-            return View(_db.Category.ToList());
+            return View(_context.Category.ToList());
         }
+
         public ActionResult AddCategory()
         {
             return View();
         }
+
         public ActionResult EditCategory(int? id)
         {
-            if( id == null || id == 0)
+            if (id == null || id == 0)
             {
                 return NotFound();
             }
-            var CategoryFromDb = _db.Category.Find(id);
-            if(CategoryFromDb == null)
+
+            var categoryFromDb = _context.Category.Find(id);
+            if (categoryFromDb == null)
             {
                 return NotFound();
             }
-            return View(CategoryFromDb);
+
+            return View(categoryFromDb);
         }
+
         public ActionResult DeleteCategory(int? id)
         {
             if (id == null || id == 0)
             {
                 return NotFound();
             }
-            var CategoryFromDb = _db.Category.Find(id);
-            if (CategoryFromDb == null)
+
+            var categoryFromDb = _context.Category.Find(id);
+            if (categoryFromDb == null)
             {
                 return NotFound();
             }
-            return View(CategoryFromDb);
+
+            return View(categoryFromDb);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult AddCategory(Category model)
         {
-            if (model == null)
-            {
-                return BadRequest();
-            }
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
+
             try
             {
-                _db.Category.Add(model);
-                _db.SaveChanges();
+                _context.Category.Add(model);
+                _context.SaveChanges();
                 return RedirectToAction("Categories");
             }
             catch (Exception)
@@ -76,31 +81,35 @@ namespace Fork_Site.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult EditCategoryPOST(Category obj)
+        public IActionResult EditCategoryPOST(CategoryModel model)
         {
-
             if (ModelState.IsValid)
             {
-                _db.Category.Update(obj);
-                _db.SaveChanges();
-                return RedirectToAction("Categories");
+                var p = new Category()
+                {
+                    Id = model.Id,
+                    Name = model.Name,
+                };
+                _context.Category.Update(p);
+                _context.SaveChanges();
             }
-            return View(obj);
+
+            return RedirectToAction("Categories");
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteCategoryPOST(int? id)
+        public IActionResult DeleteCategoryPost(int? id)
         {
-            var obj = _db.Category.Find(id);
+            var obj = _context.Category.Find(id);
             if (obj == null)
             {
                 return NotFound();
             }
-            _db.Category.Remove(obj);
-            _db.SaveChanges();
+
+            _context.Category.Remove(obj);
+            _context.SaveChanges();
             return RedirectToAction("Categories");
         }
     }
 }
-

@@ -1,7 +1,6 @@
 ﻿#nullable disable
 
 using System.ComponentModel.DataAnnotations;
-using System.Net.Mail;
 using System.Text;
 using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Authentication;
@@ -10,28 +9,31 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.VisualBasic;
 using vylka.Areas.Entity;
-using vylka.Models;
+using vylka.Areas.Identity.Data;
 
 namespace vylka.Areas.Identity.Pages.Account
 {
     public class RegisterModel : PageModel
     {
-        private readonly SignInManager<User> _signInManager;
-        private readonly UserManager<User> _userManager;
-        private readonly IUserStore<User> _userStore;
-        private readonly IUserEmailStore<User> _emailStore;
+        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly IUserStore<IdentityUser> _userStore;
+        private readonly IUserEmailStore<IdentityUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly vylkaContext _context;
 
         public RegisterModel(
-            UserManager<User> userManager,
-            IUserStore<User> userStore,
-            SignInManager<User> signInManager,
+            UserManager<IdentityUser> userManager,
+            IUserStore<IdentityUser> userStore,
+            SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
             RoleManager<IdentityRole> roleManager,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            vylkaContext context)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -40,6 +42,7 @@ namespace vylka.Areas.Identity.Pages.Account
             _logger = logger;
             _emailSender = emailSender;
             _roleManager = roleManager;
+            _context = context;
         }
         [BindProperty]
         public InputModel Input { get; set; }
@@ -51,24 +54,18 @@ namespace vylka.Areas.Identity.Pages.Account
         public class InputModel
         {
 
-            [Required]
-            [Display(Name = "Ім'я")]
-            public string FirstName { get; set; }
-            [Required]
-            [Display(Name = "Призвіще")]
-            public string LastName { get; set; }
-
-            [Required]
+            [Required(ErrorMessage = "Будь ласка, введіть дані")]
             [EmailAddress]
             [Display(Name = "Поштова скринька")]
             public string Email { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "Будь ласка, введіть дані")]
             [StringLength(100, ErrorMessage = "{0} повинен містити щонайменше {2} та не більше {1} символів.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Пароль")]
             public string Password { get; set; }
 
+            [Required(ErrorMessage = "Будь ласка, введіть дані")]
             [DataType(DataType.Password)]
             [Display(Name = "Підтвердити пароль")]
             [Compare("Password", ErrorMessage = "Паролі не співпадають.")]
@@ -88,47 +85,50 @@ namespace vylka.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                MailAddress address = new MailAddress(Input.Email);
-                string userName = address.User;
-                var user = new User
-                {
-                    UserName = userName,
-                    Email = Input.Email,
-                    FirstName = Input.FirstName,
-                    LastName = Input.LastName
-                    
-                };
+                var user = CreateUser();
                 
-                await _userStore.SetUserNameAsync(user, userName, CancellationToken.None);
+
+                await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+                
                 var result = await _userManager.CreateAsync(user, Input.Password);
-                // user.CartId = user.Id
 
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("Користувач створив акаунт.");
-
-                    var defaultrole = _roleManager.FindByNameAsync("User").Result;
+                    
+                    var userOder = new Cart()
+                    {
+                        CreateCart = DateAndTime.Now,
+                        IsActive = true,
+                        CartUserId = user,
+                    };
+                    _context.Cart.Add(userOder);
+                    await _context.SaveChangesAsync();
+                    
+                    _logger.LogInformation("Користувач створив новий акаунт з паролем");
+                    
+                    var defaultrole = _roleManager.FindByNameAsync("Користувач").Result;
                     if (defaultrole != null)
                     {
-                        IdentityResult roleresult = await _userManager.AddToRoleAsync(user, defaultrole.Name);
+                        await _userManager.AddToRoleAsync(user, defaultrole.Name);
                     }
-
+    
                     var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     var callbackUrl = Url.Page(
                         "/Account/ConfirmEmail",
                         pageHandler: null,
-                        values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
+                        values: new { area = "Identity", userId, code, returnUrl },
                         protocol: Request.Scheme);
 
-                    await _emailSender.SendEmailAsync(Input.Email, "Підтвердьте поштову скриньку",
-                        $"Будь ласка, <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>натисність сюди</a>, шоб підтвердити, що це ваша поштова скринька.");
+                    if (callbackUrl != null)
+                        await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
+                            $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
-                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
+                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl });
                     }
                     else
                     {
@@ -142,30 +142,31 @@ namespace vylka.Areas.Identity.Pages.Account
                 }
             }
 
+            // If we got this far, something failed, redisplay form
             return Page();
         }
 
-        private User CreateUser()
+        private IdentityUser CreateUser()
         {
             try
             {
-                return Activator.CreateInstance<User>();
+                return Activator.CreateInstance<IdentityUser>();
             }
             catch
             {
-                throw new InvalidOperationException($"Can't create an instance of '{nameof(User)}'. " +
-                    $"Ensure that '{nameof(User)}' is not an abstract class and has a parameterless constructor, or alternatively " +
+                throw new InvalidOperationException($"Can't create an instance of '{nameof(IdentityUser)}'. " +
+                    $"Ensure that '{nameof(IdentityUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
                     $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
             }
         }
 
-        private IUserEmailStore<User> GetEmailStore()
+        private IUserEmailStore<IdentityUser> GetEmailStore()
         {
             if (!_userManager.SupportsUserEmail)
             {
                 throw new NotSupportedException("The default UI requires a user store with email support.");
             }
-            return (IUserEmailStore<User>)_userStore;
+            return (IUserEmailStore<IdentityUser>)_userStore;
         }
     }
 }

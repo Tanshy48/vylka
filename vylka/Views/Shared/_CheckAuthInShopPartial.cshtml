@@ -1,0 +1,26 @@
+@inject SignInManager<IdentityUser> SignInManager
+
+@section CSS {
+    <link href="@Url.Content("~/css/products.css")" rel="stylesheet" asp-append-version="true"/>
+}
+@if (SignInManager.IsSignedIn(User))
+{
+    <button class="btn btn-primary button sendToCartBtn">
+        Купити
+        <img class="iconCartBtn" src=~/images/icons/cartWhite.png alt="В кошик"/>
+        <img class="iconTickBtn" src=~/images/icons/tick.png alt="В кошик"/>
+    </button>
+}
+else
+{
+    <button class="btn btn-primary button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Купити
+        <img class="iconCartBtn" src=~/images/icons/cartWhite.png alt="В кошик"/>
+        <img class="iconTickBtn" src=~/images/icons/tick.png alt="В кошик"/>
+    </button>
+}
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="alert alert-warning" role="alert">Будь ласка, увійдіть, щоб продовжити покупки!</div>
+    </div>
+</div>

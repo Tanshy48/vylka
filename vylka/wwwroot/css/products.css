@@ -6,7 +6,6 @@
 
 .shop {
     display: flex;
-	justify-content: space-between;
 	flex-wrap: wrap;
     font-size: 18px;
 }
@@ -22,6 +21,18 @@
     margin: 3rem;
 }
 
+@media (max-width: 1200px) {
+	.raw {
+		margin: .5rem;
+	}
+}
+
+@media (max-width: 500px) {
+	.raw {
+		margin: 3rem;
+	}
+}
+
 .raw .product-img {
 	max-height: 300px;
     max-width: 250px;
@@ -30,14 +41,11 @@
 
 .availability {
 	font-size: 13px;
-	margin-bottom: 5px;
 	margin-left: 10px;
 }
 
 .price {
 	font-weight: bolder;
-	margin-bottom: 10px;
-	margin-top: 10px;
 	margin-left: 10px;
 	font-size: 20px;
 }
@@ -45,6 +53,7 @@
 .order-btn {
 	display: flex;
 	align-items: center;
+	margin-bottom: .9rem;
 }
 
 .order-btn img {
@@ -78,6 +87,5 @@
 	box-shadow: 0 0 6px #11386a;
 	-moz-box-shadow: 0 0 6px#11386a;
 	-o-box-shadow: 0 0 6px #11386a;
-	-ms-box-shadow: 0 0 6px#000000;
 	-webkit-box-shadow: 0 0 6px #11386a;
 }

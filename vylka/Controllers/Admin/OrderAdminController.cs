@@ -1,18 +1,51 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using vylka.Areas.Identity.Data;
 
-namespace Fork_Site.Controllers
+namespace vylka.Controllers.Admin
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Адмін")]
     public class OrderAdminController : Controller
     {
+        private readonly vylkaContext _context;
+
+        public OrderAdminController(vylkaContext context)
+        {
+            _context = context;
+        }
+
         public ActionResult Orders()
         {
-            return View();
+            return View(_context.ShippingDetail.ToList());
         }
-        public ActionResult DeleteOrder()
+        
+        public ActionResult DeleteOrder(int? id)
         {
-            return View();
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            var orderFromDb = _context.ShippingDetail.Find(id);
+            if (orderFromDb == null)
+            {
+                return NotFound();
+            }
+            return View(orderFromDb);
         }
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteOrderPost(int? id)
+        {
+            var orderFromDb = _context.ShippingDetail.Find(id);
+            if (orderFromDb == null)
+            {
+                return NotFound();
+            }
+            _context.ShippingDetail.Remove(orderFromDb);
+            _context.SaveChanges();
+            return RedirectToAction("Orders");
+        }
+        
     }
 }

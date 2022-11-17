@@ -69,15 +69,12 @@ namespace vylka.Controllers
 
             var items = _context.CartItem.Where(u => u.Cart.CartUserId == currentAccount);
             
-            if (items != null)
-            {
                 foreach (var item in _context.CartItem.Where(u => u.Cart.CartUserId == currentAccount))
                 {
                     _context.CartItem.Remove(item);
                 }
-            }
-           
-            var delivery = GetDelivery();
+
+                var delivery = GetDelivery();
             delivery.IsActive = false;
             
             _context.SaveChanges();

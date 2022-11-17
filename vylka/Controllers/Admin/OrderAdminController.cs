@@ -4,7 +4,7 @@ using vylka.Areas.Identity.Data;
 
 namespace vylka.Controllers.Admin
 {
-    [Authorize(Roles = "Адмін")]
+    /*[Authorize(Roles = "Адмін")]*/
     public class OrderAdminController : Controller
     {
         private readonly vylkaContext _context;

@@ -6,7 +6,7 @@ using vylka.Models;
 
 namespace vylka.Controllers.Admin
 {
-    [Authorize(Roles = "Адмін")]
+    /*[Authorize(Roles = "Адмін")]*/
     public class CategoryAdminController : Controller
     {
         private readonly vylkaContext _context;
@@ -81,7 +81,7 @@ namespace vylka.Controllers.Admin
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult EditCategoryPOST(CategoryModel model)
+        public IActionResult EditCategoryPost(CategoryModel model)
         {
             if (ModelState.IsValid)
             {

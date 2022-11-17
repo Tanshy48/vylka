@@ -6,7 +6,7 @@ using vylka.Models;
 
 namespace vylka.Controllers.Admin
 {
-    [Authorize(Roles = "Адмін")]
+    /*[Authorize(Roles = "Адмін")]*/
     public class ProductAdminController : Controller
     {
         private readonly vylkaContext _db;
@@ -88,7 +88,7 @@ namespace vylka.Controllers.Admin
             return RedirectToAction("Products");
         }
 
-        [HttpDelete]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteProductPost(int? id)
         {

@@ -1,0 +1,164 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+body{
+  background-color: #000;
+}
+
+.wrapper {
+  display: flex;
+}
+
+/* Sidebar */
+.sidebar {
+  min-height: 100vh;
+  background-color: #fff;
+  transition: all 0.5s ease-in-out;
+}
+.side-nav-title{
+  height: 120px;
+  padding: 2rem 5rem 2rem 9rem;
+  background: rgb(7,66,129);
+  background: linear-gradient(180deg, rgba(7,66,129,1) 0%, rgba(1,91,186,1) 100%);
+  transition: all 0.5s ease-out;
+}
+.btn-check:focus+.btn, .btn:focus {
+  box-shadow: none;
+}
+.side-nav-title h1{
+  font-size: 2.5rem;
+}
+.sidebar .nav-item{
+  padding: 1rem 2.5rem 1rem 10rem;
+  transition: all 0.5s ease-out;
+}
+.sidebar .nav-item:last-child {
+  margin-bottom: 1rem;
+}
+.sidebar .nav-item .nav-link {
+  color: #3977bb;
+  display: block;
+  text-align: left;
+}
+.sidebar .nav-item .nav-link span {
+  font-size: 1.3rem;
+  display: inline;
+}
+.sidebar .nav-item img {
+  margin-right: .5rem;
+  width: 22px;
+}
+
+.sidebar .side-nav-title img {
+  width: 25px;
+  transition: all 0.5s ease-out;
+}
+
+/* Toggled sidebar styles */
+.sidebar.toggled{
+  min-width: auto;
+  overflow: visible;
+}
+.sidebar.toggled .side-nav-title{
+  height: 120px;
+  padding: 0.5rem;
+  transition: all 0.5s ease-in;
+}
+.sidebar.toggled .side-nav-title h1{
+  display: none;
+}
+.sidebar.toggled .side-nav-title img {
+  transform: rotate(90deg);
+  transition: all 0.5s ease-in;
+}
+.sidebar.toggled .nav-item {
+  height: 80.19px;
+  padding-left: 0;
+  padding-right: 0;
+  transition: all 0.5s ease-in;
+}
+.sidebar.toggled .nav-item .nav-link {
+  padding: 1rem;
+  font-size: 1.5rem;
+}
+.sidebar.toggled .nav-item .nav-link span {
+  display: none;
+}
+
+.sidebar.toggled .nav-item img {
+  margin-right: 0;
+  margin-left: .5rem;
+}
+
+.content-wrapper {
+  overflow-x: hidden;
+  padding: 5rem 7rem 2rem 5rem;
+  width: 100%;
+}
+
+.content-wrapper .bg-table-title {
+  background-color: #ebeced;
+}
+
+.content-wrapper .bg-table-title button {
+  margin-right: 3rem;
+  height: 50px;
+}
+
+.content-wrapper .bg-table-title button i{
+  padding-right: .3rem;
+}
+
+@media screen and (max-width: 1800px){
+  .content-wrapper .bg-table-title button {
+    margin-right: 1rem;
+  }
+}
+
+@media screen and (max-width: 1200px){
+  .content-wrapper {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  .content-wrapper .bg-table-title {
+    background-color: #ebeced;
+  }
+  .content-wrapper h1 {
+    padding: 1rem;
+  }
+}
+
+table td button{
+  padding: 0;
+}
+
+.render-content table td button i{
+  margin: 0;
+  font-size: .8rem;
+}
+
+.render-content table tr td{
+  vertical-align: middle;
+}
+
+.render-content a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.render-content a:hover {
+  color: #fff;
+}
+
+.render-content form {
+  margin: 0 2rem 2rem 2rem;
+}
+
+td input {
+  text-align: center;
+  background: rgba(0, 0, 0, 0);
+  border: none;
+  width: 100%;
+}

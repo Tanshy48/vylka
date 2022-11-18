@@ -1,0 +1,70 @@
+@using vylka.Areas.Entity
+@model IEnumerable<ShippingDetail>
+@{
+    ViewData["Title"] = "Замовлення";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@section CSS {
+    <link href="@Url.Content("~/lib/fontawesome-free/css/all.min.css")" rel="stylesheet" asp-append-version="true"/>
+    <link href="@Url.Content("~/css/admin.css")" rel="stylesheet" asp-append-version="true"/>
+}
+
+<div class="render-content">
+	<div class="content-wrapper">
+		<div class="border-top border-primary border-4 bg-light table-responsive">
+			<div class="bg-table-title text-dark d-flex justify-content-between align-items-center">
+				<h1 class=" fw-bolder fs-5 p-lg-3 ">Замовлення</h1>
+			</div>
+			<table class="text-center table table-striped">
+				<thead class="fs-6">
+				<tr>
+					<th scope="col">ID</th>
+					<th scope="col">Дата</th>
+					<th scope="col">Область</th>
+					<th scope="col">Місто</th>
+					<th scope="col">Адреса</th>
+					<th scope="col">Доставка</th>
+					<th scope="col">Користувач</th>
+					<th scope="col">Вартість</th>
+
+					<th scope="col">Завантажити</th>
+					<th scope="col">Видалити</th>
+				</tr>
+				</thead>
+				<tbody>
+				@foreach (var item in Model)
+				{
+					<tr>
+						<td> <input disabled id="id" value="@item.Id"/> </td>
+						<td> <input disabled id="date" value="@item.CreateDelivery"/> </td>
+						<td> <input disabled id="district" value="@item.District"/></td>
+						<td> <input disabled id="city" value="@item.City"/></td>
+						<td> <input disabled id="address" value="@item.Address"/></td>
+						<td> <input disabled id="delivery" value="@item.DeliveryType"/></td>
+						<td> <input disabled id="user" value="@item.UserId"/></td>
+						<td> <input disabled id="price" value="@item.TotalPrice"/></td>
+
+						<td>
+							<button class="btn btn-info pdfDownloader">
+								<i class="fa fa-download"></i>
+							</button>
+						</td>
+						<td>
+							<a asp-controller="OrderAdmin" asp-action="DeleteOrder" asp-route-id="@item.Id">
+								<button class="btn btn-danger">
+									<i class="fa fa-trash"></i>
+								</button>
+							</a>
+						</td>
+					</tr>
+				}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+@section Scripts {
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+	<script src="@Url.Content("~/js/jPDF.js")" asp-append-version="true"></script>
+    <script src="@Url.Content("~/js/admin.js")" asp-append-version="true"></script>
+}

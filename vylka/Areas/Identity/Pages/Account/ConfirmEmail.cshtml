@@ -1,0 +1,11 @@
+﻿@page
+@model ConfirmEmailModel
+@{
+    ViewData["Title"] = "Підтвердження поштової скриньки";
+}
+<div class="render-content d-flex flex-column justify-content-center align-items-center">
+    <h1 class="text-center my-4">@ViewData["Title"]</h1>
+    <section class="auth-container mx-auto">
+        <partial name="_StatusMessage" model="Model.StatusMessage" />
+    </section>
+</div>

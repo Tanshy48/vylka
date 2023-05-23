@@ -1,0 +1,36 @@
+@model IEnumerable<onlineShop.Areas.Entity.Product>
+@{
+    ViewData["Title"] = "Товари";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section CSS {
+    <link href="@Url.Content("~/css/products.css")" rel="stylesheet" asp-append-version="true"/>
+}
+
+    <div class="render-content container">
+        <div class="shop mb-4">
+            @foreach (var item in Model)
+            {
+                    <div class="raw">
+                        <img class="product-img mx-auto" src="~/images/products/(@item.Id).jpg" alt="Зображення продукта"/>
+                        <div class="availability text-dark">В наявності</div>
+                        <div class="product-name text-dark">@item.ProductName</div>
+                        <div>
+                            <div class="price text-dark">
+                                @item.Price <small>грн</small>
+                            </div>
+                            <div class="order-btn text-dark" >
+                                <partial name="_CheckAuthInShopPartial"/>
+                                
+                                <input id="itemId" hidden value="@item.Id"/>
+                            </div>
+                        </div>
+                    </div>
+            }
+        </div>
+    </div>
+
+@section Scripts {
+    <script src="@Url.Content("~/js/products.js")" asp-append-version="true"></script>
+}
